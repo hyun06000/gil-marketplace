@@ -4,12 +4,12 @@
   "publishable": false,
   "platform": "darwin-arm64",
   "plugin": "gil-companion-prototype",
-  "version": "0.2.1-preview.1",
+  "version": "0.2.1-preview.2",
   "source": {
-    "head": "da7fa6f66fefc59d21b0297ed61990ed366ef1bd",
+    "head": "77fde0132b5af139e470d3a149b4a132d01fafd2",
     "dirty": false,
-    "files": 280,
-    "snapshot_sha256": "f178542608b2b2dfd78f1253b9779789abfaa6bb4a88656e92a0c5aff92f56be"
+    "files": 286,
+    "snapshot_sha256": "a20864c47ff94b2736f8ec0fc8881a34aef9ed9210f5a92294dbf9b4b4c1c8e2"
   },
   "binary_origin": "preserved_from_verified_development_tree; CI provenance review still required",
   "trust": {
@@ -31,7 +31,7 @@
       "path": "plugins/gil-companion-prototype/.codex-plugin/plugin.json",
       "bytes": 1110,
       "mode": 420,
-      "sha256": "76f2ad54df3c3100c960c5840ded7470b533b1df88aa8d12fe6d5c659d9e1610"
+      "sha256": "8a1cb243a1ea6f692254232ae3810ca1d52830d7f3c1a9383445942d03239de5"
     },
     {
       "path": "plugins/gil-companion-prototype/core/darwin-arm64/gil",
@@ -53,9 +53,9 @@
     },
     {
       "path": "plugins/gil-companion-prototype/skills/gil-companion/SKILL.md",
-      "bytes": 7078,
+      "bytes": 8005,
       "mode": 420,
-      "sha256": "285bc7f82231383b90abf86a287dcba756e152ff15714f224cd9fc1fa4e0432a"
+      "sha256": "f259249ef1dd27cc9cacd74d7bef06a93de7b497ae836e9ac6c90f925866073e"
     },
     {
       "path": "plugins/gil-companion-prototype/THIRD-PARTY-NOTICES.json",
@@ -73,7 +73,7 @@
       "path": "PREVIEW.md",
       "bytes": 1043,
       "mode": 420,
-      "sha256": "19ff65e2ede4b31f9e7bf46092cb82366406226a6e11dfb2e839d6f929f7db98"
+      "sha256": "104d210f65cb8b57cb1e6b5c443de29138ba86bed70ec41076a4f6d47bd647e6"
     }
   ]
 }
