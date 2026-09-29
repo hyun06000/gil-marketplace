@@ -2,14 +2,14 @@
   "schema": 1,
   "channel": "preview_unsigned",
   "publishable": false,
-  "version": "0.2.1-preview.1",
+  "version": "0.2.1-preview.2",
   "source": {
-    "head": "da7fa6f66fefc59d21b0297ed61990ed366ef1bd",
+    "head": "77fde0132b5af139e470d3a149b4a132d01fafd2",
     "dirty": false,
-    "files": 280,
-    "snapshot_sha256": "f178542608b2b2dfd78f1253b9779789abfaa6bb4a88656e92a0c5aff92f56be"
+    "files": 286,
+    "snapshot_sha256": "a20864c47ff94b2736f8ec0fc8881a34aef9ed9210f5a92294dbf9b4b4c1c8e2"
   },
-  "archive_sha256": "063ac763eac73e9fcbd36b44fb45d48f1fc89aa8c8aea89d276579006e99f782",
+  "archive_sha256": "b1b969185e69e9c4e0549d7a37188f05e4ae60c1c9f8edc8d84b36f7b67fc6a8",
   "trust": {
     "developer_id": "not_provided",
     "notarization": "not_performed",

@@ -6,18 +6,29 @@ Source and contracts: [hyun06000/gil](https://github.com/hyun06000/gil).
 
 This clean publication history starts independently; previous private acceptance commits are not
 ancestors. The original private audit repository and existing pinned installation are preserved.
-The reviewed payload below is copied byte-for-byte, not rebuilt, renamed or version-bumped.
-Only maintainer documentation, CI and a raw Git identity guard differ from the earlier staging tree.
+Each reviewed payload is copied byte-for-byte from its versioned source CI candidate, not rebuilt
+or renamed here. Updating a candidate also updates its exact receipt and review pins.
 Preparing this repository does not register it in a Host or replace an installed marketplace source.
 
 ## Candidate
 
-- Version: `0.2.1-preview.1`; Plugin: `gil-companion-prototype`.
+- Version: `0.2.1-preview.2`; Plugin: `gil-companion-prototype`.
 - Marketplace: `gil-preview-macos-arm64`; existing identity is preserved.
-- Source commit: `da7fa6f66fefc59d21b0297ed61990ed366ef1bd` (source PR #3).
-- Build: [source CI 36405273140](https://github.com/hyun06000/gil/actions/runs/36405273140).
-- Original archive SHA-256: `063ac763eac73e9fcbd36b44fb45d48f1fc89aa8c8aea89d276579006e99f782`.
+- Source commit: `77fde0132b5af139e470d3a149b4a132d01fafd2` ([source PR #7](https://github.com/hyun06000/gil/pull/7)).
+- Build: [source CI 36566086605](https://github.com/hyun06000/gil/actions/runs/36566086605).
+- Original archive SHA-256: `b1b969185e69e9c4e0549d7a37188f05e4ae60c1c9f8edc8d84b36f7b67fc6a8`.
 - Exact payload receipt: [release.json](release.json); original CI records: [evidence](evidence).
+
+Source PR #7 merged as `6c59b45bbe82b4abf21707c75c8c5015a6452612`; its Git tree is identical
+to the CI source commit above. Provenance continues to name the commit actually built by CI.
+Compared with preview.1, installed Core, embedded UI, licenses and marketplace identity are unchanged.
+The Skill now explicitly treats fullscreen MCP App as the default and Companion as optional;
+preview version labels and evidence change with it. No installed runtime is rebuilt for this update.
+
+The last accepted preview.1 remains available at immutable marketplace commit
+`e63963db63f0bfaf11be9d7939873e7a31fe05be`. Keep that ref and its receipt as the rollback target;
+do not replace preview.1 bytes in place. Update/rollback compatibility checks do not by themselves
+prove installation, saved-state preservation or visible Host acceptance.
 
 The original archive is not duplicated in Git. Its checksum records the reviewed CI input, not the bytes
 of a later GitHub source ZIP. The Git tree preserves the receipt's individual bytes and executable bit.
