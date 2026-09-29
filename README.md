@@ -1,14 +1,55 @@
-# GIL marketplace — private publication preparation
+# GIL marketplace — unsigned preview
 
-This repository contains a reviewed, prebuilt **Codex / macOS Apple Silicon** Plugin candidate.
-It is not the source repository, a public release, or a Plugins Directory listing.
+Install the reviewed, prebuilt **Codex / macOS Apple Silicon** Plugin, `0.2.1-preview.2`.
+This is an opt-in unsigned preview, not a stable release or a universal Plugins Directory listing.
 Source and contracts: [hyun06000/gil](https://github.com/hyun06000/gil).
+
+## Install with Codex
+
+**No separate Companion, Node, npm, Cargo or Homebrew installation is required.**
+There is no Apple Developer ID signature or notarization, and installation on a fresh Mac is unverified.
+If macOS blocks execution, stop; do not disable security or remove quarantine.
+
+Ask Codex:
+
+> Install GIL unsigned preview 0.2.1-preview.2 using the official Plugin management commands.
+> Register https://github.com/hyun06000/gil-marketplace.git pinned to
+> 076bb49719ffd94225c2c0adf479607e42fb09e2, then install
+> gil-companion-prototype@gil-preview-macos-arm64.
+> If GIL is already installed, check its source/version and ask before replacing it.
+> Do not initialize or modify my project.
+
+Confirm the installation when prompted, then open a **new Codex conversation** and select your folder.
+For a new project say “지금 폴더에서 GIL 프로젝트를 시작해 줘”. For an existing project say
+“기록을 바꾸지 말고 GIL Monitor를 열어 줘”. Fullscreen with a horizontal graph is the default;
+if the Host does not open it automatically, click **모니터 펼치기**. Click a node to inspect its report.
+Tool success alone does not prove the screen is visible.
+
+[Detailed install/recovery guide](https://github.com/hyun06000/gil/blob/main/distribution/codex/INSTALL.md)
+· [versioned release](https://github.com/hyun06000/gil-marketplace/releases/tag/v0.2.1-preview.2)
+· [support](https://github.com/hyun06000/gil/blob/main/SUPPORT.md)
+· [private vulnerability reporting](https://github.com/hyun06000/gil/security/advisories/new).
+
+For an Agent using the Codex CLI supplied by the app (not a prerequisite for users):
+
+```sh
+codex plugin marketplace add https://github.com/hyun06000/gil-marketplace.git --ref 076bb49719ffd94225c2c0adf479607e42fb09e2 --json
+codex plugin add gil-companion-prototype@gil-preview-macos-arm64 --json
+```
+
+Use official Plugin management for updates/removal. Do not track moving `main` for unsigned automatic
+updates, edit caches, delete `.gil`, or run `gil restore` to downgrade the Plugin. Prior verified version:
+preview.1 at `e63963db63f0bfaf11be9d7939873e7a31fe05be`. Ask before switching an existing registration.
+Official preview.2 → preview.1 → preview.2 recovery and Project preservation passed on the existing Mac.
+GIL records stay local; tool responses are shared with the selected Host/AI conversation under its policies.
+
+## Provenance
 
 This clean publication history starts independently; previous private acceptance commits are not
 ancestors. The original private audit repository and existing pinned installation are preserved.
 Each reviewed payload is copied byte-for-byte from its versioned source CI candidate, not rebuilt
 or renamed here. Updating a candidate also updates its exact receipt and review pins.
-Preparing this repository does not register it in a Host or replace an installed marketplace source.
+Reading this repository does not register it in a Host or replace an installed marketplace source.
 
 ## Candidate
 
@@ -51,17 +92,19 @@ Removing a Plugin must never delete a user's Project or `.gil` records.
 
 ## Acceptance and publication boundaries
 
-This private repository is for remote-clone and installation-route acceptance. There is no public
-install command or release tag yet. Registering a Git marketplace is separate from publication in
-the universal Plugins Directory. Do not replace a user's existing configured marketplace without approval.
+Public anonymous HTTPS download and the official Codex HTTPS installation route were verified on
+2026-09-30 at the pinned ref. Native tools, embedded UI bytes, saved-scope restoration and Project
+preservation passed. The owner separately accepted preview.2 fullscreen and node details before
+publication; downloading identical bytes is not a new human visual observation or a fresh-Mac test.
 
-Use a reviewed immutable Git commit when testing the remote source; do not track a moving branch for
-automatic unsigned updates. Current installed Plugin replacement, source/distribution visibility changes,
-public tags/releases and marketplace publication require separate approval.
+The receipt's `publishable:false` and original PREVIEW document record build-time gates. They are
+preserved byte-for-byte; publication approval and public-route evidence live in
+[the source checkpoint](https://github.com/hyun06000/gil/blob/main/distribution/codex/PREVIEW-2-PUBLICATION-20260930.md)
+and the versioned release, not a hand-edited receipt.
 
-All changes after GitHub's initial README commit go through topic branches and pull requests. Private
-repository protection is not enforceable under the current plan; this is an operating rule, not a claim
-of server enforcement. No force push or history rewriting. Existing source/runtime licenses remain in
+All changes after GitHub's initial README commit go through topic branches and pull requests. Main now
+requires PR + `pinned-payload` CI, including for admins; force push and deletion are disabled. Private
+Vulnerability Reporting is enabled. No force push or history rewriting. Existing source/runtime licenses remain in
 `plugins/gil-companion-prototype/` without alteration.
 
 Maintainer CI runs `node --test checks/verify.test.mjs` and `node checks/verify.mjs`. It validates the

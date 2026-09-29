@@ -1,6 +1,6 @@
 # GIL distribution maintenance
 
-- This is a private built-artifact acceptance repository, not the GIL source checkout.
+- This is the public, reviewed built-artifact preview repository, not the GIL source checkout.
 - Never initialize a GIL Project here or modify a user's Project or installed Plugin cache.
 - Preserve the reviewed payload bytes, licenses, Plugin identity and executable bit. Do not rebuild in place.
 - A changed payload requires a new reviewed version and corresponding source CI evidence; never silently
