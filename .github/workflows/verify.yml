@@ -1,0 +1,24 @@
+name: Distribution integrity (not installation acceptance)
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  pinned-payload:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - name: History privacy regression tests
+        run: node --test checks/history.test.mjs
+      - name: Verify raw reachable commit and tag identities
+        run: node checks/history.mjs
+      - name: Integrity regression tests (never executes macOS payload)
+        run: node --test checks/verify.test.mjs
+      - name: Verify pinned payload and original source CI evidence
+        run: node checks/verify.mjs

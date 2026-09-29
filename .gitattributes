@@ -1,0 +1,9 @@
+# Preserve reviewed payload/evidence bytes; never normalize upstream legal texts.
+/plugins/** -text
+/.agents/plugins/marketplace.json -text
+/PREVIEW.md -text
+/release.json -text
+/evidence/** -text
+# Original attribution files intentionally contain CRLF and trailing spaces.
+/plugins/gil-companion-prototype/THIRD-PARTY-NOTICES.txt -whitespace
+/plugins/gil-companion-prototype/RUST-STDLIB-NOTICES.html -whitespace

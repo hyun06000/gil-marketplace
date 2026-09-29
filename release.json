@@ -1,0 +1,79 @@
+{
+  "schema": 2,
+  "channel": "preview_unsigned",
+  "publishable": false,
+  "platform": "darwin-arm64",
+  "plugin": "gil-companion-prototype",
+  "version": "0.2.1-preview.1",
+  "source": {
+    "head": "da7fa6f66fefc59d21b0297ed61990ed366ef1bd",
+    "dirty": false,
+    "files": 280,
+    "snapshot_sha256": "f178542608b2b2dfd78f1253b9779789abfaa6bb4a88656e92a0c5aff92f56be"
+  },
+  "binary_origin": "preserved_from_verified_development_tree; CI provenance review still required",
+  "trust": {
+    "developer_id": "not_provided",
+    "notarization": "not_performed",
+    "clean_machine_install": "deferred_not_passed",
+    "automatic_update": "not_authorized",
+    "os_security_override": "prohibited",
+    "publication": "requires_separate_approval"
+  },
+  "files": [
+    {
+      "path": ".agents/plugins/marketplace.json",
+      "bytes": 422,
+      "mode": 420,
+      "sha256": "6c8e51dd3ca00758ef4c337ae75fbea1b84cde48ae686dd8bdc0a07beca042c2"
+    },
+    {
+      "path": "plugins/gil-companion-prototype/.codex-plugin/plugin.json",
+      "bytes": 1110,
+      "mode": 420,
+      "sha256": "76f2ad54df3c3100c960c5840ded7470b533b1df88aa8d12fe6d5c659d9e1610"
+    },
+    {
+      "path": "plugins/gil-companion-prototype/core/darwin-arm64/gil",
+      "bytes": 8263520,
+      "mode": 493,
+      "sha256": "3572786190ec4a8ad3b703ebe5c8ffd9b170a4e6c7da1ea2776abfc12c520a47"
+    },
+    {
+      "path": "plugins/gil-companion-prototype/LICENSE",
+      "bytes": 1071,
+      "mode": 420,
+      "sha256": "915fae3ca6186e3531bed739c2a41bbd2a6a5a4cca477d0eab12e4290b3434b5"
+    },
+    {
+      "path": "plugins/gil-companion-prototype/RUST-STDLIB-NOTICES.html",
+      "bytes": 279302,
+      "mode": 420,
+      "sha256": "0a65bb747c49c7bb816cbc7188319bd6e4e8d08091c1190b8a3c0971c47968ed"
+    },
+    {
+      "path": "plugins/gil-companion-prototype/skills/gil-companion/SKILL.md",
+      "bytes": 7078,
+      "mode": 420,
+      "sha256": "285bc7f82231383b90abf86a287dcba756e152ff15714f224cd9fc1fa4e0432a"
+    },
+    {
+      "path": "plugins/gil-companion-prototype/THIRD-PARTY-NOTICES.json",
+      "bytes": 51789,
+      "mode": 420,
+      "sha256": "81c3c0f100cc98f36a910a1de5134289508ff91c59b0d02219fa981a34a52602"
+    },
+    {
+      "path": "plugins/gil-companion-prototype/THIRD-PARTY-NOTICES.txt",
+      "bytes": 193136,
+      "mode": 420,
+      "sha256": "421d067b2601e82d5d4fb5595147fa35d032e8da63a298a5bb481d9008c65dc7"
+    },
+    {
+      "path": "PREVIEW.md",
+      "bytes": 1043,
+      "mode": 420,
+      "sha256": "19ff65e2ede4b31f9e7bf46092cb82366406226a6e11dfb2e839d6f929f7db98"
+    }
+  ]
+}

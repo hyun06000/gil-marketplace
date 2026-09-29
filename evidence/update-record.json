@@ -1,0 +1,34 @@
+{
+  "schema": 1,
+  "plugin": "gil-companion-prototype",
+  "platform": "darwin-arm64",
+  "version": "0.2.1-preview.1",
+  "source_commit": "da7fa6f66fefc59d21b0297ed61990ed366ef1bd",
+  "source_snapshot_sha256": "f178542608b2b2dfd78f1253b9779789abfaa6bb4a88656e92a0c5aff92f56be",
+  "archive_sha256": "063ac763eac73e9fcbd36b44fb45d48f1fc89aa8c8aea89d276579006e99f782",
+  "core_sha256": "3572786190ec4a8ad3b703ebe5c8ffd9b170a4e6c7da1ea2776abfc12c520a47",
+  "ui_sha256": "0aaf30e3c62d63fdc45919d01ece01c1ea2ac2464bf572e72b4a4d4b87b52688",
+  "compatibility": {
+    "protocol": {
+      "min": 1,
+      "max": 1
+    },
+    "action_surface": {
+      "min": 1,
+      "max": 1
+    },
+    "storage_format": {
+      "min": 4,
+      "max": 4
+    },
+    "monitor_view_schema": {
+      "min": 1,
+      "max": 1
+    },
+    "node_detail_schema": {
+      "min": 1,
+      "max": 1
+    }
+  },
+  "migration": "none"
+}
