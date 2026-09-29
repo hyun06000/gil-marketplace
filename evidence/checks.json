@@ -1,0 +1,58 @@
+{
+  "schema": 1,
+  "channel": "preview_unsigned",
+  "publishable": false,
+  "version": "0.2.1-preview.1",
+  "source": {
+    "head": "da7fa6f66fefc59d21b0297ed61990ed366ef1bd",
+    "dirty": false,
+    "files": 280,
+    "snapshot_sha256": "f178542608b2b2dfd78f1253b9779789abfaa6bb4a88656e92a0c5aff92f56be"
+  },
+  "archive_sha256": "063ac763eac73e9fcbd36b44fb45d48f1fc89aa8c8aea89d276579006e99f782",
+  "trust": {
+    "developer_id": "not_provided",
+    "notarization": "not_performed",
+    "clean_machine_install": "deferred_not_passed",
+    "automatic_update": "not_authorized",
+    "os_security_override": "prohibited",
+    "publication": "requires_separate_approval"
+  },
+  "roundtrip": "passed",
+  "smoke": {
+    "passed": true,
+    "first_process_ms": 5,
+    "initialize_ms": 5,
+    "deadline_ms": 30000,
+    "tools": 17,
+    "ui_sha256": "0aaf30e3c62d63fdc45919d01ece01c1ea2ac2464bf572e72b4a4d4b87b52688",
+    "core": {
+      "schema_version": 1,
+      "product": "gil_core",
+      "core_version": "0.1.0",
+      "protocol": {
+        "min": 1,
+        "max": 1
+      },
+      "storage_format": {
+        "min": 4,
+        "max": 4
+      },
+      "action_surface": {
+        "min": 1,
+        "max": 1
+      },
+      "os": "macos",
+      "arch": "aarch64"
+    },
+    "system_libraries": [
+      "/System/Library/Frameworks/CoreFoundation.framework/Versions/A/CoreFoundation",
+      "/System/Library/Frameworks/CoreServices.framework/Versions/A/CoreServices",
+      "/usr/lib/libiconv.2.dylib",
+      "/usr/lib/libSystem.B.dylib"
+    ],
+    "child_path": "/usr/bin:/bin",
+    "scope": "protocol only; not marketplace installation, fresh-machine launch or visible fullscreen"
+  },
+  "limits": "Local protocol and integrity only. CI provenance, Host install/UI, remote publication and fresh Mac are separate."
+}
