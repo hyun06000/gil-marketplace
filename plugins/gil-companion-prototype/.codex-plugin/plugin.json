@@ -1,6 +1,6 @@
 {
   "name": "gil-companion-prototype",
-  "version": "0.2.1-preview.2",
+  "version": "0.2.1-preview.3",
   "description": "Record reasoning with GIL, and keep the journey visible in the GIL Monitor.",
   "author": {
     "name": "Ariadne"
