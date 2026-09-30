@@ -10,11 +10,11 @@ const prefix = 'plugins/gil-companion-prototype';
 const core = `${prefix}/core/darwin-arm64/gil`;
 const manifest = `${prefix}/.codex-plugin/plugin.json`;
 const hash = bytes => createHash('sha256').update(bytes).digest('hex');
-export const pins = Object.freeze({version: '0.2.1-preview.2',
-  receipt: 'ed43d0d6d758d23bc1b628107fdf927892edcf324fc9ee2787ed21eb869b2f7e',
-  source: '77fde0132b5af139e470d3a149b4a132d01fafd2',
-  snapshot: 'a20864c47ff94b2736f8ec0fc8881a34aef9ed9210f5a92294dbf9b4b4c1c8e2',
-  archive: 'b1b969185e69e9c4e0549d7a37188f05e4ae60c1c9f8edc8d84b36f7b67fc6a8',
+export const pins = Object.freeze({version: '0.2.1-preview.3',
+  receipt: '81248b61e4a39777c84877754c07eff849049d719bee95d883e845ba38b37188',
+  source: 'fc3a59c4a3ada98666f96256e5f8f53aeaf46b83',
+  snapshot: 'e73ad95db363322e8b01eac8012bea3b5bbde246f7e6161ca445e34cf5a6eff2',
+  archive: 'f484c09919c3c58e722ef12a466158bcb478e56bada2e216b7cbbcdfc3102d1c',
   core: '3572786190ec4a8ad3b703ebe5c8ffd9b170a4e6c7da1ea2776abfc12c520a47',
   ui: '0aaf30e3c62d63fdc45919d01ece01c1ea2ac2464bf572e72b4a4d4b87b52688'});
 const payload = ['.agents/plugins/marketplace.json', manifest, core,
@@ -59,7 +59,7 @@ export async function verify(at = root) {
   assert.equal(receipt.platform, 'darwin-arm64');
   assert.equal(receipt.plugin, 'gil-companion-prototype');
   assert.deepEqual(receipt.trust, trust);
-  assert.deepEqual(receipt.source, {head: pins.source, dirty: false, files: 286, snapshot_sha256: pins.snapshot});
+  assert.deepEqual(receipt.source, {head: pins.source, dirty: false, files: 290, snapshot_sha256: pins.snapshot});
   assert.deepEqual(receipt.files.map(f => f.path).sort(), [...payload].sort());
   for (const file of receipt.files) {
     const bytes = await readFile(join(at, file.path));
