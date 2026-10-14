@@ -1,4 +1,4 @@
-# GIL 0.2.1-preview.3 — unsigned opt-in preview candidate
+# GIL 0.2.1-preview.4 — unsigned opt-in preview candidate
 
 macOS Apple Silicon / Codex only. Not a stable release; not yet published.
 No Apple Developer ID signature or notarization is provided. Ad-hoc code signing may be present.
@@ -11,3 +11,9 @@ Core, MCP tools and Monitor UI are bundled; a successful tool response is not pr
 Windows, Intel Macs and Claude work-Plugin rendering are not accepted targets of this preview.
 Removing the Plugin must not remove a Project or its .gil records.
 See release.json for exact bytes and source; publication remains a separate reviewed operation.
+
+Image reports: action surface 2, storage formats 4..5, macOS Apple Silicon only.
+New image projects use format 5. Existing projects are NOT automatically converted.
+Back up and verify recovery with separate consent before requesting consent to apply migration.
+Older Plugins cannot write format 5. Downgrading the Plugin does not downgrade project records.
+Keep original backups; installing this Plugin does not authorize migration of any project.
