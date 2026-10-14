@@ -10,13 +10,15 @@ const prefix = 'plugins/gil-companion-prototype';
 const core = `${prefix}/core/darwin-arm64/gil`;
 const manifest = `${prefix}/.codex-plugin/plugin.json`;
 const hash = bytes => createHash('sha256').update(bytes).digest('hex');
-export const pins = Object.freeze({version: '0.2.1-preview.3',
-  receipt: '81248b61e4a39777c84877754c07eff849049d719bee95d883e845ba38b37188',
-  source: 'fc3a59c4a3ada98666f96256e5f8f53aeaf46b83',
-  snapshot: 'e73ad95db363322e8b01eac8012bea3b5bbde246f7e6161ca445e34cf5a6eff2',
-  archive: 'f484c09919c3c58e722ef12a466158bcb478e56bada2e216b7cbbcdfc3102d1c',
-  core: '3572786190ec4a8ad3b703ebe5c8ffd9b170a4e6c7da1ea2776abfc12c520a47',
-  ui: '0aaf30e3c62d63fdc45919d01ece01c1ea2ac2464bf572e72b4a4d4b87b52688'});
+export const pins = Object.freeze({version: '0.2.1-preview.4',
+  receipt: '2825343531aad40727bdb923e752f2ad59fa6ab2d797ba4dd8dcada379e7324d',
+  source: '58659b4615531c02154cad582fc8ce900fe1d70c',
+  snapshot: '80a030e9facb239ed7e42b1a511dd2c05f3fb0b36c9d83818c082ef2f284e9e5',
+  archive: 'b2c40ec3933a32ac3a74f56910f89555bb6b6428fd6d47959b3913513e47cdb4',
+  core: 'e3c1f749189c9c1b3dee7897dbf8f9cd44ac472fd2b082dd956c19087933ea43',
+  ui: '306e137986f918d61e0e5e39c73fbfd4aef6e77d334180e78af91a66bbd1381f',
+  profile: 'visual-authoring', tools: 24, source_files: 440, migration: 'requires_review',
+  binary_origin: 'preserved_from_verified_development_tree; CI provenance review still required'});
 const payload = ['.agents/plugins/marketplace.json', manifest, core,
   `${prefix}/skills/gil-companion/SKILL.md`, `${prefix}/LICENSE`,
   `${prefix}/THIRD-PARTY-NOTICES.json`, `${prefix}/THIRD-PARTY-NOTICES.txt`,
@@ -29,8 +31,10 @@ export const files = [...payload, 'release.json', 'README.md', 'AGENTS.md',
 const trust = {developer_id: 'not_provided', notarization: 'not_performed',
   clean_machine_install: 'deferred_not_passed', automatic_update: 'not_authorized',
   os_security_override: 'prohibited', publication: 'requires_separate_approval'};
-const compatibility = {protocol: {min: 1, max: 1}, action_surface: {min: 1, max: 1},
-  storage_format: {min: 4, max: 4}, monitor_view_schema: {min: 1, max: 1}, node_detail_schema: {min: 1, max: 1}};
+// Image-report (visual-authoring) contract: action surface 2, storage formats 4..5. Format 5 is not
+// readable by preview.3; migration of existing projects requires separate review and consent.
+const compatibility = {protocol: {min: 1, max: 1}, action_surface: {min: 2, max: 2},
+  storage_format: {min: 4, max: 5}, monitor_view_schema: {min: 1, max: 1}, node_detail_schema: {min: 1, max: 1}};
 
 export async function verify(at = root) {
   const found = [];
@@ -50,16 +54,20 @@ export async function verify(at = root) {
   const receiptBytes = await readFile(join(at, 'release.json'));
   assert.equal(hash(receiptBytes), pins.receipt, 'receipt differs from reviewed CI input');
   const receipt = JSON.parse(receiptBytes);
-  assert.deepEqual(Object.keys(receipt).sort(), ['binary_origin','channel','files','platform','plugin',
-    'publishable','schema','source','trust','version']);
-  assert.equal(receipt.schema, 2);
+  assert.deepEqual(Object.keys(receipt).sort(), ['binary_origin','channel','compatibility','files','migration',
+    'platform','plugin','publishable','runtime_profile','schema','source','trust','version']);
+  assert.equal(receipt.schema, 3, 'receipt schema 3 is required for the image-report contract');
+  assert.equal(receipt.runtime_profile, pins.profile);
+  assert.deepEqual(receipt.compatibility, compatibility);
+  assert.equal(receipt.migration, pins.migration);
+  assert.equal(receipt.binary_origin, pins.binary_origin);
   assert.equal(receipt.channel, 'preview_unsigned');
   assert.equal(receipt.publishable, false);
   assert.equal(receipt.version, pins.version);
   assert.equal(receipt.platform, 'darwin-arm64');
   assert.equal(receipt.plugin, 'gil-companion-prototype');
   assert.deepEqual(receipt.trust, trust);
-  assert.deepEqual(receipt.source, {head: pins.source, dirty: false, files: 290, snapshot_sha256: pins.snapshot});
+  assert.deepEqual(receipt.source, {head: pins.source, dirty: false, files: pins.source_files, snapshot_sha256: pins.snapshot});
   assert.deepEqual(receipt.files.map(f => f.path).sort(), [...payload].sort());
   for (const file of receipt.files) {
     const bytes = await readFile(join(at, file.path));
@@ -83,18 +91,26 @@ export async function verify(at = root) {
   assert.deepEqual(catalog.plugins, [{name: receipt.plugin, source: {source:'local',path:`./${prefix}`},
     policy: {installation:'AVAILABLE',authentication:'ON_INSTALL'},category:'Productivity'}]);
   const check = await json('evidence/checks.json'), update = await json('evidence/update-record.json');
+  assert.deepEqual(Object.keys(check).sort(), ['archive_sha256','channel','limits','profile','publishable',
+    'roundtrip','schema','smoke','source','trust','version']);
+  assert.equal(check.schema, 1); assert.equal(check.profile, pins.profile, 'checks were not run with the pinned runtime profile');
   assert.deepEqual(check.source, receipt.source); assert.deepEqual(check.trust, trust);
   assert.equal(check.channel, receipt.channel); assert.equal(check.version, pins.version);
   assert.equal(check.publishable, false); assert.equal(check.roundtrip, 'passed');
   assert.equal(check.archive_sha256, pins.archive); assert.equal(check.smoke.passed, true);
-  assert.equal(check.smoke.tools, 17); assert.equal(check.smoke.ui_sha256, pins.ui);
+  assert.equal(check.smoke.tools, pins.tools, 'tool count differs from the image-report contract');
+  assert.equal(check.smoke.ui_sha256, pins.ui);
+  assert.deepEqual(check.smoke.core.storage_format, compatibility.storage_format);
+  assert.deepEqual(check.smoke.core.action_surface, compatibility.action_surface);
+  assert.deepEqual(check.smoke.core.protocol, compatibility.protocol);
   assert.equal(check.smoke.child_path, '/usr/bin:/bin');
   assert.deepEqual(update, {schema:1, plugin:receipt.plugin, platform:'darwin-arm64', version:pins.version,
     source_commit:pins.source, source_snapshot_sha256:pins.snapshot, archive_sha256:pins.archive,
-    core_sha256:pins.core, ui_sha256:pins.ui, compatibility, migration:'none'});
+    core_sha256:pins.core, ui_sha256:pins.ui, compatibility, migration:pins.migration});
   assert.equal(await readFile(join(at,'evidence/SHA256SUMS'),'utf8'),
     `${pins.archive}  gil-codex-macos-arm64-${pins.version}.tar.gz\n`);
   return {integrity:'passed', files:files.length, payload_files:payload.length, version:pins.version,
+    runtime_profile:pins.profile, tools:pins.tools, migration:pins.migration,
     source_commit:pins.source, core_sha256:pins.core, publishable:false,
     scope:'Static pinned-tree check only; no native execution, installation, fresh-Mac or visible-UI acceptance'};
 }

@@ -51,5 +51,50 @@ test('source provenance mismatch is rejected', async t => {
 });
 test('update record cannot silently change compatibility', async t => {
   const at = await fixture(t), path = join(at,'evidence/update-record.json'), r = JSON.parse(await readFile(path));
-  r.compatibility.storage_format.max = 5; await writeFile(path,JSON.stringify(r)); await assert.rejects(verify(at));
+  r.compatibility.storage_format.max = 6; await writeFile(path,JSON.stringify(r)); await assert.rejects(verify(at));
+});
+test('update record cannot downgrade the image-report contract to the old surface', async t => {
+  const at = await fixture(t), path = join(at,'evidence/update-record.json'), r = JSON.parse(await readFile(path));
+  r.compatibility.action_surface = {min:1, max:1}; r.compatibility.storage_format = {min:4, max:4};
+  await writeFile(path,JSON.stringify(r)); await assert.rejects(verify(at));
+});
+test('update record cannot claim migration is unnecessary', async t => {
+  const at = await fixture(t), path = join(at,'evidence/update-record.json'), r = JSON.parse(await readFile(path));
+  r.migration = 'none'; await writeFile(path,JSON.stringify(r)); await assert.rejects(verify(at));
+});
+test('update record cannot point at a different Core or UI', async t => {
+  for (const key of ['core_sha256', 'ui_sha256', 'archive_sha256']) {
+    const at = await fixture(t), path = join(at,'evidence/update-record.json'), r = JSON.parse(await readFile(path));
+    r[key] = '0'.repeat(64); await writeFile(path,JSON.stringify(r)); await assert.rejects(verify(at));
+  }
+});
+test('checks from the default runtime profile cannot stand in for visual-authoring', async t => {
+  const at = await fixture(t), path = join(at,'evidence/checks.json'), r = JSON.parse(await readFile(path));
+  r.profile = 'default'; await writeFile(path,JSON.stringify(r)); await assert.rejects(verify(at));
+});
+test('checks with the old 17-tool surface are rejected', async t => {
+  const at = await fixture(t), path = join(at,'evidence/checks.json'), r = JSON.parse(await readFile(path));
+  r.smoke.tools = 17; await writeFile(path,JSON.stringify(r)); await assert.rejects(verify(at));
+});
+test('checks whose Core reports the old storage range are rejected', async t => {
+  const at = await fixture(t), path = join(at,'evidence/checks.json'), r = JSON.parse(await readFile(path));
+  r.smoke.core.storage_format.max = 4; await writeFile(path,JSON.stringify(r)); await assert.rejects(verify(at));
+});
+test('checks with a different UI or archive hash are rejected', async t => {
+  for (const mutate of [r => { r.smoke.ui_sha256 = '0'.repeat(64); }, r => { r.archive_sha256 = '0'.repeat(64); }]) {
+    const at = await fixture(t), path = join(at,'evidence/checks.json'), r = JSON.parse(await readFile(path));
+    mutate(r); await writeFile(path,JSON.stringify(r)); await assert.rejects(verify(at));
+  }
+});
+test('a rewritten schema-2 receipt without the image-report contract is rejected by the receipt hash pin', async t => {
+  // Any rewrite of release.json, including dropping runtime_profile/compatibility/migration and
+  // reverting schema to 2, changes its bytes and fails the pinned receipt hash before field checks run.
+  const at = await fixture(t), path = join(at,'release.json'), r = JSON.parse(await readFile(path));
+  delete r.runtime_profile; delete r.compatibility; delete r.migration; r.schema = 2;
+  await writeFile(path,JSON.stringify(r)); await assert.rejects(verify(at));
+});
+test('reviewed tree reports the pinned image-report contract', async () => {
+  const result = await verify();
+  assert.equal(result.version, '0.2.1-preview.4'); assert.equal(result.runtime_profile, 'visual-authoring');
+  assert.equal(result.tools, 24); assert.equal(result.migration, 'requires_review');
 });
