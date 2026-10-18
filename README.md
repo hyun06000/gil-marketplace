@@ -5,12 +5,9 @@ universal Plugins Directory listing. Source: [hyun06000/gil](https://github.com/
 
 | Version | State | Install pin |
 |---|---|---|
-| `0.2.1-preview.5` | **Prepared on this branch; NOT published.** No tag or release exists yet. | none yet — do not install from moving main |
-| `0.2.1-preview.4` | **Published 2026-10-14 as an unsigned prerelease** — current installable version | tag `v0.2.1-preview.4` / commit `e3ce1be57f1a2b6829b89258e703a6cabc1b77eb` · [release](https://github.com/hyun06000/gil-marketplace/releases/tag/v0.2.1-preview.4) |
-| `0.2.1-preview.3` | Earlier verified version; rollback target from preview.4 | tag `v0.2.1-preview.3` / commit `8445dbdb30c9cfe16a77245adcc4da56c9655b46` · [release](https://github.com/hyun06000/gil-marketplace/releases/tag/v0.2.1-preview.3) |
-
-Until the owner publishes the `v0.2.1-preview.5` tag and versioned release, the installable version
-remains preview.4 through its release above.
+| `0.2.1-preview.5` | **Published 2026-10-18 as an unsigned prerelease** — current installable version | tag `v0.2.1-preview.5` / commit `0f841dae120e45d0ac7e2a90bd383685c8756627` · [release](https://github.com/hyun06000/gil-marketplace/releases/tag/v0.2.1-preview.5) |
+| `0.2.1-preview.4` | Previous verified version; rollback target | tag `v0.2.1-preview.4` / commit `e3ce1be57f1a2b6829b89258e703a6cabc1b77eb` · [release](https://github.com/hyun06000/gil-marketplace/releases/tag/v0.2.1-preview.4) |
+| `0.2.1-preview.3` | Earlier verified version | tag `v0.2.1-preview.3` / commit `8445dbdb30c9cfe16a77245adcc4da56c9655b46` · [release](https://github.com/hyun06000/gil-marketplace/releases/tag/v0.2.1-preview.3) |
 
 Always install from a fixed tag. Never substitute moving `main` for a fixed tag.
 
@@ -22,10 +19,10 @@ If macOS blocks execution, stop; never disable security, remove quarantine or ed
 
 Ask Codex:
 
-> Install GIL unsigned preview 0.2.1-preview.4 through official Plugin management.
-> Register https://github.com/hyun06000/gil-marketplace.git at fixed tag v0.2.1-preview.4,
+> Install GIL unsigned preview 0.2.1-preview.5 through official Plugin management.
+> Register https://github.com/hyun06000/gil-marketplace.git at fixed tag v0.2.1-preview.5,
 > then install gil-companion-prototype@gil-preview-macos-arm64.
-> Confirm the tag exists and installed version is preview.4.
+> Confirm the tag exists and installed version is preview.5.
 > If already installed, check its source/version and ask before replacing it.
 > Do not initialize, migrate or modify my project.
 
@@ -39,12 +36,13 @@ For an existing project: “기록을 바꾸지 말고 GIL Monitor를 열어 줘
 Agent commands using the CLI bundled with Codex:
 
 ```sh
-codex plugin marketplace add https://github.com/hyun06000/gil-marketplace.git --ref v0.2.1-preview.4 --json
+codex plugin marketplace add https://github.com/hyun06000/gil-marketplace.git --ref v0.2.1-preview.5 --json
 codex plugin add gil-companion-prototype@gil-preview-macos-arm64 --json
 ```
 
-The public tag was fetched and installed on 2026-10-15 into a fresh isolated Codex profile with no
-stored Git credentials or Codex sign-in; the seven installed files matched the reviewed bytes and modes.
+The public tag was fetched and installed on 2026-10-18 into a fresh isolated Codex profile with no
+stored Git credentials or Codex sign-in; the seven installed files matched the reviewed bytes and modes
+(preview.4 was checked the same way on 2026-10-15).
 
 Existing registrations require inspection and approval before replacement.
 Records stay in the chosen folder; tool responses enter the selected Host/AI conversation.
@@ -71,7 +69,7 @@ missing field. No storage, grammar or tool-contract change; no migration.
 - **Rollback warning:** preview.3 cannot read format-5 records ("storage format 5 is unknown"). That
   refusal is expected and is not data loss; downgrading the Plugin never downgrades project records.
 
-## Exact provenance (preview.5 candidate)
+## Exact provenance (preview.5)
 
 - Source: `c7db94ea4134167c309369065e88b43bafc482df` (hyun06000/gil main after PRs #18–#21).
 - CI (visual-authoring): [39108378176](https://github.com/hyun06000/gil/actions/runs/39108378176);
@@ -82,8 +80,11 @@ missing field. No storage, grammar or tool-contract change; no migration.
 - Core SHA-256: `efaa940222520a64b1a2202e8ff3f93a6b838c023c4baf9f20967f99dabd1506`;
   UI SHA-256: `306e137986f918d61e0e5e39c73fbfd4aef6e77d334180e78af91a66bbd1381f`.
 - Exact receipt (schema 3): [release.json](release.json); original checks/update record: [evidence](evidence).
+- Release assets (same bytes as `evidence/` and the archive above): `gil-codex-macos-arm64-0.2.1-preview.5.tar.gz`,
+  `checks.json`, `SHA256SUMS`, `update-record.json` on the
+  [v0.2.1-preview.5 release](https://github.com/hyun06000/gil-marketplace/releases/tag/v0.2.1-preview.5).
 
-## Exact provenance (preview.4, published)
+## Exact provenance (preview.4, published 2026-10-14)
 
 - Source: `58659b4615531c02154cad582fc8ce900fe1d70c` (hyun06000/gil main after PRs #12–#17).
 - CI (visual-authoring): [38541886780](https://github.com/hyun06000/gil/actions/runs/38541886780);
@@ -116,8 +117,8 @@ isolated profile with matching bytes. **Not verified:** fresh-Mac installation, 
 restore, the expanded (fullscreen) Monitor switch with this executable, and external tester results.
 Tauri and Claude work-mode acceptance remain separate. Windows and Intel are unsupported.
 
-Previous verified version: preview.3 at marketplace commit
-`8445dbdb30c9cfe16a77245adcc4da56c9655b46` (tag `v0.2.1-preview.3`). Preserve this immutable recovery ref.
+Previous verified version: preview.4 at marketplace commit
+`e3ce1be57f1a2b6829b89258e703a6cabc1b77eb` (tag `v0.2.1-preview.4`). Preserve this immutable recovery ref.
 Rollback uses official Plugin management with approval, never `gil restore` or deleting `.gil`.
 Rolling back to preview.3 makes format-5 projects unreadable until preview.4 is reinstalled.
 
