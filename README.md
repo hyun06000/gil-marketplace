@@ -5,8 +5,12 @@ universal Plugins Directory listing. Source: [hyun06000/gil](https://github.com/
 
 | Version | State | Install pin |
 |---|---|---|
+| `0.2.1-preview.5` | **Prepared on this branch; NOT published.** No tag or release exists yet. | none yet — do not install from moving main |
 | `0.2.1-preview.4` | **Published 2026-10-14 as an unsigned prerelease** — current installable version | tag `v0.2.1-preview.4` / commit `e3ce1be57f1a2b6829b89258e703a6cabc1b77eb` · [release](https://github.com/hyun06000/gil-marketplace/releases/tag/v0.2.1-preview.4) |
-| `0.2.1-preview.3` | Previous verified version; rollback target | tag `v0.2.1-preview.3` / commit `8445dbdb30c9cfe16a77245adcc4da56c9655b46` · [release](https://github.com/hyun06000/gil-marketplace/releases/tag/v0.2.1-preview.3) |
+| `0.2.1-preview.3` | Earlier verified version; rollback target from preview.4 | tag `v0.2.1-preview.3` / commit `8445dbdb30c9cfe16a77245adcc4da56c9655b46` · [release](https://github.com/hyun06000/gil-marketplace/releases/tag/v0.2.1-preview.3) |
+
+Until the owner publishes the `v0.2.1-preview.5` tag and versioned release, the installable version
+remains preview.4 through its release above.
 
 Always install from a fixed tag. Never substitute moving `main` for a fixed tag.
 
@@ -46,7 +50,16 @@ Existing registrations require inspection and approval before replacement.
 Records stay in the chosen folder; tool responses enter the selected Host/AI conversation.
 GIL provides no cloud upload service. Never share private project records in bug reports.
 
-## What preview.4 adds (image reports)
+## What preview.5 changes (companion Skill only)
+
+Same Core (`efaa9402…`), UI (`306e1379…`) and image-report contract as the preview.4 line; the
+executable is rebuilt from source `c7db94ea…`. The only behavioural change is the companion Skill:
+after any `ok: false` the agent handles the refusal before moving on (one corrected call of the
+same action for correctable input; no retry for permission/compatibility refusals), and a Synthesis
+waits for the human's own approval before the Interview closes. `gil_close` rejections now name the
+missing field. No storage, grammar or tool-contract change; no migration.
+
+## What preview.4 added (image reports)
 
 - Verify and Cycle reports can carry images with caption, purpose and source description; the same
   image may be reused by several reports. The Monitor shows the selected report's images, enlarges an
@@ -58,7 +71,19 @@ GIL provides no cloud upload service. Never share private project records in bug
 - **Rollback warning:** preview.3 cannot read format-5 records ("storage format 5 is unknown"). That
   refusal is expected and is not data loss; downgrading the Plugin never downgrades project records.
 
-## Exact provenance (preview.4)
+## Exact provenance (preview.5 candidate)
+
+- Source: `c7db94ea4134167c309369065e88b43bafc482df` (hyun06000/gil main after PRs #18–#21).
+- CI (visual-authoring): [39108378176](https://github.com/hyun06000/gil/actions/runs/39108378176);
+  default [39108376445](https://github.com/hyun06000/gil/actions/runs/39108376445).
+- Original CI archive SHA-256: `3fa6713f3fd51576b95e5c9f60d748aa041b01c8f062b97b0a22b128f4275634`.
+- Candidate archive SHA-256: `64ab183502161b81459d7a3e96fb73f62d624b75b39bb667da44212de46632e4`
+  (`gil-codex-macos-arm64-0.2.1-preview.5.tar.gz`).
+- Core SHA-256: `efaa940222520a64b1a2202e8ff3f93a6b838c023c4baf9f20967f99dabd1506`;
+  UI SHA-256: `306e137986f918d61e0e5e39c73fbfd4aef6e77d334180e78af91a66bbd1381f`.
+- Exact receipt (schema 3): [release.json](release.json); original checks/update record: [evidence](evidence).
+
+## Exact provenance (preview.4, published)
 
 - Source: `58659b4615531c02154cad582fc8ce900fe1d70c` (hyun06000/gil main after PRs #12–#17).
 - CI (visual-authoring): [38541886780](https://github.com/hyun06000/gil/actions/runs/38541886780);

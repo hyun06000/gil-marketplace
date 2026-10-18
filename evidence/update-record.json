@@ -2,11 +2,11 @@
   "schema": 1,
   "plugin": "gil-companion-prototype",
   "platform": "darwin-arm64",
-  "version": "0.2.1-preview.4",
-  "source_commit": "58659b4615531c02154cad582fc8ce900fe1d70c",
-  "source_snapshot_sha256": "80a030e9facb239ed7e42b1a511dd2c05f3fb0b36c9d83818c082ef2f284e9e5",
-  "archive_sha256": "b2c40ec3933a32ac3a74f56910f89555bb6b6428fd6d47959b3913513e47cdb4",
-  "core_sha256": "e3c1f749189c9c1b3dee7897dbf8f9cd44ac472fd2b082dd956c19087933ea43",
+  "version": "0.2.1-preview.5",
+  "source_commit": "c7db94ea4134167c309369065e88b43bafc482df",
+  "source_snapshot_sha256": "bfde8787fc4a6b2f39e57146e6671689448c18537cb8a5786967ad1a3feeb242",
+  "archive_sha256": "64ab183502161b81459d7a3e96fb73f62d624b75b39bb667da44212de46632e4",
+  "core_sha256": "efaa940222520a64b1a2202e8ff3f93a6b838c023c4baf9f20967f99dabd1506",
   "ui_sha256": "306e137986f918d61e0e5e39c73fbfd4aef6e77d334180e78af91a66bbd1381f",
   "compatibility": {
     "protocol": {
