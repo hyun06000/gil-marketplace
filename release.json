@@ -28,12 +28,12 @@
   "migration": "requires_review",
   "platform": "darwin-arm64",
   "plugin": "gil-companion-prototype",
-  "version": "0.2.1-preview.4",
+  "version": "0.2.1-preview.5",
   "source": {
-    "head": "58659b4615531c02154cad582fc8ce900fe1d70c",
+    "head": "c7db94ea4134167c309369065e88b43bafc482df",
     "dirty": false,
-    "files": 440,
-    "snapshot_sha256": "80a030e9facb239ed7e42b1a511dd2c05f3fb0b36c9d83818c082ef2f284e9e5"
+    "files": 442,
+    "snapshot_sha256": "bfde8787fc4a6b2f39e57146e6671689448c18537cb8a5786967ad1a3feeb242"
   },
   "binary_origin": "preserved_from_verified_development_tree; CI provenance review still required",
   "trust": {
@@ -55,13 +55,13 @@
       "path": "plugins/gil-companion-prototype/.codex-plugin/plugin.json",
       "bytes": 1077,
       "mode": 420,
-      "sha256": "f0344b4ec7ff6fd7df2b27c6b96e69f5ea26556d8b1b05cfaad7f8e4fd98fd9f"
+      "sha256": "4d0e69913a5c48fa07b6f203778bf5b6aa6e82ac41171d37af1b0bd46ac79d45"
     },
     {
       "path": "plugins/gil-companion-prototype/core/darwin-arm64/gil",
-      "bytes": 9280544,
+      "bytes": 9280912,
       "mode": 493,
-      "sha256": "e3c1f749189c9c1b3dee7897dbf8f9cd44ac472fd2b082dd956c19087933ea43"
+      "sha256": "efaa940222520a64b1a2202e8ff3f93a6b838c023c4baf9f20967f99dabd1506"
     },
     {
       "path": "plugins/gil-companion-prototype/LICENSE",
@@ -77,9 +77,9 @@
     },
     {
       "path": "plugins/gil-companion-prototype/skills/gil-companion/SKILL.md",
-      "bytes": 21952,
+      "bytes": 27241,
       "mode": 420,
-      "sha256": "7eab9a0ba97e05fc8b9f1305859ef0bbc64fd2c1e8bdd0caaecb4c173c6d5446"
+      "sha256": "57f39445fcc0a90097b760eacc5b862162069637a4b3fa8b73ded882cc393702"
     },
     {
       "path": "plugins/gil-companion-prototype/THIRD-PARTY-NOTICES.json",
@@ -97,7 +97,7 @@
       "path": "PREVIEW.md",
       "bytes": 1492,
       "mode": 420,
-      "sha256": "5a82a43178c1b4e6c2c900ea6f5ad388d06fe33ae21aa3f4a1b9ba325a0a78e0"
+      "sha256": "80b2dd240b187d6f57edb30952d26862878b75a674d3c8aeb3ca50ae12863f1e"
     }
   ]
 }

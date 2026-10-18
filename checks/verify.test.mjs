@@ -95,6 +95,6 @@ test('a rewritten schema-2 receipt without the image-report contract is rejected
 });
 test('reviewed tree reports the pinned image-report contract', async () => {
   const result = await verify();
-  assert.equal(result.version, '0.2.1-preview.4'); assert.equal(result.runtime_profile, 'visual-authoring');
+  assert.equal(result.version, '0.2.1-preview.5'); assert.equal(result.runtime_profile, 'visual-authoring');
   assert.equal(result.tools, 24); assert.equal(result.migration, 'requires_review');
 });
