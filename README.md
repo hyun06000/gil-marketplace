@@ -1,156 +1,88 @@
 # GIL marketplace — unsigned preview
 
-Prebuilt **Codex / macOS Apple Silicon** unsigned preview. Opt-in, not a stable release and not a
-universal Plugins Directory listing. Source: [hyun06000/gil](https://github.com/hyun06000/gil).
+Prebuilt Codex Plugin for **macOS Apple Silicon**. Friends-and-testers prerelease; no Apple Developer
+ID signature or notarization. Source: [hyun06000/gil](https://github.com/hyun06000/gil).
 
-| Version | State | Install pin |
+| Version | Role | Fixed release |
 |---|---|---|
-| `0.2.1-preview.6` | **Published 2026-10-27 as an unsigned prerelease** — current installable version | tag `v0.2.1-preview.6` / commit `2a1ec23576eb35e05210dda1d8b5400a577ec30f` · [release](https://github.com/hyun06000/gil-marketplace/releases/tag/v0.2.1-preview.6) |
-| `0.2.1-preview.5` | Previous verified version; rollback target | tag `v0.2.1-preview.5` / commit `0f841dae120e45d0ac7e2a90bd383685c8756627` · [release](https://github.com/hyun06000/gil-marketplace/releases/tag/v0.2.1-preview.5) |
-| `0.2.1-preview.4` | Previous verified version; rollback target from preview.5 | tag `v0.2.1-preview.4` / commit `e3ce1be57f1a2b6829b89258e703a6cabc1b77eb` · [release](https://github.com/hyun06000/gil-marketplace/releases/tag/v0.2.1-preview.4) |
-| `0.2.1-preview.3` | Earlier verified version | tag `v0.2.1-preview.3` / commit `8445dbdb30c9cfe16a77245adcc4da56c9655b46` · [release](https://github.com/hyun06000/gil-marketplace/releases/tag/v0.2.1-preview.3) |
+| `0.2.1-preview.7` | Shared-workflow test build | [v0.2.1-preview.7](https://github.com/hyun06000/gil-marketplace/releases/tag/v0.2.1-preview.7) |
+| `0.2.1-preview.6` | Previous verified version / rollback target | [v0.2.1-preview.6](https://github.com/hyun06000/gil-marketplace/releases/tag/v0.2.1-preview.6), commit `2a1ec23576eb35e05210dda1d8b5400a577ec30f` |
 
-Always install from a fixed tag. Never substitute moving `main` for a fixed tag.
+Use a fixed tag, never moving `main`. The release assets are the reviewed CI bytes; GitHub's Source
+ZIP is not the installation archive. No Node, npm, Cargo, Homebrew or separate Companion is required.
 
-## Install with Codex
+## Install or update with Codex
 
-No separate Companion, Node, npm, Cargo or Homebrew installation is required.
-Apple Developer ID signing and notarization are not provided. Fresh-Mac acceptance is pending.
-If macOS blocks execution, stop; never disable security, remove quarantine or edit caches.
+Ask Codex in a local folder-backed conversation:
 
-Ask Codex:
-
-> Install GIL unsigned preview 0.2.1-preview.6 through official Plugin management.
-> Register https://github.com/hyun06000/gil-marketplace.git at fixed tag v0.2.1-preview.6,
-> then install gil-companion-prototype@gil-preview-macos-arm64.
-> Confirm the tag exists and installed version is preview.6.
-> If already installed, check its source/version and ask before replacing it.
-> Do not initialize, migrate or modify my project.
-
-After installation, open a **new conversation**, select an empty test folder and say:
-**“지금 폴더에서 GIL 프로젝트를 시작해 줘.”**
-The Skill connects start, Monitor and the first Interview question.
-The App requests horizontal fullscreen once; Host refusal and intentional inline choice are respected.
-Check the actual graph and first node. Tool success alone is not visual success.
-For an existing project: “기록을 바꾸지 말고 GIL Monitor를 열어 줘”.
-
-Agent commands using the CLI bundled with Codex:
+> Install GIL unsigned preview 0.2.1-preview.7 using the bundled Codex CLI and official Plugin commands.
+> Inspect existing GIL source/version first. Replace an existing installation only with my approval
+> (do not ask again if I already approved that exact replacement). Use the fixed tag below.
+> Do not initialize/migrate projects or modify their records, installed caches or security settings.
+> Verify the installed version and tell me to open a new conversation for the new connection.
 
 ```sh
-codex plugin marketplace add https://github.com/hyun06000/gil-marketplace.git --ref v0.2.1-preview.6 --json
+codex plugin marketplace add https://github.com/hyun06000/gil-marketplace.git --ref v0.2.1-preview.7 --json
 codex plugin add gil-companion-prototype@gil-preview-macos-arm64 --json
 ```
 
-The public tag was fetched and installed on 2026-10-27 into a fresh isolated Codex profile; the tag
-resolved to commit `2a1ec23576eb35e05210dda1d8b5400a577ec30f`, Codex reported version
-`0.2.1-preview.6`, and the installed Core and Skill matched the reviewed bytes. The public release
-archive was also downloaded without using a release API credential and matched its pinned hash and size.
+Existing registrations must be handled through official Plugin commands after source/version inspection;
+do not blindly run add over an existing registration. If Git or Xcode Command Line Tools are absent,
+use the verified archive/local marketplace route in [installation instructions](https://github.com/hyun06000/gil/blob/main/INSTALL.md), without installing developer tools.
+The exact archive is `gil-codex-macos-arm64-0.2.1-preview.7.tar.gz` (3,218,986 bytes), SHA-256 `ecd045e3a043e820bb5ff59a6d8b6d3ca57e68dfa3d8a8426a598f70682dd8ee`.
+If macOS blocks execution, stop; never disable Gatekeeper or remove quarantine.
 
-Existing registrations require inspection and approval before replacement.
-Records stay in the chosen folder; tool responses enter the selected Host/AI conversation.
-GIL provides no cloud upload service. Never share private project records in bug reports.
+After installation, open a **new conversation**, select an empty test folder and ask:
+**“지금 폴더에서 GIL 프로젝트를 시작해 줘.”** Check the actual Monitor and first Interview step;
+a successful tool response alone does not prove visible fullscreen. Existing conversations may keep
+an older MCP connection. Installation does not move, delete or migrate Project records.
 
-## What preview.6 changes
+## Shared workflow in preview.7
 
-Refreshes the bundled native Core, GIL Skill and Monitor UI from source `db267bfd…`. The macOS Plugin
-now carries the same current shared Core and fullscreen Monitor used by the latest source release line,
-including the updated workspace handling and user-facing guidance accumulated after preview.5. The
-reviewed contract is unchanged: runtime profile `visual-authoring`, 24 MCP tools, action surface 2 and
-storage formats 4..5. Installing the Plugin does not migrate a Project; migration remains a separate
-per-project consent operation.
+Native MCP and Plugin Skill now carry the exact same core workflow: start with Monitor handoff,
+finish Interview after approval, split independent questions into Experiments, open Verify before
+research, save real evidence files, record interpretation and learning, and close the Cycle.
+Verify closure requires nonempty captured files with at least one new/changed file; Analysis and
+Outcome reference their actual evidence lineage. Chat-only delivery does not satisfy Verify.
 
-## What preview.5 changes (companion Skill only)
+Source `64de8e5c1207dda329600ef12a86f39cf7781ee3` is also used for Windows `0.1.1-owner.6`. Packaging and capability-specific input
+schemas still differ: this Mac build retains visual-authoring, 24 tools, action surface 2 and formats
+4..5. No automatic project migration. New-write evidence checks apply to existing Projects too;
+historical records remain readable and are not rewritten or retroactively certified.
 
-Same Core (`efaa9402…`), UI (`306e1379…`) and image-report contract as the preview.4 line; the
-executable is rebuilt from source `c7db94ea…`. The only behavioural change is the companion Skill:
-after any `ok: false` the agent handles the refusal before moving on (one corrected call of the
-same action for correctable input; no retry for permission/compatibility refusals), and a Synthesis
-waits for the human's own approval before the Interview closes. `gil_close` rejections now name the
-missing field. No storage, grammar or tool-contract change; no migration.
+Source Luna testing passed all four continuous profile/connection flows, each with two Experiments
+and two actual evidence documents. Independent next-action classification remained 61/64; do not
+claim perfect model compliance. Core cannot intercept unrelated Host actions or prove semantic truth.
+Native source CI passed on macOS and Windows. This candidate's build, archive roundtrip and protocol
+checks are [source CI 40568947391](https://github.com/hyun06000/gil/actions/runs/40568947391).
+The exact candidate passed isolated official CLI replacement preview.6 → preview.7 → preview.6 →
+preview.7, with cached Core/Skill hash checks, fresh MCP initialize and unchanged synthetic format-4
+and format-5 Project bytes at each step. The real user profile was not changed.
+Fresh-machine installation and visible Desktop/fullscreen acceptance of this exact version require
+user testing. Prior preview.6 VM results do not establish those claims for preview.7.
 
-## What preview.4 added (image reports)
+## Exact provenance
 
-- Verify and Cycle reports can carry images with caption, purpose and source description; the same
-  image may be reused by several reports. The Monitor shows the selected report's images, enlarges an
-  image on click and returns on click; clicking a Cycle rectangle opens its summary and report.
-- Runtime profile `visual-authoring`: 24 MCP tools, action surface 2, storage formats 4..5.
-- **Projects are not migrated by installing.** New image projects use format 5. Existing format-4
-  projects keep working unchanged. Migration needs separate backup/recovery verification consent and
-  then apply consent, per project. `update-record.json` therefore declares `migration: requires_review`.
-- **Rollback warning:** preview.3 cannot read format-5 records ("storage format 5 is unknown"). That
-  refusal is expected and is not data loss; downgrading the Plugin never downgrades project records.
+- Source: `64de8e5c1207dda329600ef12a86f39cf7781ee3` (source PR #53 merged).
+- Archive SHA-256: `ecd045e3a043e820bb5ff59a6d8b6d3ca57e68dfa3d8a8426a598f70682dd8ee`.
+- Core SHA-256: `badd9a6f208dee96402637c54bc741b4a3e9e75cfbbb650a94a1608213bd1bba`.
+- Skill SHA-256: `54a18db9c896d77aa737547089129d676804aea246d36452f783b13c7ef1d10a`.
+- Embedded UI SHA-256: `8df673ca26fc8f90ca6f9c8f2a256b87b535f8f19fbb3cd3d2f9e93154077b33`.
+- Shared workflow SHA-256: `fe3cca1210d211ac7f3bdc58198d9044ab0cad6407c71709ec813d0c6177ea22`.
+- Exact immutable receipt: [release.json](release.json); [original CI evidence](evidence).
 
-## Exact provenance (preview.6, published 2026-10-27)
+Payload bytes, executable modes and attribution are preserved from CI, not rebuilt here.
+Receipt `publishable:false` records build-time authority; user approval is recorded by the
+publication PR/release, never by changing the original receipt. Hashes check bytes, not publisher identity.
 
-- Source: `db267bfdf8467b96a2a6f98dd1745148362edbb6` (hyun06000/gil main after PR #46).
-- CI (visual-authoring candidate): [40478269851](https://github.com/hyun06000/gil/actions/runs/40478269851).
-- Candidate archive SHA-256: `477ad55fb6757fc58c4264bd265c7dd8e196c4a5ecf648ac6e1a181a8338d2b5`
-  (`gil-codex-macos-arm64-0.2.1-preview.6.tar.gz`, 3,189,503 bytes).
-- Core SHA-256: `1822b5ad6a52b877384053ac9bea9d05975a33f101c5cda84dff1290d984c04e`;
-  UI SHA-256: `9abd2a27ae636ae69d9b0554a0b9a347f9721e0f62fabb9464bd533be34e044f`.
-- Exact receipt (schema 3): [release.json](release.json); original checks/update record: [evidence](evidence).
-- Release assets (same bytes as `evidence/` and the archive above): `gil-codex-macos-arm64-0.2.1-preview.6.tar.gz`,
-  `checks.json`, `SHA256SUMS`, `update-record.json` on the
-  [v0.2.1-preview.6 release](https://github.com/hyun06000/gil-marketplace/releases/tag/v0.2.1-preview.6).
+## Recovery and maintenance
 
-## Exact provenance (preview.5, published 2026-10-18)
+Rollback target is preview.6 at the fixed tag/commit above. Replace only the Plugin using official
+commands and preserve all Project records. Never use `gil restore` or delete `.gil` to downgrade.
+A Plugin downgrade does not convert project formats; preview.3 cannot read format 5.
 
-- Source: `c7db94ea4134167c309369065e88b43bafc482df` (hyun06000/gil main after PRs #18–#21).
-- CI (visual-authoring): [39108378176](https://github.com/hyun06000/gil/actions/runs/39108378176);
-  default [39108376445](https://github.com/hyun06000/gil/actions/runs/39108376445).
-- Original CI archive SHA-256: `3fa6713f3fd51576b95e5c9f60d748aa041b01c8f062b97b0a22b128f4275634`.
-- Candidate archive SHA-256: `64ab183502161b81459d7a3e96fb73f62d624b75b39bb667da44212de46632e4`
-  (`gil-codex-macos-arm64-0.2.1-preview.5.tar.gz`).
-- Core SHA-256: `efaa940222520a64b1a2202e8ff3f93a6b838c023c4baf9f20967f99dabd1506`;
-  UI SHA-256: `306e137986f918d61e0e5e39c73fbfd4aef6e77d334180e78af91a66bbd1381f`.
-- Exact receipt (schema 3): [release.json](release.json); original checks/update record: [evidence](evidence).
-- Release assets (same bytes as `evidence/` and the archive above): `gil-codex-macos-arm64-0.2.1-preview.5.tar.gz`,
-  `checks.json`, `SHA256SUMS`, `update-record.json` on the
-  [v0.2.1-preview.5 release](https://github.com/hyun06000/gil-marketplace/releases/tag/v0.2.1-preview.5).
-
-## Exact provenance (preview.4, published 2026-10-14)
-
-- Source: `58659b4615531c02154cad582fc8ce900fe1d70c` (hyun06000/gil main after PRs #12–#17).
-- CI (visual-authoring): [38541886780](https://github.com/hyun06000/gil/actions/runs/38541886780);
-  default [38541880620](https://github.com/hyun06000/gil/actions/runs/38541880620).
-- Original CI archive SHA-256: `330587c5ef0cd7ba2aabdbf756e5caf24ab5599673ac37cb02143a1661cd999f`.
-- Candidate archive SHA-256: `b2c40ec3933a32ac3a74f56910f89555bb6b6428fd6d47959b3913513e47cdb4`
-  (`gil-codex-macos-arm64-0.2.1-preview.4.tar.gz`).
-- Core SHA-256: `e3c1f749189c9c1b3dee7897dbf8f9cd44ac472fd2b082dd956c19087933ea43`;
-  UI SHA-256: `306e137986f918d61e0e5e39c73fbfd4aef6e77d334180e78af91a66bbd1381f`.
-- Exact receipt (schema 3): [release.json](release.json); original checks/update record: [evidence](evidence).
-- Release assets (same bytes as `evidence/` and the archive above): `gil-codex-macos-arm64-0.2.1-preview.4.tar.gz`,
-  `checks.json`, `SHA256SUMS`, `update-record.json` on the
-  [v0.2.1-preview.4 release](https://github.com/hyun06000/gil-marketplace/releases/tag/v0.2.1-preview.4).
-
-Payload bytes/modes are copied unchanged from CI, not rebuilt here. Only the Plugin manifest version
-and `PREVIEW.md` were versioned by the reviewed staging tool. The receipt's `publishable:false`
-records build-time authority and is preserved. Owner approval is recorded by the publication PR/release,
-not by rewriting the receipt. The original archive is not GitHub's Source ZIP. Hashes establish
-consistency, not publisher authentication, Apple trust or fresh-machine acceptance.
-
-## Acceptance and recovery
-
-Isolated acceptance of this exact candidate on 2026-10-14: official Codex CLI installation into a
-separate profile, preview.3 → preview.4 → preview.3 → preview.4 replacement (17 → 24 → 17 → 24 tools),
-synthetic format-4/format-5 records and shared image references preserved across replacement and
-MCP server restart. On 2026-10-14 the exact candidate executable served the Codex Monitor on the owner's
-existing Mac in a side-panel layout: Cycle selection, image/caption/source display, click-to-enlarge and
-click-to-return were observed. On 2026-10-15 the published tag was installed anonymously into a fresh
-isolated profile with matching bytes. **Not verified:** fresh-Mac installation, full Desktop quit/relaunch
-restore, the expanded (fullscreen) Monitor switch with this executable, and external tester results.
-Tauri and Claude work-mode acceptance remain separate. Windows and Intel are unsupported.
-
-Previous verified version: preview.5 at marketplace commit
-`0f841dae120e45d0ac7e2a90bd383685c8756627` (tag `v0.2.1-preview.5`). Preserve this immutable recovery ref.
-Rollback uses official Plugin management with approval, never `gil restore` or deleting `.gil`.
-Rolling back to preview.3 makes format-5 projects unreadable until preview.4 is reinstalled.
-
-## Maintenance and support
-
-All main changes use PRs and required `pinned-payload` CI, including administrators. No force push,
-history rewriting or protection bypass. Use GitHub no-reply author/committer/tagger identities.
-Static checks never execute the packaged binary:
+Every main change uses a PR and pinned-payload CI; no force push or bypass. Keep GitHub no-reply
+identities and preserve the reviewed bytes. Static checks do not execute the packaged binary:
 
 ```sh
 node --test checks/verify.test.mjs checks/history.test.mjs
@@ -158,8 +90,5 @@ node checks/verify.mjs
 node checks/history.mjs
 ```
 
-Preserve licenses and payload/evidence line endings byte-for-byte. No user records, development
-paths or credentials. Static integrity is not native execution or Host display.
 [Support](https://github.com/hyun06000/gil/blob/main/SUPPORT.md) ·
-[Private security reporting](https://github.com/hyun06000/gil/security/advisories/new) ·
-[Detailed installation](https://github.com/hyun06000/gil/blob/main/distribution/codex/INSTALL.md).
+[Private security reporting](https://github.com/hyun06000/gil/security/advisories/new)
