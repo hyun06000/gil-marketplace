@@ -220,6 +220,13 @@ Declared license: MIT
 Source: https://crates.io/crates/generic-array/0.14.7
 Original file: LICENSE -> SHA-256 c09aae9d3c77b531f56351a9947bc7446511d6b025b3255312d3e3442a9a7583
 
+## cargo:getrandom@0.3.4
+Role: normal-candidate
+Declared license: MIT OR Apache-2.0
+Source: https://crates.io/crates/getrandom/0.3.4
+Original file: LICENSE-APACHE -> SHA-256 aaff376532ea30a0cd5330b9502ad4a4c8bf769c539c87ffe78819d188a18ebf
+Original file: LICENSE-MIT -> SHA-256 29e9fe5074bd27e0e5d5d110394fbbcd841baee2651a3c4b4560a632702cede4
+
 ## cargo:getrandom@0.4.3
 Role: normal-candidate
 Declared license: MIT OR Apache-2.0
@@ -636,10 +643,10 @@ Declared license: MIT
 Source: https://www.npmjs.com/package/pkce-challenge/v/5.0.1
 Original file: LICENSE -> SHA-256 feb87a2e0c305de3464cc44077da5393c52d8ca6362d37427157d04ec6f4510d
 
-## npm:zod@4.6.5
+## npm:zod@4.6.7
 Role: bundled-ui
 Declared license: MIT
-Source: https://www.npmjs.com/package/zod/v/4.6.5
+Source: https://www.npmjs.com/package/zod/v/4.6.7
 Original file: LICENSE -> SHA-256 3f1189b28e3866e0d979968d466b78f813f76827cfdca1fbb124cc0a5c8841f8
 
 
@@ -1516,6 +1523,36 @@ limitations under the License.
 ===== ORIGINAL LEGAL TEXT SHA-256 27995d58ad5c1145c1a8cd86244ce844886958a35eb2b78c6b772748669999ac =====
 
 Copyright (c) 2018 Josh Stone
+
+Permission is hereby granted, free of charge, to any
+person obtaining a copy of this software and associated
+documentation files (the "Software"), to deal in the
+Software without restriction, including without
+limitation the rights to use, copy, modify, merge,
+publish, distribute, sublicense, and/or sell copies of
+the Software, and to permit persons to whom the Software
+is furnished to do so, subject to the following
+conditions:
+
+The above copyright notice and this permission notice
+shall be included in all copies or substantial portions
+of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF
+ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED
+TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A
+PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT
+SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+DEALINGS IN THE SOFTWARE.
+
+
+===== ORIGINAL LEGAL TEXT SHA-256 29e9fe5074bd27e0e5d5d110394fbbcd841baee2651a3c4b4560a632702cede4 =====
+
+Copyright (c) 2018-2025 The rust-random Project Developers
+Copyright (c) 2014 The Rust Project Developers
 
 Permission is hereby granted, free of charge, to any
 person obtaining a copy of this software and associated

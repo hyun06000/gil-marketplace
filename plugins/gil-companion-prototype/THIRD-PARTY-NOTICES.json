@@ -2,11 +2,11 @@
   "schema": 1,
   "target": "aarch64-apple-darwin",
   "inputs": {
-    "Cargo.toml": "503a724b643955456f01e4e3f251d3a79f3f65f00c6c3e3477408108a41379e7",
-    "Cargo.lock": "197c097b1181d69d535cd5f5e7e545cf0ff764dd4854532513f357c47c7cac1d",
-    "mcp-app/package-lock.json": "9c6170c797cb227eb236692c8087cfddfe09ceea0fa212df4417cf91712d83b6",
+    "Cargo.toml": "8476d5cf2e38d5c8e0951a28d15931247a0653c708fbad12a6ffa8c92ce5bd79",
+    "Cargo.lock": "cdb646cb23f0e03fe7e37d30c895d36c7a9a8aa4c6b56d7cb0a27579985627bf",
+    "mcp-app/package-lock.json": "e81c74f94d4882f4f9af795959f18bc0ccb598ae58d516c2e728df06db08d8d8",
     "mcp-app/build.mjs": "00013682e3e300f5e5945f5fbadd2fb5d2e5c65797d1596511546da6261f5c3d",
-    "plugins/gil-companion-prototype/assets/monitor.html": "306e137986f918d61e0e5e39c73fbfd4aef6e77d334180e78af91a66bbd1381f"
+    "plugins/gil-companion-prototype/assets/monitor.html": "9abd2a27ae636ae69d9b0554a0b9a347f9721e0f62fabb9464bd533be34e044f"
   },
   "toolchain": {
     "release": "1.97.1",
@@ -575,6 +575,25 @@
         {
           "path": "LICENSE",
           "sha256": "c09aae9d3c77b531f56351a9947bc7446511d6b025b3255312d3e3442a9a7583"
+        }
+      ]
+    },
+    {
+      "ecosystem": "cargo",
+      "name": "getrandom",
+      "version": "0.3.4",
+      "role": "normal-candidate",
+      "declared_license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/crates/getrandom/0.3.4",
+      "integrity": "899def5c37c4fd7b2664648c28120ecec138e4d395b459e5ca34f9cce2dd77fd",
+      "files": [
+        {
+          "path": "LICENSE-APACHE",
+          "sha256": "aaff376532ea30a0cd5330b9502ad4a4c8bf769c539c87ffe78819d188a18ebf"
+        },
+        {
+          "path": "LICENSE-MIT",
+          "sha256": "29e9fe5074bd27e0e5d5d110394fbbcd841baee2651a3c4b4560a632702cede4"
         }
       ]
     },
@@ -1712,11 +1731,11 @@
     {
       "ecosystem": "npm",
       "name": "zod",
-      "version": "4.6.5",
+      "version": "4.6.7",
       "role": "bundled-ui",
       "declared_license": "MIT",
-      "source": "https://www.npmjs.com/package/zod/v/4.6.5",
-      "integrity": "sha512-v5l/aFXZQeai4awLbOpSoHecE9UiMrnfx75tEXLjNonXVARxQ5mOeipTjROUchszUNCqnE+hqAMujRsRHsut2Q==",
+      "source": "https://www.npmjs.com/package/zod/v/4.6.7",
+      "integrity": "sha512-g8W2D2kU6a8untc053fX1uVBKzM7yqAxW/3zwk83+6RyF2+SKOuV+c0wBDhUwzV1PaGapmZH+rmcUzPf+3CGwg==",
       "files": [
         {
           "path": "LICENSE",

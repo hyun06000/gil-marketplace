@@ -10,14 +10,14 @@ const prefix = 'plugins/gil-companion-prototype';
 const core = `${prefix}/core/darwin-arm64/gil`;
 const manifest = `${prefix}/.codex-plugin/plugin.json`;
 const hash = bytes => createHash('sha256').update(bytes).digest('hex');
-export const pins = Object.freeze({version: '0.2.1-preview.5',
-  receipt: 'd676e5392eb6d69523339a06b2c414173c24b778edc34bf399da38f66d005c95',
-  source: 'c7db94ea4134167c309369065e88b43bafc482df',
-  snapshot: 'bfde8787fc4a6b2f39e57146e6671689448c18537cb8a5786967ad1a3feeb242',
-  archive: '64ab183502161b81459d7a3e96fb73f62d624b75b39bb667da44212de46632e4',
-  core: 'efaa940222520a64b1a2202e8ff3f93a6b838c023c4baf9f20967f99dabd1506',
-  ui: '306e137986f918d61e0e5e39c73fbfd4aef6e77d334180e78af91a66bbd1381f',
-  profile: 'visual-authoring', tools: 24, source_files: 442, migration: 'requires_review',
+export const pins = Object.freeze({version: '0.2.1-preview.6',
+  receipt: '8feca3d4450fe28e9e50ae512244cb6cb1c890622f3d41a6c6f0ac182ddc0572',
+  source: 'db267bfdf8467b96a2a6f98dd1745148362edbb6',
+  snapshot: '591b46ccf524d73c5d22ac23bc8ab291ca57c9f08de81e41899d280329079275',
+  archive: '477ad55fb6757fc58c4264bd265c7dd8e196c4a5ecf648ac6e1a181a8338d2b5',
+  core: '1822b5ad6a52b877384053ac9bea9d05975a33f101c5cda84dff1290d984c04e',
+  ui: '9abd2a27ae636ae69d9b0554a0b9a347f9721e0f62fabb9464bd533be34e044f',
+  profile: 'visual-authoring', tools: 24, source_files: 537, migration: 'requires_review',
   binary_origin: 'preserved_from_verified_development_tree; CI provenance review still required'});
 const payload = ['.agents/plugins/marketplace.json', manifest, core,
   `${prefix}/skills/gil-companion/SKILL.md`, `${prefix}/LICENSE`,
