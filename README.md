@@ -5,9 +5,13 @@ universal Plugins Directory listing. Source: [hyun06000/gil](https://github.com/
 
 | Version | State | Install pin |
 |---|---|---|
+| `0.2.1-preview.6` | **Prepared on this branch; NOT published.** No tag or release exists yet. | none yet — do not install from moving main |
 | `0.2.1-preview.5` | **Published 2026-10-18 as an unsigned prerelease** — current installable version | tag `v0.2.1-preview.5` / commit `0f841dae120e45d0ac7e2a90bd383685c8756627` · [release](https://github.com/hyun06000/gil-marketplace/releases/tag/v0.2.1-preview.5) |
-| `0.2.1-preview.4` | Previous verified version; rollback target | tag `v0.2.1-preview.4` / commit `e3ce1be57f1a2b6829b89258e703a6cabc1b77eb` · [release](https://github.com/hyun06000/gil-marketplace/releases/tag/v0.2.1-preview.4) |
+| `0.2.1-preview.4` | Previous verified version; rollback target from preview.5 | tag `v0.2.1-preview.4` / commit `e3ce1be57f1a2b6829b89258e703a6cabc1b77eb` · [release](https://github.com/hyun06000/gil-marketplace/releases/tag/v0.2.1-preview.4) |
 | `0.2.1-preview.3` | Earlier verified version | tag `v0.2.1-preview.3` / commit `8445dbdb30c9cfe16a77245adcc4da56c9655b46` · [release](https://github.com/hyun06000/gil-marketplace/releases/tag/v0.2.1-preview.3) |
+
+Until the owner publishes the `v0.2.1-preview.6` tag and versioned release, the installable version
+remains preview.5 through its release above.
 
 Always install from a fixed tag. Never substitute moving `main` for a fixed tag.
 
@@ -48,6 +52,15 @@ Existing registrations require inspection and approval before replacement.
 Records stay in the chosen folder; tool responses enter the selected Host/AI conversation.
 GIL provides no cloud upload service. Never share private project records in bug reports.
 
+## What preview.6 changes
+
+Refreshes the bundled native Core, GIL Skill and Monitor UI from source `db267bfd…`. The macOS Plugin
+now carries the same current shared Core and fullscreen Monitor used by the latest source release line,
+including the updated workspace handling and user-facing guidance accumulated after preview.5. The
+reviewed contract is unchanged: runtime profile `visual-authoring`, 24 MCP tools, action surface 2 and
+storage formats 4..5. Installing the Plugin does not migrate a Project; migration remains a separate
+per-project consent operation.
+
 ## What preview.5 changes (companion Skill only)
 
 Same Core (`efaa9402…`), UI (`306e1379…`) and image-report contract as the preview.4 line; the
@@ -69,7 +82,17 @@ missing field. No storage, grammar or tool-contract change; no migration.
 - **Rollback warning:** preview.3 cannot read format-5 records ("storage format 5 is unknown"). That
   refusal is expected and is not data loss; downgrading the Plugin never downgrades project records.
 
-## Exact provenance (preview.5)
+## Exact provenance (preview.6 candidate)
+
+- Source: `db267bfdf8467b96a2a6f98dd1745148362edbb6` (hyun06000/gil main after PR #46).
+- CI (visual-authoring candidate): [40478269851](https://github.com/hyun06000/gil/actions/runs/40478269851).
+- Candidate archive SHA-256: `477ad55fb6757fc58c4264bd265c7dd8e196c4a5ecf648ac6e1a181a8338d2b5`
+  (`gil-codex-macos-arm64-0.2.1-preview.6.tar.gz`, 3,189,503 bytes).
+- Core SHA-256: `1822b5ad6a52b877384053ac9bea9d05975a33f101c5cda84dff1290d984c04e`;
+  UI SHA-256: `9abd2a27ae636ae69d9b0554a0b9a347f9721e0f62fabb9464bd533be34e044f`.
+- Exact receipt (schema 3): [release.json](release.json); original checks/update record: [evidence](evidence).
+
+## Exact provenance (preview.5, published 2026-10-18)
 
 - Source: `c7db94ea4134167c309369065e88b43bafc482df` (hyun06000/gil main after PRs #18–#21).
 - CI (visual-authoring): [39108378176](https://github.com/hyun06000/gil/actions/runs/39108378176);

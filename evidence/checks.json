@@ -2,15 +2,15 @@
   "schema": 1,
   "channel": "preview_unsigned",
   "publishable": false,
-  "version": "0.2.1-preview.5",
+  "version": "0.2.1-preview.6",
   "profile": "visual-authoring",
   "source": {
-    "head": "c7db94ea4134167c309369065e88b43bafc482df",
+    "head": "db267bfdf8467b96a2a6f98dd1745148362edbb6",
     "dirty": false,
-    "files": 442,
-    "snapshot_sha256": "bfde8787fc4a6b2f39e57146e6671689448c18537cb8a5786967ad1a3feeb242"
+    "files": 537,
+    "snapshot_sha256": "591b46ccf524d73c5d22ac23bc8ab291ca57c9f08de81e41899d280329079275"
   },
-  "archive_sha256": "64ab183502161b81459d7a3e96fb73f62d624b75b39bb667da44212de46632e4",
+  "archive_sha256": "477ad55fb6757fc58c4264bd265c7dd8e196c4a5ecf648ac6e1a181a8338d2b5",
   "trust": {
     "developer_id": "not_provided",
     "notarization": "not_performed",
@@ -22,11 +22,11 @@
   "roundtrip": "passed",
   "smoke": {
     "passed": true,
-    "first_process_ms": 634,
-    "initialize_ms": 6,
+    "first_process_ms": 10,
+    "initialize_ms": 10,
     "deadline_ms": 30000,
     "tools": 24,
-    "ui_sha256": "306e137986f918d61e0e5e39c73fbfd4aef6e77d334180e78af91a66bbd1381f",
+    "ui_sha256": "9abd2a27ae636ae69d9b0554a0b9a347f9721e0f62fabb9464bd533be34e044f",
     "core": {
       "schema_version": 1,
       "product": "gil_core",
