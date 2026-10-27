@@ -5,6 +5,90 @@ description: Use GIL from this plugin — start a GIL project in the folder the 
 
 # GIL
 
+<!-- BEGIN GENERATED SHARED WORKFLOW -->
+## GIL shared workflow
+
+These rules apply to every GIL connection, with or without a Plugin, on every operating system.
+Use only the user's selected absolute `project_root`. Read the tool's text guidance as well as
+`structuredContent`; follow the actual recorded position and the connected tool schema.
+
+1. **Start and show.** Start a new project once. After successful `gil_start`, follow its returned
+   `show_gil_monitor` call before opening the first Interview step. Do not prepare the Monitor again
+   if start returned its scope. Never repeat start to open a screen. If start succeeded but Monitor
+   preparation failed, report the display failure and continue the recorded Interview via `gil_open`.
+   A display failure alone does not block Project work. A successful tool response does not prove
+   that a screen is visible. In a new session, read `gil_context` once and resume instead of starting again.
+2. **Agree, then finish Interview.** Interview clarifies and agrees scope. Synthesis waits for the
+   user's reply to its proposed statement; silence, earlier requests and the agent's own judgment
+   are not approval. After explicit assent: close Synthesis → open/close Interview Outcome →
+   separately close the Interview Cycle with its Report → open a bounded Experiment. Wait for
+   each success. Do not ask again for approval already given to that proposal. Outcome judges the
+   approved scope; do not leave it open until the whole project is finished. Resume from the actual
+   recorded position without repeating already closed steps.
+
+   Choose the next call from the **current recorded state**, not from the beginning of the sequence:
+
+   | Current state | Next call |
+   | --- | --- |
+   | Question is open and the user has answered its question | `gil_close` with that response |
+   | Synthesis is open and the user approved its statement | `gil_close` with the approval |
+   | Synthesis is closed and Outcome has not been opened | `gil_open` Outcome |
+   | Outcome is already open and its verdict/next direction are ready | `gil_close` Outcome; do not open it again |
+   | Outcome is closed but the Interview Cycle is still open | `gil_close` with the Cycle Report; there is no extra Report step to open |
+   | Interview Cycle is closed and the agreed execution work remains | `gil_open` Experiment; never `gil_start` an existing project |
+
+3. **One checkable question at a time.** Open a small action contract, perform its `next_action`,
+   then `gil_close` when `done_when` is met, before further external work or final delivery.
+   A new request does not extend an already completed contract. Substantive research, source
+   checking, calculations, deliverable writing (even a report requested in chat), implementation
+   and tests belong in Experiment Verify, never an open Interview. Split independent uncertainties
+   into successive Experiments with observable success conditions. Multiple related searches,
+   edits and tests within the same unfinished Verify are valid.
+   **Open before acting:** after closing Hypothesis, the next action is `gil_open` for Verify.
+   Wait for its success before reading sources, searching, calculating or writing files. A closed
+   Hypothesis or a prepared Verify contract does not mean Verify is open. Do not gather evidence
+   first and then open Verify to record work already performed. This also applies between cycles:
+   finish the old cycle and reach a successfully opened Verify before the next investigation.
+4. **Leave evidence in the world.** Every Verify must save its actual observations/results as
+   project files: documents, logs, datasets, code or visual artifacts. Chat alone cannot complete
+   Verify. Even read-only investigation or a failed test needs a saved observation document.
+   Include `evidence_files` in its Report: 1–32 unique safe project-relative file paths. Every
+   listed file must be nonempty in the Snapshot, and at least one must be new or changed from the
+   baseline. One file: `evidence_files: evidence/result.md`. Multiple files use this Report syntax:
+
+   ```text
+   evidence_files: |
+     evidence/one.md
+     evidence/two.md
+   ```
+
+   Record sources, inputs/method, observed results and limitations; never invent results or save
+   meaningless markers to satisfy the gate. Use visual evidence when it helps assess the work.
+   Image declarations `not_needed`/`missing` do not waive ordinary file evidence. If evidence is
+   refused, save truthful evidence while Verify remains open, then submit the corrected close.
+5. **Learn from that evidence and close.** After Verify, write a nonblank `interpretation` in
+   Analysis and a nonblank `lesson` in Experiment Outcome. Core links `evidence.verify_ref` and
+   `learning.analysis_ref` to the actual current lineage; do not supply different references.
+   Finish Analysis, Outcome and the Cycle Report before the next independent problem or final
+   delivery. Deliver links to the saved evidence/deliverable alongside the chat summary.
+6. **Use the actual close contract.** Close both Steps and Cycles with `gil_close`; the legacy
+   `gil_cycle` cannot accept a Report. Format-4 steps (including Verify) and format-5 non-Verify
+   reports without stored images use `{project_root, report}`. Every format-5 Verify uses
+   `{project_root, report, expected_owner, visuals}`, even without images. Supply both
+   `expected_owner: {kind: "step", ref: "<actual open step ref>"}` and `visuals`; with no images,
+   use `visuals: {attachments: [], uses: [], declaration: {state: "not_needed", reason: "<actual reason>"}}`.
+   Format-5 non-Verify reports citing stored images also use both fields, per the connected schema.
+   Keep `evidence_files` in the Report in every Verify. Available capabilities and project format,
+   not the OS name, determine the input shape. Never migrate an existing project merely to follow
+   these instructions.
+7. **Recover and keep the user informed.** A rejected Project action must be resolved before
+   further Project work. Never treat a refused close as closed, backfill skipped steps or fabricate
+   history. A confirmed input rejection means the call was not executed: check current state and
+   submit the corrected input. An uncertain/lost close response requires inspecting recorded state,
+   not blindly repeating the close. Briefly tell the user the current step and immediate action.
+   Monitor shows recorded progress, not private reasoning or proof that every external action used GIL.
+<!-- END GENERATED SHARED WORKFLOW -->
+
 This plugin carries two doors. **GIL itself**, which the agent calls, and the **GIL Monitor**,
 which a human watches.
 
@@ -25,6 +109,9 @@ showing. The human may be watching one project while the agent works in another.
 `gil_open` and `gil_close` carry their body on stdin (`contract`, `report`). Write the fields the
 current grammar asks for; GIL validates them and refuses with its own words when they are wrong.
 Do not invent the field list from memory — `gil_help` and GIL's own refusals tell you.
+Use `gil_close(project_root, report)` for both Steps and Cycle Reports. The legacy `gil_cycle`
+tool cannot accept a Report: never use its `action: close`. If it refuses, follow its explicit
+routing instruction to submit the report through `gil_close`, rather than repeating `gil_cycle`.
 
 Help topics are addresses, not command names or search terms. First call `gil_help` without
 `topic` (include the selected `project_root` when known), then use an exact address returned by
@@ -35,6 +122,9 @@ attachments are unsupported. Without a selected Project, do not invent a root to
 Ordinary text actions answer with `ok`, `exit_code`, `said` (what GIL printed) and `problem` (what GIL
 refused with). **`ok` is the only success signal.** Read `said`/`problem` as GIL's own words and
 pass them on; do not reword them into a verdict of your own.
+Also read the response's text content: it carries the immediate Monitor handoff and workflow
+guidance alongside the unchanged structured receipt. Monitor preparation failure after
+`gil_start` with `ok: true` does not undo creation or prevent the first Interview.
 
 **After `ok: false`, handle the refusal before anything else.** A refused action did not move the
 project: never treat it as success, and never go on to the next step, the next Cycle or
@@ -97,6 +187,17 @@ that work is the Verify's content and is reported in its close. If a close is bl
 ask rather than skipping the step, and never record steps or reports after the fact to make
 skipped work look like it followed the loop.
 
+This boundary also covers substantive web research, source checking, calculations and drafting
+the user's report, including a report delivered only in chat. Reading supplied material to clarify
+the user's goal is still Interview work. After Interview closes, choose one independently
+checkable question and success condition per Experiment. For example, checking a report's price
+data and checking a separate earnings claim need separate judgments; do not bundle every question
+and final drafting into one giant Verify. Related searches within one question can share a Verify;
+do not create a cycle per search or paragraph. Complete Analysis, Outcome and the Cycle Report
+before the next independent problem or final delivery. Base the final report on recorded evidence,
+and record any needed synthesis/drafting work in its own bounded action rather than hiding it in
+an already completed step.
+
 **Run GIL actions on one project one at a time.** GIL takes a short exclusive lock on the
 project while it works, so two calls fired in parallel — even two reads like `gil_status` and
 `gil_context` — will have one of them refused. Wait for each answer before sending the next.
@@ -122,8 +223,11 @@ platform is not permission to fall back to a shell or silently create a text-onl
 
 1. `gil_start(project_root)` with the selected folder. If no folder was explicitly selected or
    named, ask which folder first; never guess one.
-2. On `ok: true`, immediately `gil_monitor_prepare(project_root)` on that same root, then
-   `show_gil_monitor(scope_id)` with the scope it returned. The App starts horizontal and requests
+2. On `ok: true`, follow the start response's `show_gil_monitor(scope_id)` handoff immediately when
+   it says preparation succeeded. Older servers without that handoff need
+   `gil_monitor_prepare(project_root)` on that same root, then `show_gil_monitor(scope_id)` with the
+   scope it returned. If start says preparation failed, report that failure and do not start again;
+   apply the bounded display retry rules below. The App starts horizontal and requests
    fullscreen once by itself; you do not request or re-render it.
 3. Follow the start receipt: `gil_open` the first Interview step and ask the user what they want.
    The Monitor reads the project on its own, so the graph updates from this first step on without
@@ -217,6 +321,13 @@ Keep these boundaries:
   open; do not close them, do not open an Experiment or any other Cycle, and do not start
   implementing. If the user says no or changes the proposal, record their words and revise within
   the same Interview.
+- **After assent, finish the handoff before execution.** If the user has already agreed to the
+  statement you presented, record the actual approval and close Synthesis without asking again.
+  Follow each successful receipt: open Interview Outcome, judge the approved scope and close it,
+  then submit the separate Interview Cycle Report. Closing Outcome alone does not close its Cycle.
+  If already at Outcome or the Cycle Report boundary, finish from that recorded position; do not
+  repeat earlier steps. Only after the Cycle close succeeds, open the next bounded Experiment.
+  Do not perform research or write the deliverable while waiting to close the Interview's last node.
 - **One open Cycle at a time.** `gil_start` opens the first Interview, and that is the only open
   Cycle. Do not open another Interview or Experiment while it is open, do not close it merely to
   satisfy a request, and do not leave it suspended to open a new one; close it through its own
