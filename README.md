@@ -5,8 +5,8 @@ Developer ID signing or notarization. Source: [hyun06000/gil](https://github.com
 
 | Version | Role | Fixed release |
 |---|---|---|
-| `0.2.1-preview.11` | Shared Monitor zoom, minimap and update guidance; Claude Desktop path | [v0.2.1-preview.11](https://github.com/hyun06000/gil-marketplace/releases/tag/v0.2.1-preview.11) |
-| `0.2.1-preview.10` | Previous recovery-to-chat test build | [v0.2.1-preview.10](https://github.com/hyun06000/gil-marketplace/releases/tag/v0.2.1-preview.10) |
+| `0.2.1-preview.12` | Confirmed approval vs temporary read failure | [v0.2.1-preview.12](https://github.com/hyun06000/gil-marketplace/releases/tag/v0.2.1-preview.12) |
+| `0.2.1-preview.11` | Previous Host support and Monitor test build | [v0.2.1-preview.11](https://github.com/hyun06000/gil-marketplace/releases/tag/v0.2.1-preview.11) |
 
 Use the fixed tag, never moving `main`. GitHub's Source ZIP is not the installation archive.
 No Node, npm, Cargo, Homebrew or separate Companion is required.
@@ -15,22 +15,22 @@ No Node, npm, Cargo, Homebrew or separate Companion is required.
 
 Ask Codex in a local folder-backed conversation:
 
-> Install GIL unsigned preview 0.2.1-preview.11 using the bundled Codex CLI and official Plugin commands.
+> Install GIL unsigned preview 0.2.1-preview.12 using the bundled Codex CLI and official Plugin commands.
 > Inspect existing GIL source/version first. Replace an existing installation only with my approval
 > (do not ask again if I already approved that exact replacement). Use the fixed tag below.
 > Do not initialize/migrate projects or modify their records, installed caches or security settings.
 > Verify the installed version and tell me to open a new conversation for the new connection.
 
 ```sh
-codex plugin marketplace add https://github.com/hyun06000/gil-marketplace.git --ref v0.2.1-preview.11 --json
+codex plugin marketplace add https://github.com/hyun06000/gil-marketplace.git --ref v0.2.1-preview.12 --json
 codex plugin add gil-companion-prototype@gil-preview-macos-arm64 --json
 ```
 
 Inspect existing registrations before replacing them through official Plugin commands. If Git or
 Xcode Command Line Tools are absent, use the verified archive/local marketplace route in
 [installation instructions](https://github.com/hyun06000/gil/blob/main/INSTALL.md), without installing developer tools.
-The exact archive is `gil-codex-macos-arm64-0.2.1-preview.11.tar.gz` (3,565,880 bytes),
-SHA-256 `955cf16c566939543d02f96077f71a8eb186333187f9ccd3bcb708ad27537fdb`.
+The exact archive is `gil-codex-macos-arm64-0.2.1-preview.12.tar.gz` (3,566,625 bytes),
+SHA-256 `41f1bb5bfafac4912efc8251d5dc31ec462221e8e3805dc3fdfb890bc18943f1`.
 If macOS blocks execution, stop; never disable Gatekeeper or remove quarantine.
 
 After installation, open a **new conversation and a new empty test folder** and ask:
@@ -53,9 +53,11 @@ the direct registration route for this test. This version's real Host behavior r
 
 ## What this test build includes
 
-Shared Monitor now includes zoom controls, a minimap and metadata-only update guidance. It never
-automatically installs updates. Windows owner.10 additionally has explicit Claude Desktop connection
-controls; macOS uses the direct-registration route above.
+Monitor distinguishes confirmed approval, temporary read retry, persistent read failure and uncertain
+write outcomes. A failed read retains the last confirmed revision without approving newer proposals.
+Retries use 2/4/8/15 seconds; polling never repeats a write or sends chat. Missing/mismatched write
+acknowledgements remain uncertain. Zoom, minimap and metadata-only update guidance are retained.
+Windows includes Claude Desktop connection controls; macOS uses direct registration above.
 
 This explicit `approved-plan` + `visual-authoring` profile includes Chains, repeated-failure context,
 Monitor plan approval/revision, bound Experiment items and guidance after closing steps. A model
@@ -73,7 +75,7 @@ the exact file-change list and click **보존 후 되돌아가기**. The before-
 past state. Failure records, evidence snapshots and learning remain, and a new attempt keeps their
 lineage. Interrupted approved recovery can resume. Protected-path changes, links and stale consent
 are refused; general `restore`, Step-level revisit and automatic record migration remain blocked.
-Windows owner.10 uses the same approval flow (Windows additionally requires the project and record
+Windows owner.11 uses the same approval flow (Windows additionally requires the project and record
 store on the same volume). Do not delete records or change tracking metadata to bypass refusal.
 
 After confirmed recovery from an explicit button click, Monitor sends one chat continuation request.
@@ -85,13 +87,13 @@ started; if needed, ask the chat to re-read current context. This is the same wo
 
 ## Validation and exact provenance
 
-- Build source: `3353c91fddb9b2c2c6d468a9d1f0f4b2ba032532`, reviewed in [source PR #66](https://github.com/hyun06000/gil/pull/66).
-- Native build, archive roundtrip and first-start protocol: [CI 41354472592](https://github.com/hyun06000/gil/actions/runs/41354472592).
-- Shared actual-process tests verify recovery context points to the next Cycle instead of repeating
-  the earlier approval wait. UI tests cover delivery failures, message-only retries and no automatic
-  messages from polling, refused writes or uncertain responses. These are synthetic tests.
-- Core SHA-256: `826a59198206d33aeee40cbdf10443f9f0e49d4c2f401bbb9f27d7bd37cd32bd`.
-- Embedded UI SHA-256: `c25c2b43cd67739ba9c06f2fa2c8552f71a423782b55538f65dbf8dcb46b941f`.
+- Build source: `bbd7db3b29d69ec0ca6661336ecc2ed5a87aa12b`, reviewed in [source PR #73](https://github.com/hyun06000/gil/pull/73).
+- Native build, archive roundtrip and first-start protocol: [CI 41359559965](https://github.com/hyun06000/gil/actions/runs/41359559965).
+- 24 approval-controller tests cover saved decisions plus read failures, stale buttons, replacement
+  proposals, uncertain acknowledgements and short retry scheduling. A synthetic browser fixture
+  verifies neutral temporary retry. These do not prove actual Host approval or model continuation.
+- Core SHA-256: `c43cb57d3c7f786713e3599f2d3e90afe4cc097ff8bcd9f6d5963f9f9bd5b543`.
+- Embedded UI SHA-256: `e7830fa2bc588072d60f83f4df3729db587320c15a186bc9a8f84afa14bc43bc`.
 - Immutable payload receipt: [release.json](release.json); [original CI evidence](evidence).
 
 Fresh-machine installation, actual Host fullscreen, real approval clicks and Luna work for this
@@ -104,7 +106,7 @@ PR/release, without rewriting the original receipt. Hashes check bytes, not publ
 
 ## Recovery and maintenance
 
-Keep existing records. To return to preview.10, replace only the Plugin through official commands;
+Keep existing records. To return to preview.11, replace only the Plugin through official commands;
 use it only with records it supports. Never delete `.gil` or run `gil restore` to downgrade.
 
 Every main change uses a PR and pinned-payload CI. Keep GitHub no-reply identities and reviewed bytes.
