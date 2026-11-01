@@ -11,20 +11,21 @@ const core = `${prefix}/core/darwin-arm64/gil`;
 const manifest = `${prefix}/.codex-plugin/plugin.json`;
 const hash = bytes => createHash('sha256').update(bytes).digest('hex');
 export const pins = Object.freeze({
-  "version": "0.2.1-preview.7",
-  "receipt": "e1b6948c9e1f11e27d662e788ab76da9031db1b758a66640c15ffa69399ecf12",
-  "source": "64de8e5c1207dda329600ef12a86f39cf7781ee3",
-  "snapshot": "2f7edbb49478f6e6eb9f5c6017bc2978a64035e9529d17dbd8da014009845971",
-  "archive": "ecd045e3a043e820bb5ff59a6d8b6d3ca57e68dfa3d8a8426a598f70682dd8ee",
-  "core": "badd9a6f208dee96402637c54bc741b4a3e9e75cfbbb650a94a1608213bd1bba",
-  "ui": "8df673ca26fc8f90ca6f9c8f2a256b87b535f8f19fbb3cd3d2f9e93154077b33",
-  "profile": "visual-authoring",
-  "tools": 24,
-  "source_files": 552,
+  "version": "0.2.1-preview.8",
+  "receipt": "f2755f879e8f803c7f70b68f08b92a440083d5cba82b981c3934796c25122675",
+  "source": "ca7c60959914f7ea8dc4ff7a125628b50ffea698",
+  "snapshot": "da3a9f5453c0ffa2fea3467376f40a15a08f415b13821fac248c2d69d7a77488",
+  "archive": "5fcfbb2a328ae65c71d6b5aa4432a556d89429d0fe4c98cacb855e9c2a88d266",
+  "core": "c986982fda1e9cb1fca07d8c9be152d429c56ad9782914c460e64cd3ae749f42",
+  "ui": "1b29af14e7cb55045098cefab940cdefff0f5e8fabf8ef7550cf636517a8cccd",
+  "profile": "approved-plan",
+  "tools": 30,
+  "source_files": 734,
   "migration": "requires_review",
   "binary_origin": "preserved_from_verified_development_tree; CI provenance review still required"
 });
-const payload = ['.agents/plugins/marketplace.json', manifest, core,
+const payload = ['.agents/plugins/marketplace.json', '.claude-plugin/marketplace.json',
+  `${prefix}/.claude-plugin/plugin.json`, manifest, core,
   `${prefix}/skills/gil-companion/SKILL.md`, `${prefix}/LICENSE`,
   `${prefix}/THIRD-PARTY-NOTICES.json`, `${prefix}/THIRD-PARTY-NOTICES.txt`,
   `${prefix}/RUST-STDLIB-NOTICES.html`, 'PREVIEW.md'];
@@ -36,10 +37,10 @@ export const files = [...payload, 'release.json', 'README.md', 'AGENTS.md',
 const trust = {developer_id: 'not_provided', notarization: 'not_performed',
   clean_machine_install: 'deferred_not_passed', automatic_update: 'not_authorized',
   os_security_override: 'prohibited', publication: 'requires_separate_approval'};
-// Image-report (visual-authoring) contract: action surface 2, storage formats 4..5. Format 5 is not
-// readable by preview.3; migration of existing projects requires separate review and consent.
+// Explicit approved-plan + visual-authoring test contract; new projects use format 7.
+// Existing projects are not migrated. Downgrading a Plugin never converts records.
 const compatibility = {protocol: {min: 1, max: 1}, action_surface: {min: 2, max: 2},
-  storage_format: {min: 4, max: 5}, monitor_view_schema: {min: 1, max: 1}, node_detail_schema: {min: 1, max: 1}};
+  storage_format: {min: 4, max: 7}, monitor_view_schema: {min: 1, max: 1}, node_detail_schema: {min: 1, max: 1}};
 
 export async function verify(at = root) {
   const found = [];
@@ -61,7 +62,7 @@ export async function verify(at = root) {
   const receipt = JSON.parse(receiptBytes);
   assert.deepEqual(Object.keys(receipt).sort(), ['binary_origin','channel','compatibility','files','migration',
     'platform','plugin','publishable','runtime_profile','schema','source','trust','version']);
-  assert.equal(receipt.schema, 3, 'receipt schema 3 is required for the image-report contract');
+  assert.equal(receipt.schema, 3, 'receipt schema 3 is required for the approved-plan contract');
   assert.equal(receipt.runtime_profile, pins.profile);
   assert.deepEqual(receipt.compatibility, compatibility);
   assert.equal(receipt.migration, pins.migration);
@@ -95,6 +96,15 @@ export async function verify(at = root) {
   assert.equal(catalog.name, 'gil-preview-macos-arm64');
   assert.deepEqual(catalog.plugins, [{name: receipt.plugin, source: {source:'local',path:`./${prefix}`},
     policy: {installation:'AVAILABLE',authentication:'ON_INSTALL'},category:'Productivity'}]);
+  const claude = await json(`${prefix}/.claude-plugin/plugin.json`);
+  assert.equal(claude.name, receipt.plugin); assert.equal(claude.version, pins.version);
+  assert.deepEqual(claude.mcpServers, {'gil-companion': {
+    command:'${CLAUDE_PLUGIN_ROOT}/core/darwin-arm64/gil', args:['mcp','--serve'], cwd:'${CLAUDE_PLUGIN_ROOT}'}});
+  const claudeCatalog = await json('.claude-plugin/marketplace.json');
+  assert.equal(claudeCatalog.name, catalog.name);
+  assert.equal(claudeCatalog.plugins.length, 1);
+  assert.equal(claudeCatalog.plugins[0].name, receipt.plugin);
+  assert.equal(claudeCatalog.plugins[0].source, `./${prefix}`);
   const check = await json('evidence/checks.json'), update = await json('evidence/update-record.json');
   assert.deepEqual(Object.keys(check).sort(), ['archive_sha256','channel','limits','profile','publishable',
     'roundtrip','schema','smoke','source','trust','version']);
@@ -103,7 +113,7 @@ export async function verify(at = root) {
   assert.equal(check.channel, receipt.channel); assert.equal(check.version, pins.version);
   assert.equal(check.publishable, false); assert.equal(check.roundtrip, 'passed');
   assert.equal(check.archive_sha256, pins.archive); assert.equal(check.smoke.passed, true);
-  assert.equal(check.smoke.tools, pins.tools, 'tool count differs from the image-report contract');
+  assert.equal(check.smoke.tools, pins.tools, 'tool count differs from the approved-plan contract');
   assert.equal(check.smoke.ui_sha256, pins.ui);
   assert.deepEqual(check.smoke.core.storage_format, compatibility.storage_format);
   assert.deepEqual(check.smoke.core.action_surface, compatibility.action_surface);
