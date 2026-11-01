@@ -28,12 +28,12 @@
   "migration": "requires_review",
   "platform": "darwin-arm64",
   "plugin": "gil-companion-prototype",
-  "version": "0.2.1-preview.10",
+  "version": "0.2.1-preview.11",
   "source": {
-    "head": "44b8b7440495702efd9b8406c402ee95cb285ce6",
+    "head": "3353c91fddb9b2c2c6d468a9d1f0f4b2ba032532",
     "dirty": false,
-    "files": 746,
-    "snapshot_sha256": "97bcf584870f2cd6b7e8e1ea3289fe6ff1b67ef2d65e292f852270459b80d902"
+    "files": 752,
+    "snapshot_sha256": "51f6a3e84f843cffcc0525f81c62a4ea439569051c2beedeb6ade0b5bbc53ea9"
   },
   "binary_origin": "preserved_from_verified_development_tree; CI provenance review still required",
   "trust": {
@@ -61,19 +61,19 @@
       "path": "plugins/gil-companion-prototype/.claude-plugin/plugin.json",
       "bytes": 519,
       "mode": 420,
-      "sha256": "1fa87bf288d3ceca878f7349806595832d30c9d56f3e8ee7484c337c85212c3c"
+      "sha256": "572e1c68fb044ff4ea02e644daaf9254badbd38b92d7bc8dff5c65751e356d5e"
     },
     {
       "path": "plugins/gil-companion-prototype/.codex-plugin/plugin.json",
       "bytes": 1078,
       "mode": 420,
-      "sha256": "939f29cf34053dcc64c81d49d6ed87d5e6e26f6385b963a9e25977791ecb205c"
+      "sha256": "5c4d2bc6993bfc526f175061f248cf33c6ca85d9cc0a51b8cbffaa92520e6f7f"
     },
     {
       "path": "plugins/gil-companion-prototype/core/darwin-arm64/gil",
-      "bytes": 10468736,
+      "bytes": 10547776,
       "mode": 493,
-      "sha256": "f4a137c07591eb16fd45f671fc375676099e8444c9ae716eaf3d3a0acfdb0314"
+      "sha256": "826a59198206d33aeee40cbdf10443f9f0e49d4c2f401bbb9f27d7bd37cd32bd"
     },
     {
       "path": "plugins/gil-companion-prototype/LICENSE",
@@ -97,7 +97,7 @@
       "path": "plugins/gil-companion-prototype/THIRD-PARTY-NOTICES.json",
       "bytes": 58686,
       "mode": 420,
-      "sha256": "b7eaceff4c7c01b34c0622bfd1346eff171d586b7cc77ca2320551004ac4bf89"
+      "sha256": "2cc10d03c7253b2b17e25a05c24ea7275d8b716dd1c74db6448d9d6deb0e4dcf"
     },
     {
       "path": "plugins/gil-companion-prototype/THIRD-PARTY-NOTICES.txt",
@@ -109,7 +109,7 @@
       "path": "PREVIEW.md",
       "bytes": 1780,
       "mode": 420,
-      "sha256": "a4598f658fdd9095dcdee49ed32750a5b806c58ba18c0593562f9d1da53fc794"
+      "sha256": "207f7d4e9cdc809f8f9d59579a97a71e5278e9d0286a4711d8dfb24a5425ebaf"
     }
   ]
 }
