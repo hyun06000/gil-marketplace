@@ -57,6 +57,8 @@ and M6-E design work do not mean production restore/revisit or migration is avai
 
 - Source: `ca7c60959914f7ea8dc4ff7a125628b50ffea698`, reviewed in [source PR #64](https://github.com/hyun06000/gil/pull/64).
 - Native build, archive roundtrip and first-start protocol: [CI 41334225234](https://github.com/hyun06000/gil/actions/runs/41334225234).
+- Isolated bundled Codex CLI 0.166.0-alpha.5.1: local marketplace registration, Plugin install and
+  listed version 0.2.1-preview.8 passed; installed Core hash matches CI. The real user profile was untouched.
 - Exact downloaded Core: 20 wire scenarios passed, 1 expected product-safety block, 0 failures.
   These use synthetic App inputs, not human approval clicks or a Luna model.
 - Core SHA-256: `c986982fda1e9cb1fca07d8c9be152d429c56ad9782914c460e64cd3ae749f42`.
