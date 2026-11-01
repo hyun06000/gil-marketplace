@@ -28,12 +28,12 @@
   "migration": "requires_review",
   "platform": "darwin-arm64",
   "plugin": "gil-companion-prototype",
-  "version": "0.2.1-preview.11",
+  "version": "0.2.1-preview.12",
   "source": {
-    "head": "3353c91fddb9b2c2c6d468a9d1f0f4b2ba032532",
+    "head": "bbd7db3b29d69ec0ca6661336ecc2ed5a87aa12b",
     "dirty": false,
-    "files": 752,
-    "snapshot_sha256": "51f6a3e84f843cffcc0525f81c62a4ea439569051c2beedeb6ade0b5bbc53ea9"
+    "files": 754,
+    "snapshot_sha256": "602cfd0ea69e014505b26e2d8e5aae0d573dba9471d4b51f27ce3cab9536296b"
   },
   "binary_origin": "preserved_from_verified_development_tree; CI provenance review still required",
   "trust": {
@@ -61,19 +61,19 @@
       "path": "plugins/gil-companion-prototype/.claude-plugin/plugin.json",
       "bytes": 519,
       "mode": 420,
-      "sha256": "572e1c68fb044ff4ea02e644daaf9254badbd38b92d7bc8dff5c65751e356d5e"
+      "sha256": "83766f1a64da188ba17137fdff7e67bf6470ef34e4c641737cb9f89394053d05"
     },
     {
       "path": "plugins/gil-companion-prototype/.codex-plugin/plugin.json",
       "bytes": 1078,
       "mode": 420,
-      "sha256": "5c4d2bc6993bfc526f175061f248cf33c6ca85d9cc0a51b8cbffaa92520e6f7f"
+      "sha256": "0fd1660d7ef74047aa131497006ec5d6609decca0c6db7a15d5bc0838bf9ce1d"
     },
     {
       "path": "plugins/gil-companion-prototype/core/darwin-arm64/gil",
       "bytes": 10547776,
       "mode": 493,
-      "sha256": "826a59198206d33aeee40cbdf10443f9f0e49d4c2f401bbb9f27d7bd37cd32bd"
+      "sha256": "c43cb57d3c7f786713e3599f2d3e90afe4cc097ff8bcd9f6d5963f9f9bd5b543"
     },
     {
       "path": "plugins/gil-companion-prototype/LICENSE",
@@ -97,7 +97,7 @@
       "path": "plugins/gil-companion-prototype/THIRD-PARTY-NOTICES.json",
       "bytes": 58686,
       "mode": 420,
-      "sha256": "2cc10d03c7253b2b17e25a05c24ea7275d8b716dd1c74db6448d9d6deb0e4dcf"
+      "sha256": "62dbc67317d2142df910a86095db4b990b3b75f4afbc3b5da830386122f64fab"
     },
     {
       "path": "plugins/gil-companion-prototype/THIRD-PARTY-NOTICES.txt",
@@ -109,7 +109,7 @@
       "path": "PREVIEW.md",
       "bytes": 1780,
       "mode": 420,
-      "sha256": "207f7d4e9cdc809f8f9d59579a97a71e5278e9d0286a4711d8dfb24a5425ebaf"
+      "sha256": "88485cb813799a8141c6ecbc42aea56c5fbd12cd9725804db829ead1f6e6dd20"
     }
   ]
 }
