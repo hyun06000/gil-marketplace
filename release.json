@@ -30,10 +30,10 @@
   "plugin": "gil-companion-prototype",
   "version": "0.2.1-preview.8",
   "source": {
-    "head": "2e8f9ef22c20dd0a6a23b11afa8c002b3166e35a",
+    "head": "ca7c60959914f7ea8dc4ff7a125628b50ffea698",
     "dirty": false,
     "files": 734,
-    "snapshot_sha256": "cb75c0aefe84c11f7f3baecfa0657bb9b162e16307078729d2352b471b24b9ee"
+    "snapshot_sha256": "da3a9f5453c0ffa2fea3467376f40a15a08f415b13821fac248c2d69d7a77488"
   },
   "binary_origin": "preserved_from_verified_development_tree; CI provenance review still required",
   "trust": {
@@ -73,7 +73,7 @@
       "path": "plugins/gil-companion-prototype/core/darwin-arm64/gil",
       "bytes": 10213984,
       "mode": 493,
-      "sha256": "75bdbf2fa128277fbd3d5999070383b4472e693148da661ad84e7414cac24a4c"
+      "sha256": "c986982fda1e9cb1fca07d8c9be152d429c56ad9782914c460e64cd3ae749f42"
     },
     {
       "path": "plugins/gil-companion-prototype/LICENSE",

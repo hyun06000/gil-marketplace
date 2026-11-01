@@ -29,8 +29,8 @@ codex plugin add gil-companion-prototype@gil-preview-macos-arm64 --json
 Inspect existing registrations before replacing them through official Plugin commands. If Git or
 Xcode Command Line Tools are absent, use the verified archive/local marketplace route in
 [installation instructions](https://github.com/hyun06000/gil/blob/main/INSTALL.md), without installing developer tools.
-The exact archive is `gil-codex-macos-arm64-0.2.1-preview.8.tar.gz` (3,435,830 bytes),
-SHA-256 `9b7c01e1b2d080b2638906151b8525adf48adb67f96dab3f51d0ca4b21d4325c`.
+The exact archive is `gil-codex-macos-arm64-0.2.1-preview.8.tar.gz` (3,435,833 bytes),
+SHA-256 `5fcfbb2a328ae65c71d6b5aa4432a556d89429d0fe4c98cacb855e9c2a88d266`.
 If macOS blocks execution, stop; never disable Gatekeeper or remove quarantine.
 
 After installation, open a **new conversation and a new empty test folder** and ask:
@@ -55,11 +55,11 @@ and M6-E design work do not mean production restore/revisit or migration is avai
 
 ## Validation and exact provenance
 
-- Source: `2e8f9ef22c20dd0a6a23b11afa8c002b3166e35a`, reviewed in [source PR #64](https://github.com/hyun06000/gil/pull/64).
-- Native build, archive roundtrip and first-start protocol: [CI 41333575797](https://github.com/hyun06000/gil/actions/runs/41333575797).
+- Source: `ca7c60959914f7ea8dc4ff7a125628b50ffea698`, reviewed in [source PR #64](https://github.com/hyun06000/gil/pull/64).
+- Native build, archive roundtrip and first-start protocol: [CI 41334225234](https://github.com/hyun06000/gil/actions/runs/41334225234).
 - Exact downloaded Core: 20 wire scenarios passed, 1 expected product-safety block, 0 failures.
   These use synthetic App inputs, not human approval clicks or a Luna model.
-- Core SHA-256: `75bdbf2fa128277fbd3d5999070383b4472e693148da661ad84e7414cac24a4c`.
+- Core SHA-256: `c986982fda1e9cb1fca07d8c9be152d429c56ad9782914c460e64cd3ae749f42`.
 - Embedded UI SHA-256: `1b29af14e7cb55045098cefab940cdefff0f5e8fabf8ef7550cf636517a8cccd`.
 - Immutable payload receipt: [release.json](release.json); [original CI evidence](evidence).
 

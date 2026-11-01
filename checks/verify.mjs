@@ -12,11 +12,11 @@ const manifest = `${prefix}/.codex-plugin/plugin.json`;
 const hash = bytes => createHash('sha256').update(bytes).digest('hex');
 export const pins = Object.freeze({
   "version": "0.2.1-preview.8",
-  "receipt": "105e3a956b0ef8ecb6bb5f62557c6b29aea4d91919aaa2366de808a5a9e93073",
-  "source": "2e8f9ef22c20dd0a6a23b11afa8c002b3166e35a",
-  "snapshot": "cb75c0aefe84c11f7f3baecfa0657bb9b162e16307078729d2352b471b24b9ee",
-  "archive": "9b7c01e1b2d080b2638906151b8525adf48adb67f96dab3f51d0ca4b21d4325c",
-  "core": "75bdbf2fa128277fbd3d5999070383b4472e693148da661ad84e7414cac24a4c",
+  "receipt": "f2755f879e8f803c7f70b68f08b92a440083d5cba82b981c3934796c25122675",
+  "source": "ca7c60959914f7ea8dc4ff7a125628b50ffea698",
+  "snapshot": "da3a9f5453c0ffa2fea3467376f40a15a08f415b13821fac248c2d69d7a77488",
+  "archive": "5fcfbb2a328ae65c71d6b5aa4432a556d89429d0fe4c98cacb855e9c2a88d266",
+  "core": "c986982fda1e9cb1fca07d8c9be152d429c56ad9782914c460e64cd3ae749f42",
   "ui": "1b29af14e7cb55045098cefab940cdefff0f5e8fabf8ef7550cf636517a8cccd",
   "profile": "approved-plan",
   "tools": 30,
