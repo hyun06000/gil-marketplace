@@ -95,6 +95,6 @@ test('a rewritten schema-2 receipt without the approved-plan contract is rejecte
 });
 test('reviewed tree reports the pinned approved-plan contract', async () => {
   const result = await verify();
-  assert.equal(result.version, '0.2.1-preview.8'); assert.equal(result.runtime_profile, 'approved-plan');
-  assert.equal(result.tools, 30); assert.equal(result.migration, 'requires_review');
+  assert.equal(result.version, '0.2.1-preview.9'); assert.equal(result.runtime_profile, 'approved-plan');
+  assert.equal(result.tools, 32); assert.equal(result.migration, 'requires_review');
 });

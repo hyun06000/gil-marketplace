@@ -1,4 +1,4 @@
-# GIL 0.2.1-preview.8 — unsigned opt-in preview candidate
+# GIL 0.2.1-preview.9 — unsigned opt-in preview candidate
 
 macOS Apple Silicon only, for Codex and Claude Code (Claude Desktop). Not a stable release; not yet published.
 No Apple Developer ID signature or notarization is provided. Ad-hoc code signing may be present.
@@ -16,5 +16,6 @@ See release.json for exact bytes and source; publication remains a separate revi
 EXPERIMENTAL approved-plan + visual-authoring; action surface 2, readable storage formats 4..7.
 New projects use a Chain and Monitor-approved plan (format 7). Existing records are NOT automatically converted.
 Use a new empty test folder for the approval workflow. Closing Verify requires the bound plan document
-and separate file evidence. Destructive restore/revisit remain blocked. Older runtimes may refuse these
+and separate file evidence. Closed failure revisit requires the Monitor preservation-and-recovery button;
+general restore and Step revisit remain blocked. Older runtimes may refuse these
 records; installing an older Plugin never downgrades project records.
