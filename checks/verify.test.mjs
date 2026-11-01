@@ -13,7 +13,7 @@ async function fixture(t) {
   return at;
 }
 test('reviewed tree passes without executing the payload', async () => {
-  const result = await verify(); assert.equal(result.publishable,false); assert.equal(result.payload_files,9);
+  const result = await verify(); assert.equal(result.publishable,false); assert.equal(result.payload_files,11);
 });
 test('changed binary is rejected', async t => {
   const at = await fixture(t); await writeFile(join(at,'plugins/gil-companion-prototype/core/darwin-arm64/gil'),'changed');
@@ -53,7 +53,7 @@ test('update record cannot silently change compatibility', async t => {
   const at = await fixture(t), path = join(at,'evidence/update-record.json'), r = JSON.parse(await readFile(path));
   r.compatibility.storage_format.max = 6; await writeFile(path,JSON.stringify(r)); await assert.rejects(verify(at));
 });
-test('update record cannot downgrade the image-report contract to the old surface', async t => {
+test('update record cannot downgrade the approved-plan contract to the old surface', async t => {
   const at = await fixture(t), path = join(at,'evidence/update-record.json'), r = JSON.parse(await readFile(path));
   r.compatibility.action_surface = {min:1, max:1}; r.compatibility.storage_format = {min:4, max:4};
   await writeFile(path,JSON.stringify(r)); await assert.rejects(verify(at));
@@ -68,7 +68,7 @@ test('update record cannot point at a different Core or UI', async t => {
     r[key] = '0'.repeat(64); await writeFile(path,JSON.stringify(r)); await assert.rejects(verify(at));
   }
 });
-test('checks from the default runtime profile cannot stand in for visual-authoring', async t => {
+test('checks from the default runtime profile cannot stand in for approved-plan', async t => {
   const at = await fixture(t), path = join(at,'evidence/checks.json'), r = JSON.parse(await readFile(path));
   r.profile = 'default'; await writeFile(path,JSON.stringify(r)); await assert.rejects(verify(at));
 });
@@ -86,15 +86,15 @@ test('checks with a different UI or archive hash are rejected', async t => {
     mutate(r); await writeFile(path,JSON.stringify(r)); await assert.rejects(verify(at));
   }
 });
-test('a rewritten schema-2 receipt without the image-report contract is rejected by the receipt hash pin', async t => {
+test('a rewritten schema-2 receipt without the approved-plan contract is rejected by the receipt hash pin', async t => {
   // Any rewrite of release.json, including dropping runtime_profile/compatibility/migration and
   // reverting schema to 2, changes its bytes and fails the pinned receipt hash before field checks run.
   const at = await fixture(t), path = join(at,'release.json'), r = JSON.parse(await readFile(path));
   delete r.runtime_profile; delete r.compatibility; delete r.migration; r.schema = 2;
   await writeFile(path,JSON.stringify(r)); await assert.rejects(verify(at));
 });
-test('reviewed tree reports the pinned image-report contract', async () => {
+test('reviewed tree reports the pinned approved-plan contract', async () => {
   const result = await verify();
-  assert.equal(result.version, '0.2.1-preview.7'); assert.equal(result.runtime_profile, 'visual-authoring');
-  assert.equal(result.tools, 24); assert.equal(result.migration, 'requires_review');
+  assert.equal(result.version, '0.2.1-preview.8'); assert.equal(result.runtime_profile, 'approved-plan');
+  assert.equal(result.tools, 30); assert.equal(result.migration, 'requires_review');
 });

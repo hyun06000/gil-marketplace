@@ -1,88 +1,83 @@
 # GIL marketplace — unsigned preview
 
-Prebuilt Codex Plugin for **macOS Apple Silicon**. Friends-and-testers prerelease; no Apple Developer
-ID signature or notarization. Source: [hyun06000/gil](https://github.com/hyun06000/gil).
+Prebuilt Codex Plugin for **macOS Apple Silicon**. Friends-and-testers prerelease, without Apple
+Developer ID signing or notarization. Source: [hyun06000/gil](https://github.com/hyun06000/gil).
 
 | Version | Role | Fixed release |
 |---|---|---|
-| `0.2.1-preview.7` | Shared-workflow test build | [v0.2.1-preview.7](https://github.com/hyun06000/gil-marketplace/releases/tag/v0.2.1-preview.7) |
-| `0.2.1-preview.6` | Previous verified version / rollback target | [v0.2.1-preview.6](https://github.com/hyun06000/gil-marketplace/releases/tag/v0.2.1-preview.6), commit `2a1ec23576eb35e05210dda1d8b5400a577ec30f` |
+| `0.2.1-preview.8` | Experimental Monitor-approved plans and Chain workflow | [v0.2.1-preview.8](https://github.com/hyun06000/gil-marketplace/releases/tag/v0.2.1-preview.8) |
+| `0.2.1-preview.7` | Previous version for older projects | [v0.2.1-preview.7](https://github.com/hyun06000/gil-marketplace/releases/tag/v0.2.1-preview.7), commit `b81151830a4d723be95705b8f9274b1ff3ed3adb` |
 
-Use a fixed tag, never moving `main`. The release assets are the reviewed CI bytes; GitHub's Source
-ZIP is not the installation archive. No Node, npm, Cargo, Homebrew or separate Companion is required.
+Use the fixed tag, never moving `main`. GitHub's Source ZIP is not the installation archive.
+No Node, npm, Cargo, Homebrew or separate Companion is required.
 
 ## Install or update with Codex
 
 Ask Codex in a local folder-backed conversation:
 
-> Install GIL unsigned preview 0.2.1-preview.7 using the bundled Codex CLI and official Plugin commands.
+> Install GIL unsigned preview 0.2.1-preview.8 using the bundled Codex CLI and official Plugin commands.
 > Inspect existing GIL source/version first. Replace an existing installation only with my approval
 > (do not ask again if I already approved that exact replacement). Use the fixed tag below.
 > Do not initialize/migrate projects or modify their records, installed caches or security settings.
 > Verify the installed version and tell me to open a new conversation for the new connection.
 
 ```sh
-codex plugin marketplace add https://github.com/hyun06000/gil-marketplace.git --ref v0.2.1-preview.7 --json
+codex plugin marketplace add https://github.com/hyun06000/gil-marketplace.git --ref v0.2.1-preview.8 --json
 codex plugin add gil-companion-prototype@gil-preview-macos-arm64 --json
 ```
 
-Existing registrations must be handled through official Plugin commands after source/version inspection;
-do not blindly run add over an existing registration. If Git or Xcode Command Line Tools are absent,
-use the verified archive/local marketplace route in [installation instructions](https://github.com/hyun06000/gil/blob/main/INSTALL.md), without installing developer tools.
-The exact archive is `gil-codex-macos-arm64-0.2.1-preview.7.tar.gz` (3,218,986 bytes), SHA-256 `ecd045e3a043e820bb5ff59a6d8b6d3ca57e68dfa3d8a8426a598f70682dd8ee`.
+Inspect existing registrations before replacing them through official Plugin commands. If Git or
+Xcode Command Line Tools are absent, use the verified archive/local marketplace route in
+[installation instructions](https://github.com/hyun06000/gil/blob/main/INSTALL.md), without installing developer tools.
+The exact archive is `gil-codex-macos-arm64-0.2.1-preview.8.tar.gz` (3,435,830 bytes),
+SHA-256 `9b7c01e1b2d080b2638906151b8525adf48adb67f96dab3f51d0ca4b21d4325c`.
 If macOS blocks execution, stop; never disable Gatekeeper or remove quarantine.
 
-After installation, open a **new conversation**, select an empty test folder and ask:
-**“지금 폴더에서 GIL 프로젝트를 시작해 줘.”** Check the actual Monitor and first Interview step;
-a successful tool response alone does not prove visible fullscreen. Existing conversations may keep
-an older MCP connection. Installation does not move, delete or migrate Project records.
+After installation, open a **new conversation and a new empty test folder** and ask:
+**“지금 폴더에서 GIL 프로젝트를 시작해 줘.”** Check the actual Monitor, Interview closure,
+plan approval button and separate Experiment evidence files. A successful protocol call does not
+prove visible fullscreen or a human button click. Existing conversations may keep an older connection.
 
-## Shared workflow in preview.7
+## What this test build includes
 
-Native MCP and Plugin Skill now carry the exact same core workflow: start with Monitor handoff,
-finish Interview after approval, split independent questions into Experiments, open Verify before
-research, save real evidence files, record interpretation and learning, and close the Cycle.
-Verify closure requires nonempty captured files with at least one new/changed file; Analysis and
-Outcome reference their actual evidence lineage. Chat-only delivery does not satisfy Verify.
+This explicit `approved-plan` + `visual-authoring` profile includes Chains, repeated-failure context,
+Monitor plan approval/revision, bound Experiment items and guidance after closing steps. A model
+cannot approve its own plan. Verify closure requires the exact bound plan document and separate
+real file evidence. Interpretation and learning retain their evidence lineage. Chat-only output is insufficient.
+MCP and Skill share the core workflow. Codex and Claude catalogs package the same Core and Skill;
+Claude Desktop Plugin rendering and direct-MCP rendering remain separate Host acceptance questions.
 
-Source `64de8e5c1207dda329600ef12a86f39cf7781ee3` is also used for Windows `0.1.1-owner.6`. Packaging and capability-specific input
-schemas still differ: this Mac build retains visual-authoring, 24 tools, action surface 2 and formats
-4..5. No automatic project migration. New-write evidence checks apply to existing Projects too;
-historical records remain readable and are not rewritten or retroactively certified.
+The profile exposes 30 tools, action surface 2 and readable storage formats 4..7. **New projects use
+format 7; existing projects are not automatically migrated.** Use a fresh folder to test approval.
+Older Plugins may reject format-7 records. A Plugin downgrade never converts project records.
+Destructive restore/revisit remain blocked by the product safety profile; tracking-policy fixtures
+and M6-E design work do not mean production restore/revisit or migration is available.
 
-Source Luna testing passed all four continuous profile/connection flows, each with two Experiments
-and two actual evidence documents. Independent next-action classification remained 61/64; do not
-claim perfect model compliance. Core cannot intercept unrelated Host actions or prove semantic truth.
-Native source CI passed on macOS and Windows. This candidate's build, archive roundtrip and protocol
-checks are [source CI 40568947391](https://github.com/hyun06000/gil/actions/runs/40568947391).
-The exact candidate passed isolated official CLI replacement preview.6 → preview.7 → preview.6 →
-preview.7, with cached Core/Skill hash checks, fresh MCP initialize and unchanged synthetic format-4
-and format-5 Project bytes at each step. The real user profile was not changed.
-Fresh-machine installation and visible Desktop/fullscreen acceptance of this exact version require
-user testing. Prior preview.6 VM results do not establish those claims for preview.7.
+## Validation and exact provenance
 
-## Exact provenance
+- Source: `2e8f9ef22c20dd0a6a23b11afa8c002b3166e35a`, reviewed in [source PR #64](https://github.com/hyun06000/gil/pull/64).
+- Native build, archive roundtrip and first-start protocol: [CI 41333575797](https://github.com/hyun06000/gil/actions/runs/41333575797).
+- Exact downloaded Core: 20 wire scenarios passed, 1 expected product-safety block, 0 failures.
+  These use synthetic App inputs, not human approval clicks or a Luna model.
+- Core SHA-256: `75bdbf2fa128277fbd3d5999070383b4472e693148da661ad84e7414cac24a4c`.
+- Embedded UI SHA-256: `1b29af14e7cb55045098cefab940cdefff0f5e8fabf8ef7550cf636517a8cccd`.
+- Immutable payload receipt: [release.json](release.json); [original CI evidence](evidence).
 
-- Source: `64de8e5c1207dda329600ef12a86f39cf7781ee3` (source PR #53 merged).
-- Archive SHA-256: `ecd045e3a043e820bb5ff59a6d8b6d3ca57e68dfa3d8a8426a598f70682dd8ee`.
-- Core SHA-256: `badd9a6f208dee96402637c54bc741b4a3e9e75cfbbb650a94a1608213bd1bba`.
-- Skill SHA-256: `54a18db9c896d77aa737547089129d676804aea246d36452f783b13c7ef1d10a`.
-- Embedded UI SHA-256: `8df673ca26fc8f90ca6f9c8f2a256b87b535f8f19fbb3cd3d2f9e93154077b33`.
-- Shared workflow SHA-256: `fe3cca1210d211ac7f3bdc58198d9044ab0cad6407c71709ec813d0c6177ea22`.
-- Exact immutable receipt: [release.json](release.json); [original CI evidence](evidence).
+Fresh-machine installation, actual Host fullscreen, real approval clicks and Luna work for this
+version remain user acceptance tests. Previous preview.6 VM or preview.7 model results are not
+claimed for this version. Core cannot intercept unrelated Host actions or prove semantic truth.
 
 Payload bytes, executable modes and attribution are preserved from CI, not rebuilt here.
-Receipt `publishable:false` records build-time authority; user approval is recorded by the
-publication PR/release, never by changing the original receipt. Hashes check bytes, not publisher identity.
+Receipt `publishable:false` records build-time authority; publication approval is recorded by the
+PR/release, without rewriting the original receipt. Hashes check bytes, not publisher identity.
 
 ## Recovery and maintenance
 
-Rollback target is preview.6 at the fixed tag/commit above. Replace only the Plugin using official
-commands and preserve all Project records. Never use `gil restore` or delete `.gil` to downgrade.
-A Plugin downgrade does not convert project formats; preview.3 cannot read format 5.
+Keep existing records. To return to preview.7, replace only the Plugin through official commands;
+use it only with records it supports. Never delete `.gil` or run `gil restore` to downgrade.
 
-Every main change uses a PR and pinned-payload CI; no force push or bypass. Keep GitHub no-reply
-identities and preserve the reviewed bytes. Static checks do not execute the packaged binary:
+Every main change uses a PR and pinned-payload CI. Keep GitHub no-reply identities and reviewed bytes.
+Static checks do not execute the packaged binary:
 
 ```sh
 node --test checks/verify.test.mjs checks/history.test.mjs
