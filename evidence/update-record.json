@@ -2,12 +2,12 @@
   "schema": 1,
   "plugin": "gil-companion-prototype",
   "platform": "darwin-arm64",
-  "version": "0.2.1-preview.12",
-  "source_commit": "bbd7db3b29d69ec0ca6661336ecc2ed5a87aa12b",
-  "source_snapshot_sha256": "602cfd0ea69e014505b26e2d8e5aae0d573dba9471d4b51f27ce3cab9536296b",
-  "archive_sha256": "41f1bb5bfafac4912efc8251d5dc31ec462221e8e3805dc3fdfb890bc18943f1",
-  "core_sha256": "c43cb57d3c7f786713e3599f2d3e90afe4cc097ff8bcd9f6d5963f9f9bd5b543",
-  "ui_sha256": "e7830fa2bc588072d60f83f4df3729db587320c15a186bc9a8f84afa14bc43bc",
+  "version": "0.2.1-preview.13",
+  "source_commit": "9e00303d6b59634e84b7f6bbe03becb26685e2c4",
+  "source_snapshot_sha256": "abcb0f01f9bca848f979e55e088790bf9a6533ad0ad5f5a610364e0974569cbe",
+  "archive_sha256": "c346d27053c3bb638727dbfc4ce3859b1c83873052007f883b0f99c7b6f95d10",
+  "core_sha256": "6ea86cd248a81e1473fb7a82fa4133b3467ad7a4a1068cd4f3466d1da6619e5f",
+  "ui_sha256": "df19d4e16aabe95b2579e0969c8173badfb0d924b9e4d51c4a9187ba4b3e8cf9",
   "compatibility": {
     "protocol": {
       "min": 1,
