@@ -8,18 +8,88 @@ description: Use GIL from this plugin — start a GIL project in the folder the 
 <!-- BEGIN GENERATED SHARED WORKFLOW -->
 ## GIL shared workflow
 
+### Turn completion on Codex and Claude Code
+
+- Starting GIL means continuing its recorded workflow. A chat report is not GIL completion.
+- If the goal is unknown, open the first Question with the objective “ask the user for the goal”, then ask. Do not wait with zero Steps.
+- Before yielding for user input, call `gil_await_user(project_root, question)` from an actually open Question, or from Synthesis after registering the proposal. End the response with that exact question. After the user replies, continue and close that same Step; an old Question does not authorize a chat-only final report.
+- Installed Host hooks automatically enroll successful `gil_start`/`gil_context` projects, including roots outside the chat cwd. Enrollment does not prove Host hook activation. Missing/untrusted hooks must not be reported as protection.
+- File-free web research and unrelated outside work remain allowed. They do not close a requested GIL workflow. Honor user cancellation; `GIL 일시 중지` explicitly detaches this chat's turn gate while retaining file protection. `gil_context` resumes it.
+- `show_gil_monitor` is a display request. Read `gil_monitor_status` before claiming visible/fullscreen. If `display_mode=inline`, say the Host kept the preview inline and guide the Host widget's “show in another panel”/expand control. Never claim that more retries guarantee fullscreen.
+
 These rules apply to every GIL connection, with or without a Plugin, on every operating system.
 Use only the user's selected absolute `project_root`. Each receipt's text guidance names **one next
 call or one wait**; do it, then read the next receipt. Read `structuredContent` too, and follow the
 actual recorded position and the connected tool schema. Never repeat a call that already succeeded.
 
-1. **Start and show.** Start a new project once. After successful `gil_start`, follow its returned
-   `show_gil_monitor` call before opening the first Interview step. Do not prepare the Monitor again
-   if start returned its scope. Never repeat start to open a screen. If start succeeded but Monitor
-   preparation failed, report the display failure and continue the recorded Interview via `gil_open`.
-   A display failure alone does not block Project work. A successful tool response does not prove
-   that a screen is visible. In a new session, read `gil_context` once; its first block
-   `[지금 바로 할 호출]` is the next call. Resume there instead of starting again.
+**Quick rules — read these first; the numbered rules below only add detail.**
+
+1. A GIL project is not finished in chat. Follow the last receipt's next call **or wait**.
+   Do not close a step before its completion condition is met. If no receipt exists yet, read
+   `gil_context` once (existing project) or call `gil_start` once (new project).
+2. After `gil_start`: call the `show_gil_monitor(scope_id)` the receipt names, then
+   `gil_open(kind: question)` with `objective`, `next_action`, `done_when` in its `contract` string.
+3. A Question is answered by the user, not by you. Call `gil_await_user(project_root, question)`,
+   end the response with that exact question, and wait. Close it only with the user's actual reply;
+   never paste the original request as the answer. Synthesis also needs `gil_await_user` before
+   waiting; in the approved-plan profile, register its proposal with `gil_plan_propose` first.
+4. Project file changes and deliverable production belong inside an open Experiment **Verify**;
+   save its results as project files named in `evidence_files`. File-free web research, reading
+   existing evidence at any stage, and unrelated outside work remain allowed. Those activities
+   and a chat summary do not complete the requested GIL workflow.
+5. A refusal closes nothing. For a repairable input error, fix it and resend the same call once;
+   otherwise follow the stated recovery or wait. Never repeat `gil_start`, skip a step, or invent approval.
+
+**Project file boundary — at every stage.** Creating, modifying, deleting, renaming or moving
+Artifact files inside the selected `project_root` requires a successfully opened Experiment
+Verify. This includes importing files made elsewhere, DOCX/PDF production, chart PNGs, rendering,
+test output and temporary files written inside the project. Check the actual open Step before
+launching a tool that can change these files; if the position is unknown, read `gil_context` once.
+Finish all writers before closing Verify. A prepared contract or approved plan is not an open Verify.
+Outside Verify, keep project Artifact files unchanged: this applies to every Interview (including
+Closing), Define, Hypothesis, Analysis, Outcome, Cycle/Chain Reports, approval waits, boundaries
+with no open Step and closed Chains. Follow the current legal next call to reach Verify; never
+skip steps, invent approval or backfill an execution that happened earlier.
+
+**Project deliverables belong in the project by default.** Save the requested report, code,
+charts, intermediate renders and production scripts under `project_root` during an open Verify,
+so Snapshot and `evidence_files` can track them. A Host scratchpad/default output directory is not
+an alternative delivery location merely because Interview, approval or Verify is unfinished.
+Before invoking a file-producing tool, choose its output path inside this project explicitly.
+If external creation is genuinely necessary (for example, a tool cannot write to the project),
+first tell the user the concrete reason and destination and explicitly say: "Files created there
+are not tracked by GIL; they are not included in this project's Snapshot or evidence." Do not
+claim those external files as GIL-verified delivery. If they are needed as project evidence, import
+and verify them inside a later open Verify; an external exception never completes the Interview,
+approval, Experiment or Closing on its own. Do not create an external file just to evade a gate.
+
+Work outside the project and web research that leaves project files unchanged are outside this
+file boundary; do not require a GIL Step just for them. Unrelated external work remains allowed.
+Existing evidence can be read in any stage.
+When bringing an external result into the project, open Verify first, record its actual provenance
+and verification, and cite the imported file in `evidence_files`; do not claim it was created there.
+GIL's own record/approval writes and explicitly authorized recovery use their existing GIL tools
+and contracts; never edit `.gil` by hand. These are agent instructions, not an OS write lock.
+The current dirty gate detects changes at GIL boundaries; it does not intercept other tools.
+
+1. **Start and show.** Start a new project once. A successful `gil_start` receipt carries the exact
+   next call, `show_gil_monitor({"scope_id": …})`, in its opening guidance and its final text block:
+   `structuredContent.next_call` carries the same name and arguments for structured-only Hosts;
+   that single call is the next call on every Host (Codex, Claude Desktop's Claude Code tab, Plugin or
+   direct registration alike), before the first `gil_open`. Copy its argument verbatim and do not
+   skip it because no card is visible yet or because the body also names `gil open` for later. Do not
+   prepare the Monitor again if start returned its scope. Never repeat start to open a screen.
+   If the Host rejects/loses the start response (including output-schema validation), creation may
+   already be committed: read `gil_context` once, then follow its `structuredContent.next_call`.
+   If the project exists but no scope was delivered, call `gil_monitor_prepare(project_root)` once
+   and show that returned scope; a missing scope in the lost response is not a reason to omit Monitor.
+   If
+   start succeeded but Monitor preparation failed, report the display failure and continue the
+   recorded Interview via `gil_open`. A display failure alone does not block Project work. The App
+   requests fullscreen by itself (at connect, again when the Monitor renders, bounded retries, then
+   the user's first click); never call `show_gil_monitor` again to force fullscreen. A successful
+   tool response does not prove that a screen is visible. In a new session, read `gil_context` once;
+   its first block `[지금 바로 할 호출]` is the next call. Resume there instead of starting again.
    **Keep the in-host MCP App present:** successful Project calls check recent App display reports.
    When a receipt supplies `show_gil_monitor(scope_id)` because the Monitor is absent/hidden/unknown,
    call it once before further work, without asking the user to open a Companion. For an explicit
@@ -33,8 +103,17 @@ actual recorded position and the connected tool schema. Never repeat a call that
    OS foreground visibility or that the human has looked.
    `project_root` is always the exact string the Host, `gil_context`/`gil_status` or the last
    receipt gave; copy it verbatim and never retype it (retyped Korean paths change their letters).
-2. **Agree, then finish Interview.** Interview clarifies and agrees scope; it never researches,
-   calculates or writes deliverables. Synthesis waits for the user's reply to its proposed statement;
+2. **Agree, then finish Interview.** An unknown goal is the reason to open Question, not a
+   prerequisite to opening it. Use a clarification contract, for example `objective: clarify the
+   user's goal`, `next_action: ask the user for the desired result and completion criteria`, and
+   `done_when: the user has answered or identified what remains uncertain`. Open Question before
+   asking. Call `gil_await_user(project_root, question)` before yielding, end with that exact question,
+   then record the user's actual reply with `gil_close`; never invent the goal.
+   Permitted outside work or file-free web research does not close that Question or replace an
+   explicitly requested GIL project's Interview, approval, and eventual Closing. Resume the recorded
+   next call after the user answers; do not treat a chat-only answer as completed project delivery.
+   Interview clarifies and agrees scope; it never changes
+   project Artifact files. Synthesis waits for the user's reply to its proposed statement;
    silence, earlier requests and the agent's own judgment are not approval. Do not ask again for
    approval already given to that exact proposal. Outcome judges the approved scope; do not leave it
    open until the whole project is finished. Choose the next call from the **current recorded state**,
@@ -43,9 +122,9 @@ actual recorded position and the connected tool schema. Never repeat a call that
    | Current state | Next call |
    | --- | --- |
    | New project, Monitor shown, no step open | `gil_open` Question with its action contract |
-   | Question is open | Ask the user, end the turn, then `gil_close` with their actual response |
+   | Question is open | `gil_await_user(project_root, question)`, end the turn with that exact question and wait, then `gil_close` after their actual response |
    | Interpretation is open | `gil_close` with what is settled and what is unresolved |
-   | Synthesis is open and the user has not answered | Show the statement, end the turn and wait; no research, no deliverable |
+   | Synthesis is open and the user has not answered | Show the statement (approved-plan profile: first `gil_plan_propose`), call `gil_await_user`, end the turn with its exact question and wait; no project file changes |
    | Synthesis is open and the user approved its statement | `gil_close` with `approved: yes` (approved-plan profile: the exact `close_report`) |
    | Synthesis is open and the user declined | `gil_close` with `approved: no`, then `gil_open` Question |
    | Synthesis is closed and Outcome has not been opened | `gil_open` Outcome |
@@ -55,16 +134,16 @@ actual recorded position and the connected tool schema. Never repeat a call that
 
 3. **One checkable question at a time.** An Experiment handles one independently checkable
    question. Open a small action contract (`objective`, `next_action`, `done_when`), perform its
-   `next_action`, then `gil_close` when `done_when` is met, before further external work or final
-   delivery. A new request does not extend an already completed contract. Substantive research,
-   source checking, calculations, deliverable writing (even a report requested in chat),
-   implementation and tests belong in Experiment Verify, never an open Interview.
+   `next_action`, then `gil_close` when `done_when` is met, before further project file changes or
+   final project delivery. A new request does not extend an already completed contract. Deliverable
+   writing, implementation, calculations and tests that change project files belong in Experiment
+   Verify, never an open Interview. Web research without project file changes needs no Verify.
 
    | Current state | Next call |
    | --- | --- |
-   | Experiment Cycle just opened | `gil_open` Define: one question and its success criterion; no lookup yet |
+   | Experiment Cycle just opened | `gil_open` Define: one question and its success criterion; no project file changes yet |
    | Define is closed | `gil_open` Hypothesis, then `gil_close` it with expectation, rationale and guardrail |
-   | Hypothesis is closed | `gil_open` Verify. **Wait for its success** before reading sources, searching, calculating or writing files |
+   | Hypothesis is closed | `gil_open` Verify. **Wait for its success** before changing project files |
    | Verify is open | Do the contracted work, save the observation as project files, `gil_close` with `evidence_files` |
    | Verify is closed | `gil_open` Analysis, `gil_close` with a nonblank `interpretation` of the saved evidence |
    | Analysis is closed | `gil_open` Outcome, `gil_close` with `verdict`, `lesson`, `next_direction` |
@@ -72,9 +151,9 @@ actual recorded position and the connected tool schema. Never repeat a call that
    | Cycle closed `success` | `gil_open` the next Experiment (next independent question) or Interview. When no work remains and the project has a Chain, the Closing Interview and Chain Report follow; a chat summary alone never completes the project |
    | Cycle closed `failure` · `revisit` | When the Core receipt requires Monitor approval, open Monitor and wait for the user's “보존 후 되돌아가기” button after reviewing file changes; do not call App-only tools or invent consent. After confirmed recovery, `gil_open` a new Cycle. Otherwise follow the connected Core receipt; never bypass a product refusal |
 
-   A closed Hypothesis or a prepared Verify contract does not mean Verify is open. Do not gather
-   evidence first and then open Verify to record work already performed. This also applies between
-   cycles: finish the old cycle and reach a successfully opened Verify before the next investigation.
+   A closed Hypothesis or a prepared Verify contract does not mean Verify is open. Do not change
+   project files first and then open Verify to record work already performed. This also applies between
+   cycles: finish the old cycle and reach a successfully opened Verify before the next file change.
    Multiple related searches, edits and tests within the same unfinished Verify are valid.
 4. **Leave evidence in the world.** Every Verify must save its actual observations/results as
    project files: documents, logs, datasets, code or visual artifacts. Chat alone cannot complete
@@ -149,16 +228,36 @@ actual recorded position and the connected tool schema. Never repeat a call that
    connected `tools/list` offers `gil_plan_propose`/`gil_plan_read`/`gil_plan_request_interview`.
    Otherwise (legacy projects, default builds, tools absent) never require `gil_plan_*`; use the
    ordinary Synthesis. Do not infer this from the OS or the install kind.
-   - In an open Interview Synthesis, call `gil_plan_propose` with `scope` (`goal`, `in_scope`,
-     `out_of_scope`, `constraints`, `success_criteria`; write `없음` rather than leaving one empty),
-     ordered `items` (`id`, `question`, `done_when`) and `synthesis` (the Synthesis Report fields
-     such as `statement` and `basis_refs`). `exploration_checklist` lists the item IDs in the same
-     order, one per line. Never write `approved`, `plan_revision` or `plan_digest`: Core adds them.
-   - Then **end the turn and wait for the Monitor button.** Chat agreement is not approval. While
-     waiting, do no research, deliverable writing or re-proposal. Check only with `gil_plan_read`.
+   - In an open Interview Synthesis, call `gil_plan_propose` with exactly two top-level fields,
+     `project_root` and `draft`. The three draft fields live **inside `draft`**. Extra fields at
+     the top level, in `draft`, in `scope` or in an item are refused; `synthesis` is a map of
+     string-valued Report fields, including `chain_verdict` when proposing Chain closure:
+
+     ```json
+     {"project_root": "<absolute path>",
+      "draft": {
+        "scope": {"goal": "…", "in_scope": "…", "out_of_scope": "…", "constraints": "…", "success_criteria": "…"},
+        "items": [{"id": "A", "question": "…", "done_when": "…"}],
+        "synthesis": {"statement": "…", "basis_refs": "step:C1/S1\nstep:C1/S2", "exploration_checklist": "A"}}}
+     ```
+
+     `scope` has those five string fields (write `없음` rather than leaving one empty); `items`
+     is the ordered checklist (1–64) of `id`, `question`, `done_when`; `synthesis` holds the
+     Synthesis Report fields as strings, where `exploration_checklist` lists the item IDs in the same
+     order, one per line. Replace the example's basis refs with the actual closed Question and
+     Interpretation refs in the current Synthesis lineage. Opening and later Interviews use
+     the same wrapper. A Closing proposal keeps the existing items and checklist (including
+     executed items) and adds `draft.synthesis.chain_verdict` as `"success"` or `"failure"`.
+     Never write `approved`, `plan_revision` or `plan_digest`: Core adds them.
+   - Call `gil_await_user(project_root, question)` and end the response with that exact question;
+     **end the turn and wait for the Monitor button.** Chat agreement is not approval. While
+     waiting, make no project file changes or re-proposal. Check approval only with `gil_plan_read`.
    - `receipt.decision: approve` → `gil_close` Synthesis with `close_report` **unchanged**, then
-     `gil_open`/`gil_close` Outcome, then `gil_close` the Interview Cycle Report, then `gil_open`
-     Experiment: the first pending item binds automatically. `request_changes` → close with that
+     `gil_open`/`gil_close` Outcome, then `gil_close` the Interview Cycle Report. For execution,
+     then `gil_open` Experiment: the first pending item binds automatically. For Closing, use
+     `next_direction.action: close_chain` in the Interview Cycle Report, then submit the Chain
+     Report with the approved `chain_verdict` as its `verdict`; do not open another Experiment.
+     `request_changes` → close with that
      `close_report` (`approved: no`) and ask what to change in a new Question. Editing an open
      proposal makes a new revision; an earlier approval is never reused.
    - In that Experiment's Verify, save `gil_plan_read.document` **byte for byte** (UTF-8) as a
@@ -303,16 +402,17 @@ that work is the Verify's content and is reported in its close. If a close is bl
 ask rather than skipping the step, and never record steps or reports after the fact to make
 skipped work look like it followed the loop.
 
-This boundary also covers substantive web research, source checking, calculations and drafting
-the user's report, including a report delivered only in chat. Reading supplied material to clarify
-the user's goal is still Interview work. After Interview closes, choose one independently
+This boundary concerns changes to Artifact files inside the selected project. Work outside the
+project and web research without project file changes need no GIL Step. Reading existing evidence
+is allowed. Importing external results, generating DOCX/PDF/PNG files, rendering and writing test
+output inside the project require an open Verify. Record external provenance truthfully.
+After Interview closes, choose one independently
 checkable question and success condition per Experiment. For example, checking a report's price
 data and checking a separate earnings claim need separate judgments; do not bundle every question
 and final drafting into one giant Verify. Related searches within one question can share a Verify;
 do not create a cycle per search or paragraph. Complete Analysis, Outcome and the Cycle Report
 before the next independent problem or final delivery. Base the final report on recorded evidence,
-and record any needed synthesis/drafting work in its own bounded action rather than hiding it in
-an already completed step.
+and put any further project file changes in an open Verify rather than an already completed step.
 
 **Run GIL actions on one project one at a time.** GIL takes a short exclusive lock on the
 project while it works, so two calls fired in parallel — even two reads like `gil_status` and
@@ -344,7 +444,8 @@ platform is not permission to fall back to a shell or silently create a text-onl
    `gil_monitor_prepare(project_root)` on that same root, then `show_gil_monitor(scope_id)` with the
    scope it returned. If start says preparation failed, report that failure and do not start again;
    apply the bounded display retry rules below. The App starts horizontal and requests
-   fullscreen once by itself; you do not request or re-render it.
+   fullscreen by itself (at connect, when rendered, bounded retries, then the user's first
+   click); you do not request or re-render it.
 3. Follow the start receipt: `gil_open` the first Interview step and ask the user what they want.
    The Monitor reads the project on its own, so the graph updates from this first step on without
    any further rendering call.
@@ -438,7 +539,7 @@ Keep these boundaries:
   earlier request to build something, from silence, from the user's absence, or from your own
   judgement that the scope is obvious. Until the user answers, the Synthesis and its Interview stay
   open; do not close them, do not open an Experiment or any other Cycle, and do not start
-  implementing. If the user says no or changes the proposal, record their words and revise within
+  changing project files. If the user says no or changes the proposal, record their words and revise within
   the same Interview.
 - **After assent, finish the handoff before execution.** If the user has already agreed to the
   statement you presented, record the actual approval and close Synthesis without asking again.
@@ -446,7 +547,7 @@ Keep these boundaries:
   then submit the separate Interview Cycle Report. Closing Outcome alone does not close its Cycle.
   If already at Outcome or the Cycle Report boundary, finish from that recorded position; do not
   repeat earlier steps. Only after the Cycle close succeeds, open the next bounded Experiment.
-  Do not perform research or write the deliverable while waiting to close the Interview's last node.
+  Do not change project files while waiting to close the Interview's last node.
 - **One open Cycle at a time.** `gil_start` opens the first Interview, and that is the only open
   Cycle. Do not open another Interview or Experiment while it is open, do not close it merely to
   satisfy a request, and do not leave it suspended to open a new one; close it through its own
@@ -572,13 +673,16 @@ The unsigned preview targets **macOS Apple Silicon** in two Hosts that share one
 (Plugin) and **Claude Desktop's Claude Code tab**. The extracted archive root carries both catalogs
 (Codex reads `.agents/plugins`, Claude Code reads `.claude-plugin`). As of 2026-10-31 the Claude Code
 Host does not render the Monitor App of a Plugin-installed server, while the same Core registered
-directly in Desktop settings renders inline and goes fullscreen on the user's first click inside
-the Monitor (that Host applies display-mode requests only within a user action, so no automatic
-request succeeds there); in Claude, treat the direct registration as the display route, tell the
-user to click the Monitor once to expand it, and treat a Plugin install as not yet visible. The default is Plugin-only fullscreen in
+directly in Desktop settings renders inline and went fullscreen on the user's first click inside
+the Monitor (through 10/31 that Host applied only the request sent within a user action; the
+App's requests sent at connect, added 2026-11-02, await the user's screen confirmation there); in
+Claude, treat the direct registration as the display route, tell the user that one click on the
+Monitor expands it if it did not expand by itself, and treat a Plugin install as not yet visible.
+The default is Plugin-only fullscreen in
 Codex; a separate Companion installation is **not required**. Windows and Intel Macs are not
-accepted targets. The App sends the same one-shot fullscreen request to every Host and records the
-Host's reported name in its 연결 정보 panel; it never changes behaviour by Host name. A fullscreen
+accepted targets. The App sends the same automatic fullscreen requests to every Host and records
+the Host's reported name and every automatic attempt (`automatic`) in its 연결 정보 panel; it
+never changes behaviour by Host name. A fullscreen
 seen in one Host, conversation mode or Desktop version is not evidence for another: report the
 actual Host and what the user saw. Fresh-Mac installation is deferred, not passed; if macOS blocks
 execution, stop without bypassing its security checks.
@@ -586,9 +690,10 @@ execution, stop without bypassing its security checks.
 For the in-host Monitor, use `gil_monitor_prepare(project_root)` with the user's explicit project
 or a host-verified root, then `show_gil_monitor(scope_id)` with its returned scope. The first tool
 does not render a UI; the second receives no filesystem path. Ask for the project if it is unknown.
-The App defaults to horizontal layout and automatically requests fullscreen after its Monitor is
-ready and the Host advertises support. If the Host leaves it inline, the App retries briefly on its
-own and then uses the user's first click inside the Monitor to request it; the user can also press
+The App defaults to horizontal layout and automatically requests fullscreen as soon as the Host
+advertises support (at connect) and again once its Monitor is ready. If the Host leaves it inline,
+the App retries briefly on its own and then uses the user's first click inside the Monitor to
+request it; the user can also press
 **모니터 펼치기**. A user returning inline or choosing vertical must not be overridden. Do not call
 rendering tools repeatedly to refresh it: the App reads complete Views and exact Step details
 through its own read-only tools. Native Companion is never launched automatically by this App.
