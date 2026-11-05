@@ -2,15 +2,15 @@
   "schema": 1,
   "channel": "preview_unsigned",
   "publishable": false,
-  "version": "0.2.1-preview.20",
+  "version": "0.2.1-preview.21",
   "profile": "approved-plan",
   "source": {
-    "head": "c5a8fe61da89c67777412521322c1011645b607e",
+    "head": "74e6c2d024abd9a23ca43c91b1635997b815f1a1",
     "dirty": false,
-    "files": 775,
-    "snapshot_sha256": "42489303385e081459eaa4d4d1805acb5dd1fa665f0194442b5bde359dec07b1"
+    "files": 723,
+    "snapshot_sha256": "5448be711f75ddb4112387a6b577fe31e6e9fecce25557f65b9c44354f4b815b"
   },
-  "archive_sha256": "6370135ce8eb1b40c788ad2f5ce98efe5e82e9df2bd0c21abf3317eba8689bd5",
+  "archive_sha256": "30661f0748ea40476f7714f5496ba329e61ee2439c0eeaa956412eb3b1fb7bd3",
   "trust": {
     "developer_id": "not_provided",
     "notarization": "not_performed",
@@ -22,8 +22,8 @@
   "roundtrip": "passed",
   "smoke": {
     "passed": true,
-    "first_process_ms": 8,
-    "initialize_ms": 8,
+    "first_process_ms": 12,
+    "initialize_ms": 11,
     "deadline_ms": 30000,
     "tools": 33,
     "ui_sha256": "56a42d5fb569105237adb6c28018cf26b142352cc0c76ad652789ead46895426",
