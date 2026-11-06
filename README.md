@@ -5,8 +5,8 @@ Developer ID signing or notarization. Source: [hyun06000/gil](https://github.com
 
 | Version | Role | Fixed release |
 |---|---|---|
-| `0.2.1-preview.23` | File protection without conversation gates | [v0.2.1-preview.23](https://github.com/hyun06000/gil-marketplace/releases/tag/v0.2.1-preview.23) |
-| `0.2.1-preview.22` | Previous public visual and plan guidance build | [v0.2.1-preview.22](https://github.com/hyun06000/gil-marketplace/releases/tag/v0.2.1-preview.22) |
+| `0.2.1-preview.24` | Project-scoped guidance without Host hooks | [v0.2.1-preview.24](https://github.com/hyun06000/gil-marketplace/releases/tag/v0.2.1-preview.24) |
+| `0.2.1-preview.23` | Previous public file-guard build | [v0.2.1-preview.23](https://github.com/hyun06000/gil-marketplace/releases/tag/v0.2.1-preview.23) |
 
 Use the fixed tag, never moving `main`. GitHub's Source ZIP is not the installation archive.
 No Node, npm, Cargo, Homebrew or separate Companion is required.
@@ -15,25 +15,24 @@ No Node, npm, Cargo, Homebrew or separate Companion is required.
 
 Ask Codex in a local folder-backed conversation:
 
-> Install GIL unsigned preview 0.2.1-preview.23 and its Codex protection hooks using the bundled Codex CLI and the verified Core installer.
+> Install GIL unsigned preview 0.2.1-preview.24 without any Host hooks, using the bundled Codex CLI.
 > Inspect existing GIL source/version first. Replace an existing installation only with my approval
-> (do not ask again if I already approved that exact replacement). Use the fixed tag below.
-> Do not initialize/migrate projects or modify their records, installed caches or security settings.
-> Include fresh/missing hooks: resolve the installed MCP Core and run `write-guard install --auto --host codex`,
-> then `write-guard status --auto`. Preserve unrelated settings and backups; do not change other Hosts.
-> Verify the version and two hooks (PreToolUse and PostToolUse), then report setup, actual Host protection and Monitor display separately.
-> Restart into a new conversation and review hooks normally; do not automatically grant trust or permissions.
+> (do not ask again if already approved). Use the fixed tag below. Preserve projects, records and security settings.
+> Resolve the installed MCP Core and run `write-guard uninstall --auto --host codex`, then `write-guard status --auto`.
+> Remove only generated GIL commands, preserve mixed user hooks and backups, and do not change unrequested Hosts.
+> Do not create global, project-local, Plugin or Skill hooks. Restart into a new conversation.
+> Report setup, actual Host noninterference/model guidance, and Monitor display separately. Do not claim OS write enforcement.
 
 ```sh
-codex plugin marketplace add https://github.com/hyun06000/gil-marketplace.git --ref v0.2.1-preview.23 --json
+codex plugin marketplace add https://github.com/hyun06000/gil-marketplace.git --ref v0.2.1-preview.24 --json
 codex plugin add gil-companion-prototype@gil-preview-macos-arm64 --json
 ```
 
 Inspect existing registrations before replacing them through official Plugin commands. If Git or
 Xcode Command Line Tools are absent, use the verified archive/local marketplace route in
 [installation instructions](https://github.com/hyun06000/gil/blob/main/INSTALL.md), without installing developer tools.
-The exact archive is `gil-codex-macos-arm64-0.2.1-preview.23.tar.gz` (3,673,299 bytes),
-SHA-256 `b0172f58e4546e223678dd51b4115c0d7e9764ae6ace533caa996bc6d9e72fbc`.
+The exact archive is `gil-codex-macos-arm64-0.2.1-preview.24.tar.gz` (3,647,594 bytes),
+SHA-256 `6e2d0dc92fefe73eb103c4d85cb1df6bf193146d899294113cb62a7bc534abc5`.
 If macOS blocks execution, stop; never disable Gatekeeper or remove quarantine.
 
 After installation, open a **new conversation and a new empty test folder** and ask:
@@ -50,47 +49,38 @@ with args `["mcp", "--serve"]`. See the [full instructions](https://github.com/h
 Mac has no Companion connection button or stable launcher yet: update this direct registration to the
 new version folder. Updating only Codex does not change Claude's registration.
 
-Before reopening Desktop, use the same registered Core to run `write-guard install --auto --host claude`
-and `write-guard status --auto`, including fresh installations and missing hooks. Verify backups and
-`matches_current_core` for Claude, preserving unrelated settings. Then open a new Claude Code conversation. Prior testing showed the Monitor as an inline card; click it
-to expand fullscreen. The Plugin route previously called tools but did not render the App, so use
-the direct registration route for this test. This version's real Host behavior remains user acceptance.
+Before reopening Desktop, use the same verified Core to run `write-guard uninstall --auto --host claude`
+and `write-guard status --auto`. Preserve unrelated hooks, settings and backups. No new hooks are registered.
+Open a new Claude Code conversation. Prior testing showed the Monitor as an inline card; click it to expand.
+The Plugin route previously called tools but did not render the App, so use direct registration for this test.
+This version's actual Host behavior remains user acceptance.
 
-## Register protection hooks on fresh installs and updates
+## No Host hooks on fresh installs or updates
 
-The standard macOS setup includes Plugin/MCP registration, protection hook registration, configuration
-verification and new-session activation checks. Plugin/MCP installation alone does not register hooks.
-Follow the [current installation instructions](https://github.com/hyun06000/gil/blob/main/INSTALL.md);
-this is an Agent-run setup step, not a silent Plugin lifecycle action or a change to the immutable archive.
+GIL registers no global, project-local, Plugin or Skill hooks. It does not intercept ordinary shell/file tools,
+user prompts or conversation completion. Selected GIL projects receive shared prompt and timely MCP guidance;
+unrelated development, installations and file-free web research do not acquire GIL workflow obligations.
 
-Resolve the actual MCP executable from the installed Plugin manifest or Claude's direct registration.
-Do not guess cache paths or use a different `gil` from PATH. With `GIL_CORE` set to that verified absolute path:
+Resolve the actual installed executable from the official Plugin response/manifest or direct MCP registration.
+With `GIL_CORE` set to that verified absolute path:
 
 ```sh
-# Choose the Host being installed; use --host claude for Claude Desktop Code.
-"$GIL_CORE" write-guard install --auto --host codex
+"$GIL_CORE" write-guard uninstall --auto --host codex
 "$GIL_CORE" write-guard status --auto
 ```
 
-Run this on fresh installs, missing/deleted hooks and updates. Use `--host both` only when both Hosts
-were requested and use the same Core. If their paths differ, register each with its own verified Core
-and compare release version/Core bytes. Do not alter an unrequested Host. The installer merges
-PreToolUse and PostToolUse, retiring only canonical generated GIL commands from old Stop and
-UserPromptSubmit entries. Mixed user hooks, unrelated settings and private backups are preserved.
-If the user declines protection hooks, report MCP-only setup with protection unconfigured.
+Use `--host claude` for Claude or `--host both` only if both were requested. The cleanup removes only canonical
+commands generated by older GIL installers. Original files receive private backups; mixed user hooks,
+permissions, sandbox, project records and old registry bytes are preserved. Missing settings stay absent.
+Invalid settings, symlinks and cleanup contention are reported without claiming completion. Custom shell
+commands require exact review, not broad deletion. `not_installed` covers the inspected settings, not already
+loaded Host memory. Restart Hosts/new sessions to discard old loaded hooks. Old Core paths must be removed;
+new Core's legacy hook entry point is inert even with damaged registry or project state.
 
-The selected Host must report `matches_current_core`; this proves configuration, not activation.
-Restart the Host and review hooks normally (Codex `/hooks`). In a user-selected disposable folder,
-start/resume through MCP and check automatic root registration, actual refusal outside Verify and
-permitted writes during Verify. Existing projects reconnect with `gil_context`; do not write test files
-into user projects. Report setup readiness, actual Host protection and Monitor display separately.
-If activation is blocked or untested, say so. Do not change disabled-hook/organization policy, sandbox,
-trust or approval settings to force activation. This macOS adapter is not a Windows installation step.
-
-If the old hook blocks the installer, do not retry the unprotected command or remove all hooks.
-Prepare and review the exact new hook configuration and use the narrow settings-refresh procedure in
-[source installation instructions](https://github.com/hyun06000/gil/blob/main/distribution/codex/INSTALL.md#별도로-설치한-전역-write-guard-갱신).
-No automatic permission grants or global security changes are part of this release.
+If an old hook blocks the installer, prepare the exact removal diff and original backup and use supported
+Host file-edit tools for the approved GIL-only change. Do not retry an unprotected command, delete unrelated
+hooks, automatically grant permissions or disable security. Follow the
+[cleanup contract](https://github.com/hyun06000/gil/blob/main/distribution/codex/WRITE-GUARD.md).
 
 ## What this test build includes
 
@@ -108,20 +98,14 @@ opening a dummy Step/Cycle or calling gil_await_user. That tool remains an optio
 Question/pending Synthesis, with unchanged input/output shape. A chat turn ending is not recorded GIL
 completion; real approval, evidence and Chain closure requirements remain.
 
-Successful GIL start/resume/open/close calls still enroll validated project paths, independently of
-session identity. Legacy session/wait data is preserved but inactive; project records are not rewritten.
-Every registered project's file protection remains.
-Files inside protected projects can change only during an actually open Verify. External direct file
-edits and file-free web research do not need a GIL step. Shell commands still need path protection:
-external cwd, absolute paths, `cd` and symlinks are not exemptions. Claude receives a guarded command
-via `updatedInput` and `permissionDecision: ask`, preserving normal user approval. Codex receives its
-supported explicit wrapper/approval instructions. Neither path automatically grants permission.
-
-A Host that cannot start the native sandbox safely still refuses the command before execution.
-Nested sandbox restrictions, existing processes, unregistered file tools and direct-edit races remain
-limits; see [the protection contract](https://github.com/hyun06000/gil/blob/main/distribution/codex/WRITE-GUARD.md).
-This is not an unrestricted pass for every shell, an OS-wide access-control system, or proof of actual
-Claude/Codex hook activation. Actual Host tests for this release are pending user validation.
+Start/resume/open/close responses guide the selected GIL project without enrolling it in a Host registry.
+File creation, modification, deletion, movement and imports should occur during an actually open Verify.
+This is prompt guidance, not an OS write lock or a guarantee that every model follows instructions.
+Core transition, human approval, report, evidence and dirty-state validation remain unchanged.
+Other sessions can use ordinary Host tools; no GIL wrapper or GIL-specific escalation is required.
+Project outputs default to the selected project; necessary external outputs disclose their reason, path
+and lack of tracking before creation. No user project records or historic execution facts are rewritten.
+Actual Host noninterference and model adherence remain user field tests.
 
 
 Plan proposals use `{project_root, draft:{scope, items, synthesis}}`. The documentation example
@@ -131,8 +115,8 @@ input values. Synthesis is a map of Report strings. Closing keeps existing items
 another Experiment. Shared instructions and current-context guidance use the same shape.
 
 Since preview.13, this also includes start-to-Monitor handoff, project file boundary and explicit
-user-wait guidance improvements. Host guard configuration is separate from this packaged MCP/Skill
-update; publication does not install or change global hooks.
+user-wait guidance improvements. This version removes Host guard registration entirely;
+installation cleans up only old GIL-generated commands and preserves other settings.
 
 New Verify writes refuse one-word/boilerplate reasons for omitting visuals and image evidence files
 contradicting a `not_needed` declaration. When Verify attaches images, Analysis and the Experiment
@@ -176,12 +160,12 @@ started; if needed, ask the chat to re-read current context. This is the same wo
 
 ## Validation and exact provenance
 
-- Build source: `255ead7b35aca25adf4dfb66adc515b4e507bef0`, [source fix PR #96](https://github.com/hyun06000/gil/pull/96).
-- Candidate build, archive roundtrip and first-start protocol: [CI 42195163054](https://github.com/hyun06000/gil/actions/runs/42195163054), explicit approved-plan profile.
-- All 10 final fix-head CI checks passed, retaining macOS, Windows x64/arm64, feature profiles and Companion checks. Actual Host installation/signing acceptance is not claimed.
+- Build source: `1ccb7a4c48b45717b95983cdc2e6db2df79ac297`, [source fix PR #98](https://github.com/hyun06000/gil/pull/98).
+- Candidate build, archive roundtrip and first-start protocol: [CI 42213756425](https://github.com/hyun06000/gil/actions/runs/42213756425), explicit approved-plan profile.
+- All final fix-head CI checks passed, retaining macOS, Windows x64/arm64, feature profiles and Companion checks. Actual Host/signing acceptance is not claimed.
 - Candidate selected-profile regression, native protocol, packaging and archive checks passed.
-- Clean source snapshot: 726 files, `92bbede9f5ed168415f697eb75db9cac67aab4c64748442c87d5fde3da58144b`, identical to the CI receipt.
-- Core SHA-256: `f157de7e2dfdd6af5461d76a2e926c92b180114d4344a24003a33de46a9c2f07`.
+- Clean source snapshot: 727 files, `f574f2aecf933622e9f5e2f32ad2845949fa3ed24758a453d31b8b7d7bec09ce`, identical to the CI receipt.
+- Core SHA-256: `2007b3e63aba045193282c51e820936baa90538e24ac6aa42ce46947d7fa3949`.
 - Embedded UI SHA-256: `56a42d5fb569105237adb6c28018cf26b142352cc0c76ad652789ead46895426`.
 - Immutable payload receipt: [release.json](release.json); [original CI evidence](evidence).
 
@@ -195,10 +179,10 @@ PR/release, without rewriting the original receipt. Hashes check bytes, not publ
 
 ## Recovery and maintenance
 
-Compatibility ranges match preview.22; `migration: requires_review` remains unchanged. The update
+Compatibility ranges match preview.23; `migration: requires_review` remains unchanged. The update
 policy requires explicit contract review; no automatic migration or accepted Host update/rollback pair
-is claimed. Keep existing records. To return to preview.22, replace only the Plugin through official commands;
-use it only with records it supports. Never delete `.gil` or run `gil restore` to downgrade.
+is claimed. Keep existing records. To return to preview.23, replace only the Plugin through official commands;
+use it only with records it supports and do not restore its retired Host hooks. Never delete `.gil` or run `gil restore` to downgrade.
 
 Every main change uses a PR and pinned-payload CI. Keep GitHub no-reply identities and reviewed bytes.
 Static checks do not execute the packaged binary:
