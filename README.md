@@ -5,8 +5,8 @@ Developer ID signing or notarization. Source: [hyun06000/gil](https://github.com
 
 | Version | Role | Fixed release |
 |---|---|---|
-| `0.2.1-preview.21` | Session-scoped progress checks and Host-specific write protection | [v0.2.1-preview.21](https://github.com/hyun06000/gil-marketplace/releases/tag/v0.2.1-preview.21) |
-| `0.2.1-preview.20` | Previous public plan-input and Closing-guidance test build | [v0.2.1-preview.20](https://github.com/hyun06000/gil-marketplace/releases/tag/v0.2.1-preview.20) |
+| `0.2.1-preview.22` | Visual argument diagnostics and current plan / Cycle guidance | [v0.2.1-preview.22](https://github.com/hyun06000/gil-marketplace/releases/tag/v0.2.1-preview.22) |
+| `0.2.1-preview.21` | Previous public session-scoped Host guard build | [v0.2.1-preview.21](https://github.com/hyun06000/gil-marketplace/releases/tag/v0.2.1-preview.21) |
 
 Use the fixed tag, never moving `main`. GitHub's Source ZIP is not the installation archive.
 No Node, npm, Cargo, Homebrew or separate Companion is required.
@@ -15,22 +15,22 @@ No Node, npm, Cargo, Homebrew or separate Companion is required.
 
 Ask Codex in a local folder-backed conversation:
 
-> Install GIL unsigned preview 0.2.1-preview.21 using the bundled Codex CLI and official Plugin commands.
+> Install GIL unsigned preview 0.2.1-preview.22 using the bundled Codex CLI and official Plugin commands.
 > Inspect existing GIL source/version first. Replace an existing installation only with my approval
 > (do not ask again if I already approved that exact replacement). Use the fixed tag below.
 > Do not initialize/migrate projects or modify their records, installed caches or security settings.
 > Verify the installed version and tell me to open a new conversation for the new connection.
 
 ```sh
-codex plugin marketplace add https://github.com/hyun06000/gil-marketplace.git --ref v0.2.1-preview.21 --json
+codex plugin marketplace add https://github.com/hyun06000/gil-marketplace.git --ref v0.2.1-preview.22 --json
 codex plugin add gil-companion-prototype@gil-preview-macos-arm64 --json
 ```
 
 Inspect existing registrations before replacing them through official Plugin commands. If Git or
 Xcode Command Line Tools are absent, use the verified archive/local marketplace route in
 [installation instructions](https://github.com/hyun06000/gil/blob/main/INSTALL.md), without installing developer tools.
-The exact archive is `gil-codex-macos-arm64-0.2.1-preview.21.tar.gz` (3,666,511 bytes),
-SHA-256 `30661f0748ea40476f7714f5496ba329e61ee2439c0eeaa956412eb3b1fb7bd3`.
+The exact archive is `gil-codex-macos-arm64-0.2.1-preview.22.tar.gz` (3,498,578 bytes),
+SHA-256 `789d966ad85bc5108600966a09729d7c8a8b89f7572e02e88e498d8b656599fa`.
 If macOS blocks execution, stop; never disable Gatekeeper or remove quarantine.
 
 After installation, open a **new conversation and a new empty test folder** and ask:
@@ -67,6 +67,14 @@ Prepare and review the exact new hook configuration and use the narrow settings-
 No automatic permission grants or global security changes are part of this release.
 
 ## What this test build includes
+
+Visual close arguments now receive safe field-path diagnostics and the actual open owner on an owner mismatch.
+`gil help visuals` includes complete two-PNG examples: new attachments use `source: {kind: "new", key}`;
+stored citations require `owner`, `asset_id` and `sha256`. A declaration does not contain `uses`.
+Plan guidance follows the current stage, explains when the bound document is available, and makes the
+one-item-per-Experiment binding explicit. Step `close_cycle` and Cycle `open_child` have distinct meanings.
+No existing records are rewritten or execution history backfilled. The reported late appearance of a
+plan document was not reproduced; this release does not claim to fix that unverified observation.
 
 Progress/Stop checks bind to the actual Host + session ID after a successful GIL call. Unrelated chats
 and paused chats have no GIL completion obligation; every registered project's file protection remains.
@@ -135,16 +143,12 @@ started; if needed, ask the chat to re-read current context. This is the same wo
 
 ## Validation and exact provenance
 
-- Build source: `74e6c2d024abd9a23ca43c91b1635997b815f1a1`, [source fix PR #91](https://github.com/hyun06000/gil/pull/91).
-- Candidate build, archive roundtrip and first-start protocol: [CI 41974673935](https://github.com/hyun06000/gil/actions/runs/41974673935), explicit approved-plan profile.
-- All 10 final fix-head CI checks passed, retaining macOS, Windows x64/arm64, feature profiles and Companion checks.
-- Default Core CI: 1,559 passed / 2 existing ignored; selected-profile candidate checks also passed.
-- Exact packaged Core: 20 wire cases passed, 1 expected product-safety block, 0 failures.
-- Packaged guard smoke: isolated HOME/project, unrelated Stop/outside writes, absolute/cd/symlink/move
-  protection, Host-specific guidance, hook-path refresh, unrelated settings and backups preserved.
-  Host events and approval were synthetic; actual Host execution/UI acceptance was not performed.
-- Clean source snapshot: 723 files, `5448be711f75ddb4112387a6b577fe31e6e9fecce25557f65b9c44354f4b815b`, identical to the CI receipt.
-- Core SHA-256: `3f1b4777abe581c717e7314b0f78cfd6918d61b614b3af4c033b81db7a7ed7e6`.
+- Build source: `ebdde810f20c2e5e35e0d6ed6de6e04a4f7e864d`, [source fix PR #93](https://github.com/hyun06000/gil/pull/93).
+- Candidate build, archive roundtrip and first-start protocol: [CI 42181287362](https://github.com/hyun06000/gil/actions/runs/42181287362), explicit approved-plan profile.
+- All 11 final fix-head CI checks passed, retaining macOS, Windows x64/arm64, feature profiles and Companion checks. Three separate install/signing acceptance jobs were skipped.
+- Candidate selected-profile regression, native protocol, packaging and archive checks passed.
+- Clean source snapshot: 725 files, `8f45359d7e4d1d0ab145f0d701652fbe1577b8b5db48dd672d7e09efd131dfeb`, identical to the CI receipt.
+- Core SHA-256: `a08ceec076b5916857076184fd94f108fe5758d74b117d7da2ebe0faef99e95c`.
 - Embedded UI SHA-256: `56a42d5fb569105237adb6c28018cf26b142352cc0c76ad652789ead46895426`.
 - Immutable payload receipt: [release.json](release.json); [original CI evidence](evidence).
 
@@ -158,9 +162,9 @@ PR/release, without rewriting the original receipt. Hashes check bytes, not publ
 
 ## Recovery and maintenance
 
-Compatibility ranges match preview.20; `migration: requires_review` remains unchanged. The update
+Compatibility ranges match preview.21; `migration: requires_review` remains unchanged. The update
 policy requires explicit contract review; no automatic migration or accepted Host update/rollback pair
-is claimed. Keep existing records. To return to preview.20, replace only the Plugin through official commands;
+is claimed. Keep existing records. To return to preview.21, replace only the Plugin through official commands;
 use it only with records it supports. Never delete `.gil` or run `gil restore` to downgrade.
 
 Every main change uses a PR and pinned-payload CI. Keep GitHub no-reply identities and reviewed bytes.
