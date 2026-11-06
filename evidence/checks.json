@@ -2,15 +2,15 @@
   "schema": 1,
   "channel": "preview_unsigned",
   "publishable": false,
-  "version": "0.2.1-preview.21",
+  "version": "0.2.1-preview.22",
   "profile": "approved-plan",
   "source": {
-    "head": "74e6c2d024abd9a23ca43c91b1635997b815f1a1",
+    "head": "ebdde810f20c2e5e35e0d6ed6de6e04a4f7e864d",
     "dirty": false,
-    "files": 723,
-    "snapshot_sha256": "5448be711f75ddb4112387a6b577fe31e6e9fecce25557f65b9c44354f4b815b"
+    "files": 725,
+    "snapshot_sha256": "8f45359d7e4d1d0ab145f0d701652fbe1577b8b5db48dd672d7e09efd131dfeb"
   },
-  "archive_sha256": "30661f0748ea40476f7714f5496ba329e61ee2439c0eeaa956412eb3b1fb7bd3",
+  "archive_sha256": "789d966ad85bc5108600966a09729d7c8a8b89f7572e02e88e498d8b656599fa",
   "trust": {
     "developer_id": "not_provided",
     "notarization": "not_performed",
@@ -22,7 +22,7 @@
   "roundtrip": "passed",
   "smoke": {
     "passed": true,
-    "first_process_ms": 12,
+    "first_process_ms": 8,
     "initialize_ms": 11,
     "deadline_ms": 30000,
     "tools": 33,
