@@ -15,11 +15,14 @@ No Node, npm, Cargo, Homebrew or separate Companion is required.
 
 Ask Codex in a local folder-backed conversation:
 
-> Install GIL unsigned preview 0.2.1-preview.22 using the bundled Codex CLI and official Plugin commands.
+> Install GIL unsigned preview 0.2.1-preview.22 and its Codex protection hooks using the bundled Codex CLI and the verified Core installer.
 > Inspect existing GIL source/version first. Replace an existing installation only with my approval
 > (do not ask again if I already approved that exact replacement). Use the fixed tag below.
 > Do not initialize/migrate projects or modify their records, installed caches or security settings.
-> Verify the installed version and tell me to open a new conversation for the new connection.
+> Include fresh/missing hooks: resolve the installed MCP Core and run `write-guard install --auto --host codex`,
+> then `write-guard status --auto`. Preserve unrelated settings and backups; do not change other Hosts.
+> Verify the version and four hooks, then report setup, actual Host protection and Monitor display separately.
+> Restart into a new conversation and review hooks normally; do not automatically grant trust or permissions.
 
 ```sh
 codex plugin marketplace add https://github.com/hyun06000/gil-marketplace.git --ref v0.2.1-preview.22 --json
@@ -47,19 +50,41 @@ with args `["mcp", "--serve"]`. See the [full instructions](https://github.com/h
 Mac has no Companion connection button or stable launcher yet: update this direct registration to the
 new version folder. Updating only Codex does not change Claude's registration.
 
-Open a new Claude Code conversation. Prior testing showed the Monitor as an inline card; click it
+Before reopening Desktop, use the same registered Core to run `write-guard install --auto --host claude`
+and `write-guard status --auto`, including fresh installations and missing hooks. Verify backups and
+`matches_current_core` for Claude, preserving unrelated settings. Then open a new Claude Code conversation. Prior testing showed the Monitor as an inline card; click it
 to expand fullscreen. The Plugin route previously called tools but did not render the App, so use
 the direct registration route for this test. This version's real Host behavior remains user acceptance.
 
-## Keep MCP and existing protection hooks on the same Core
+## Register protection hooks on fresh installs and updates
 
-Publication and Plugin/MCP replacement do not update global hook paths. Inspect the current MCP
-registration and each Host hook before removing the old Core. If GIL hooks are already installed,
-refresh them with the **same verified new Core** using `write-guard install --auto --host codex|claude|both`
-for the Host(s) in use. It preserves unrelated settings and keeps backups. Run that Core's
-`write-guard status --auto`: the selected Hosts must report `matches_current_core`. This confirms
-configuration agreement, not that the Host loaded or trusted the hook. Restart the Host connection,
-review hook trust through its normal UI, then reconnect existing projects with `gil_context`.
+The standard macOS setup includes Plugin/MCP registration, protection hook registration, configuration
+verification and new-session activation checks. Plugin/MCP installation alone does not register hooks.
+Follow the [current installation instructions](https://github.com/hyun06000/gil/blob/main/INSTALL.md);
+this is an Agent-run setup step, not a silent Plugin lifecycle action or a change to the immutable archive.
+
+Resolve the actual MCP executable from the installed Plugin manifest or Claude's direct registration.
+Do not guess cache paths or use a different `gil` from PATH. With `GIL_CORE` set to that verified absolute path:
+
+```sh
+# Choose the Host being installed; use --host claude for Claude Desktop Code.
+"$GIL_CORE" write-guard install --auto --host codex
+"$GIL_CORE" write-guard status --auto
+```
+
+Run this on fresh installs, missing/deleted hooks and updates. Use `--host both` only when both Hosts
+were requested and use the same Core. If their paths differ, register each with its own verified Core
+and compare release version/Core bytes. Do not alter an unrequested Host. The installer merges
+PreToolUse, PostToolUse, UserPromptSubmit and Stop, preserving unrelated settings and private backups.
+If the user declines protection hooks, report MCP-only setup with protection unconfigured.
+
+The selected Host must report `matches_current_core`; this proves configuration, not activation.
+Restart the Host and review hooks normally (Codex `/hooks`). In a user-selected disposable folder,
+start/resume through MCP and check automatic root registration, actual refusal outside Verify and
+permitted writes during Verify. Existing projects reconnect with `gil_context`; do not write test files
+into user projects. Report setup readiness, actual Host protection and Monitor display separately.
+If activation is blocked or untested, say so. Do not change disabled-hook/organization policy, sandbox,
+trust or approval settings to force activation. This macOS adapter is not a Windows installation step.
 
 If the old hook blocks the installer, do not retry the unprotected command or remove all hooks.
 Prepare and review the exact new hook configuration and use the narrow settings-refresh procedure in
