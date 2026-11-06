@@ -11,16 +11,16 @@ const core = `${prefix}/core/darwin-arm64/gil`;
 const manifest = `${prefix}/.codex-plugin/plugin.json`;
 const hash = bytes => createHash('sha256').update(bytes).digest('hex');
 export const pins = Object.freeze({
-  "version": "0.2.1-preview.23",
-  "receipt": "759d6d9b630bff632c65094e5e380fa2f0fa4d0edf87ee63bbd9736830857aab",
-  "source": "255ead7b35aca25adf4dfb66adc515b4e507bef0",
-  "snapshot": "92bbede9f5ed168415f697eb75db9cac67aab4c64748442c87d5fde3da58144b",
-  "archive": "b0172f58e4546e223678dd51b4115c0d7e9764ae6ace533caa996bc6d9e72fbc",
-  "core": "f157de7e2dfdd6af5461d76a2e926c92b180114d4344a24003a33de46a9c2f07",
+  "version": "0.2.1-preview.24",
+  "receipt": "0b3dfa478f98882005da95cf12fdee971be16c01c636d4d0b6a7e6d3002f1e98",
+  "source": "1ccb7a4c48b45717b95983cdc2e6db2df79ac297",
+  "snapshot": "f574f2aecf933622e9f5e2f32ad2845949fa3ed24758a453d31b8b7d7bec09ce",
+  "archive": "6e2d0dc92fefe73eb103c4d85cb1df6bf193146d899294113cb62a7bc534abc5",
+  "core": "2007b3e63aba045193282c51e820936baa90538e24ac6aa42ce46947d7fa3949",
   "ui": "56a42d5fb569105237adb6c28018cf26b142352cc0c76ad652789ead46895426",
   "profile": "approved-plan",
   "tools": 33,
-  "source_files": 726,
+  "source_files": 727,
   "migration": "requires_review",
   "binary_origin": "preserved_from_verified_development_tree; CI provenance review still required"
 });
