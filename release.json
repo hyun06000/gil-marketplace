@@ -28,12 +28,12 @@
   "migration": "requires_review",
   "platform": "darwin-arm64",
   "plugin": "gil-companion-prototype",
-  "version": "0.2.1-preview.24",
+  "version": "0.2.1-preview.25",
   "source": {
-    "head": "1ccb7a4c48b45717b95983cdc2e6db2df79ac297",
+    "head": "d8ab6866fb7bceba20b44e10aed6089f4a5560ef",
     "dirty": false,
-    "files": 727,
-    "snapshot_sha256": "f574f2aecf933622e9f5e2f32ad2845949fa3ed24758a453d31b8b7d7bec09ce"
+    "files": 730,
+    "snapshot_sha256": "9a05a4b251376d3d9851b5863f284c682b7e108015673e69b75467345eed0201"
   },
   "binary_origin": "preserved_from_verified_development_tree; CI provenance review still required",
   "trust": {
@@ -61,19 +61,19 @@
       "path": "plugins/gil-companion-prototype/.claude-plugin/plugin.json",
       "bytes": 519,
       "mode": 420,
-      "sha256": "674a30443a02b5885060569b0b25ad9c10572cd4bc961cb706dd574c8c50664f"
+      "sha256": "a6583a0d27d74cd95a5ad640f1b176fb1a78fc985472421ebc142582607a0463"
     },
     {
       "path": "plugins/gil-companion-prototype/.codex-plugin/plugin.json",
       "bytes": 1078,
       "mode": 420,
-      "sha256": "e303efb965fe21816906c00f963afe001e02bb3f38cff91680d81dd3b1f56614"
+      "sha256": "19f0b4bfd2ecbcf440aab53953f9a0819b1894c247a566574029c70431d63e6c"
     },
     {
       "path": "plugins/gil-companion-prototype/core/darwin-arm64/gil",
-      "bytes": 10723024,
+      "bytes": 10722880,
       "mode": 493,
-      "sha256": "2007b3e63aba045193282c51e820936baa90538e24ac6aa42ce46947d7fa3949"
+      "sha256": "6b8bb1a5c5d37cdc2f7343c3dc612bda3c61b9f047c64676b06782c7b1a73ea2"
     },
     {
       "path": "plugins/gil-companion-prototype/LICENSE",
@@ -109,7 +109,7 @@
       "path": "PREVIEW.md",
       "bytes": 1780,
       "mode": 420,
-      "sha256": "6b22d956dce44665a57990367ef066ebc0109bf9f771fb65ab7fb8ff91e29fa8"
+      "sha256": "799968d397119b8bda9e7aa7e298c87093dda8602d22aef05facbe345a647c6d"
     }
   ]
 }

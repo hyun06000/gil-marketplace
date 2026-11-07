@@ -2,15 +2,15 @@
   "schema": 1,
   "channel": "preview_unsigned",
   "publishable": false,
-  "version": "0.2.1-preview.24",
+  "version": "0.2.1-preview.25",
   "profile": "approved-plan",
   "source": {
-    "head": "1ccb7a4c48b45717b95983cdc2e6db2df79ac297",
+    "head": "d8ab6866fb7bceba20b44e10aed6089f4a5560ef",
     "dirty": false,
-    "files": 727,
-    "snapshot_sha256": "f574f2aecf933622e9f5e2f32ad2845949fa3ed24758a453d31b8b7d7bec09ce"
+    "files": 730,
+    "snapshot_sha256": "9a05a4b251376d3d9851b5863f284c682b7e108015673e69b75467345eed0201"
   },
-  "archive_sha256": "6e2d0dc92fefe73eb103c4d85cb1df6bf193146d899294113cb62a7bc534abc5",
+  "archive_sha256": "cb9b448d2c5dd3370ae795eb778cbd155ea30df3d8c751658aedb5484ad4a9a4",
   "trust": {
     "developer_id": "not_provided",
     "notarization": "not_performed",
@@ -30,7 +30,7 @@
     "core": {
       "schema_version": 1,
       "product": "gil_core",
-      "core_version": "0.1.0",
+      "core_version": "0.2.1-preview.25",
       "protocol": {
         "min": 1,
         "max": 1
