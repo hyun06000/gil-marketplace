@@ -28,12 +28,12 @@
   "migration": "requires_review",
   "platform": "darwin-arm64",
   "plugin": "gil-companion-prototype",
-  "version": "0.2.1-preview.25",
+  "version": "0.2.1-preview.26",
   "source": {
-    "head": "d8ab6866fb7bceba20b44e10aed6089f4a5560ef",
+    "head": "fd1e78545454202acf96ffe99502af11585297b2",
     "dirty": false,
-    "files": 730,
-    "snapshot_sha256": "9a05a4b251376d3d9851b5863f284c682b7e108015673e69b75467345eed0201"
+    "files": 735,
+    "snapshot_sha256": "6af89f795037991ef92e8362a3656afdf62e5a38df76de3e44da9862537fe6a9"
   },
   "binary_origin": "preserved_from_verified_development_tree; CI provenance review still required",
   "trust": {
@@ -61,19 +61,19 @@
       "path": "plugins/gil-companion-prototype/.claude-plugin/plugin.json",
       "bytes": 519,
       "mode": 420,
-      "sha256": "a6583a0d27d74cd95a5ad640f1b176fb1a78fc985472421ebc142582607a0463"
+      "sha256": "7c9656fd3b96570c515ab176d4bda3f8cce80ccaa53e2c73cff3eefb91103b9e"
     },
     {
       "path": "plugins/gil-companion-prototype/.codex-plugin/plugin.json",
       "bytes": 1078,
       "mode": 420,
-      "sha256": "19f0b4bfd2ecbcf440aab53953f9a0819b1894c247a566574029c70431d63e6c"
+      "sha256": "5aa7463ab2586dff3f0dce2dff3650c4939eeddbd58c0eacf1f6f842bcd935ac"
     },
     {
       "path": "plugins/gil-companion-prototype/core/darwin-arm64/gil",
-      "bytes": 10722880,
+      "bytes": 10737872,
       "mode": 493,
-      "sha256": "6b8bb1a5c5d37cdc2f7343c3dc612bda3c61b9f047c64676b06782c7b1a73ea2"
+      "sha256": "b8110a290dc66200e8a43f45e5b61c8be5edd8b7129daa2ad940899ab94c7556"
     },
     {
       "path": "plugins/gil-companion-prototype/LICENSE",
@@ -89,9 +89,9 @@
     },
     {
       "path": "plugins/gil-companion-prototype/skills/gil-companion/SKILL.md",
-      "bytes": 64706,
+      "bytes": 67244,
       "mode": 420,
-      "sha256": "0d2d487b79e650fbbe7fa7b5aa23efb09749da1c37f4deb9a800fe84b93f8d5d"
+      "sha256": "9bb35b4afc1808992810b43221f1b977e27a76c32c68445b3c0b8e71dba92d63"
     },
     {
       "path": "plugins/gil-companion-prototype/THIRD-PARTY-NOTICES.json",
@@ -109,7 +109,7 @@
       "path": "PREVIEW.md",
       "bytes": 1780,
       "mode": 420,
-      "sha256": "799968d397119b8bda9e7aa7e298c87093dda8602d22aef05facbe345a647c6d"
+      "sha256": "c207b6f588c9a4465a215e8a43648a53111ce1cd4d736577578120a5ace07a21"
     }
   ]
 }
