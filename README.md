@@ -5,8 +5,8 @@ Developer ID signing or notarization. Source: [hyun06000/gil](https://github.com
 
 | Version | Role | Fixed release |
 |---|---|---|
-| `0.2.1-preview.24` | Project-scoped guidance without Host hooks | [v0.2.1-preview.24](https://github.com/hyun06000/gil-marketplace/releases/tag/v0.2.1-preview.24) |
-| `0.2.1-preview.23` | Previous public file-guard build | [v0.2.1-preview.23](https://github.com/hyun06000/gil-marketplace/releases/tag/v0.2.1-preview.23) |
+| `0.2.1-preview.25` | Core reports the distribution version | [v0.2.1-preview.25](https://github.com/hyun06000/gil-marketplace/releases/tag/v0.2.1-preview.25) |
+| `0.2.1-preview.24` | Previous public no-hooks build | [v0.2.1-preview.24](https://github.com/hyun06000/gil-marketplace/releases/tag/v0.2.1-preview.24) |
 
 Use the fixed tag, never moving `main`. GitHub's Source ZIP is not the installation archive.
 No Node, npm, Cargo, Homebrew or separate Companion is required.
@@ -15,7 +15,7 @@ No Node, npm, Cargo, Homebrew or separate Companion is required.
 
 Ask Codex in a local folder-backed conversation:
 
-> Install GIL unsigned preview 0.2.1-preview.24 without any Host hooks, using the bundled Codex CLI.
+> Install GIL unsigned preview 0.2.1-preview.25 without any Host hooks, using the bundled Codex CLI.
 > Inspect existing GIL source/version first. Replace an existing installation only with my approval
 > (do not ask again if already approved). Use the fixed tag below. Preserve projects, records and security settings.
 > Resolve the installed MCP Core and run `write-guard uninstall --auto --host codex`, then `write-guard status --auto`.
@@ -24,15 +24,15 @@ Ask Codex in a local folder-backed conversation:
 > Report setup, actual Host noninterference/model guidance, and Monitor display separately. Do not claim OS write enforcement.
 
 ```sh
-codex plugin marketplace add https://github.com/hyun06000/gil-marketplace.git --ref v0.2.1-preview.24 --json
+codex plugin marketplace add https://github.com/hyun06000/gil-marketplace.git --ref v0.2.1-preview.25 --json
 codex plugin add gil-companion-prototype@gil-preview-macos-arm64 --json
 ```
 
 Inspect existing registrations before replacing them through official Plugin commands. If Git or
 Xcode Command Line Tools are absent, use the verified archive/local marketplace route in
 [installation instructions](https://github.com/hyun06000/gil/blob/main/INSTALL.md), without installing developer tools.
-The exact archive is `gil-codex-macos-arm64-0.2.1-preview.24.tar.gz` (3,647,594 bytes),
-SHA-256 `6e2d0dc92fefe73eb103c4d85cb1df6bf193146d899294113cb62a7bc534abc5`.
+The exact archive is `gil-codex-macos-arm64-0.2.1-preview.25.tar.gz` (3,646,256 bytes),
+SHA-256 `cb9b448d2c5dd3370ae795eb778cbd155ea30df3d8c751658aedb5484ad4a9a4`.
 If macOS blocks execution, stop; never disable Gatekeeper or remove quarantine.
 
 After installation, open a **new conversation and a new empty test folder** and ask:
@@ -81,6 +81,21 @@ If an old hook blocks the installer, prepare the exact removal diff and original
 Host file-edit tools for the approved GIL-only change. Do not retry an unprotected command, delete unrelated
 hooks, automatically grant permissions or disable security. Follow the
 [cleanup contract](https://github.com/hyun06000/gil/blob/main/distribution/codex/WRITE-GUARD.md).
+
+## Verify the running Core version
+
+From preview.25, the exact registered Core must print `gil 0.2.1-preview.25`; MCP initialize
+`serverInfo.version` and the agent probe's `core_version` must agree. Candidate builds stamp the
+version before compilation. Staging preserves binary bytes and native acceptance rejects mismatches.
+Runtime environment variables cannot change the compiled identity. Plain Cargo source builds are
+explicitly marked `<crate-version>-dev`.
+
+Preview.24 and earlier can legitimately print `gil 0.1.0`. For those legacy assets, compare the
+verified archive, receipt, both Plugin manifests and actual Core hash instead of declaring failure
+from that line alone. For a new-version mismatch, check the actual registered executable (not an
+arbitrary `gil` from PATH). If disk matches but MCP still reports an older version, restart the Host
+and open a new session. Version text never replaces integrity checks or publisher authentication.
+No hooks, security settings or project records are changed to resolve a version mismatch.
 
 ## What this test build includes
 
@@ -160,12 +175,13 @@ started; if needed, ask the chat to re-read current context. This is the same wo
 
 ## Validation and exact provenance
 
-- Build source: `1ccb7a4c48b45717b95983cdc2e6db2df79ac297`, [source fix PR #98](https://github.com/hyun06000/gil/pull/98).
-- Candidate build, archive roundtrip and first-start protocol: [CI 42213756425](https://github.com/hyun06000/gil/actions/runs/42213756425), explicit approved-plan profile.
-- All final fix-head CI checks passed, retaining macOS, Windows x64/arm64, feature profiles and Companion checks. Actual Host/signing acceptance is not claimed.
-- Candidate selected-profile regression, native protocol, packaging and archive checks passed.
-- Clean source snapshot: 727 files, `f574f2aecf933622e9f5e2f32ad2845949fa3ed24758a453d31b8b7d7bec09ce`, identical to the CI receipt.
-- Core SHA-256: `2007b3e63aba045193282c51e820936baa90538e24ac6aa42ce46947d7fa3949`.
+- Build source: `d8ab6866fb7bceba20b44e10aed6089f4a5560ef`, [source fix PR #100](https://github.com/hyun06000/gil/pull/100).
+- Candidate build and native version/roundtrip/protocol acceptance: [CI 42351119873](https://github.com/hyun06000/gil/actions/runs/42351119873), explicit approved-plan profile.
+- All final fix-head CI checks passed, retaining macOS, Windows x64/arm64, feature profiles, product contracts and Companion checks. Actual Host/signing acceptance is not claimed.
+- Exact candidate CLI, probe and MCP report `0.2.1-preview.25`. Isolated no-hooks cleanup and wire scenarios passed.
+- Isolated SDK reconnects through preview.24 → preview.25 → preview.24 → preview.25 preserved all project bytes; this is not actual Host rollback acceptance.
+- Clean source snapshot: 730 files, `9a05a4b251376d3d9851b5863f284c682b7e108015673e69b75467345eed0201`, identical to the CI receipt.
+- Core SHA-256: `6b8bb1a5c5d37cdc2f7343c3dc612bda3c61b9f047c64676b06782c7b1a73ea2`.
 - Embedded UI SHA-256: `56a42d5fb569105237adb6c28018cf26b142352cc0c76ad652789ead46895426`.
 - Immutable payload receipt: [release.json](release.json); [original CI evidence](evidence).
 
@@ -179,9 +195,9 @@ PR/release, without rewriting the original receipt. Hashes check bytes, not publ
 
 ## Recovery and maintenance
 
-Compatibility ranges match preview.23; `migration: requires_review` remains unchanged. The update
+Compatibility ranges match preview.24; `migration: requires_review` remains unchanged. The update
 policy requires explicit contract review; no automatic migration or accepted Host update/rollback pair
-is claimed. Keep existing records. To return to preview.23, replace only the Plugin through official commands;
+is claimed. Keep existing records. To return to preview.24, replace only the Plugin through official commands;
 use it only with records it supports and do not restore its retired Host hooks. Never delete `.gil` or run `gil restore` to downgrade.
 
 Every main change uses a PR and pinned-payload CI. Keep GitHub no-reply identities and reviewed bytes.

@@ -95,6 +95,15 @@ test('a rewritten schema-2 receipt without the approved-plan contract is rejecte
 });
 test('reviewed tree reports the pinned approved-plan contract', async () => {
   const result = await verify();
-  assert.equal(result.version, '0.2.1-preview.24'); assert.equal(result.runtime_profile, 'approved-plan');
+  assert.equal(result.version, '0.2.1-preview.25'); assert.equal(result.runtime_profile, 'approved-plan');
   assert.equal(result.tools, 33); assert.equal(result.migration, 'requires_review');
+});
+
+test('the original CI probe must report the pinned distribution version', async t => {
+  const at = await fixture(t);
+  const path = join(at, 'evidence/checks.json');
+  const check = JSON.parse(await readFile(path));
+  check.smoke.core.core_version = '0.1.0';
+  await writeFile(path, JSON.stringify(check));
+  await assert.rejects(verify(at), /Core build version differs from release/);
 });
