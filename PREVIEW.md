@@ -1,4 +1,4 @@
-# GIL 0.2.1-preview.28 — unsigned opt-in preview candidate
+# GIL 0.2.1-preview.29 — unsigned opt-in preview candidate
 
 macOS Apple Silicon only, for Codex and Claude Code (Claude Desktop). Not a stable release; not yet published.
 No Apple Developer ID signature or notarization is provided. Ad-hoc code signing may be present.

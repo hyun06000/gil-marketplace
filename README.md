@@ -5,8 +5,8 @@ Developer ID signing or notarization. Source: [hyun06000/gil](https://github.com
 
 | Version | Role | Fixed release |
 |---|---|---|
-| `0.2.1-preview.28` | Fullscreen error recovery and accurate display guidance | [v0.2.1-preview.28](https://github.com/hyun06000/gil-marketplace/releases/tag/v0.2.1-preview.28) |
-| `0.2.1-preview.27` | Previous public no-hooks build | [v0.2.1-preview.27](https://github.com/hyun06000/gil-marketplace/releases/tag/v0.2.1-preview.27) |
+| `0.2.1-preview.29` | Plan authoring diagnostics and PNG limit guidance | [v0.2.1-preview.29](https://github.com/hyun06000/gil-marketplace/releases/tag/v0.2.1-preview.29) |
+| `0.2.1-preview.28` | Previous public no-hooks build | [v0.2.1-preview.28](https://github.com/hyun06000/gil-marketplace/releases/tag/v0.2.1-preview.28) |
 
 Use the fixed tag, never moving `main`. GitHub's Source ZIP is not the installation archive.
 No Node, npm, Cargo, Homebrew or separate Companion is required.
@@ -15,7 +15,7 @@ No Node, npm, Cargo, Homebrew or separate Companion is required.
 
 Ask Codex in a local folder-backed conversation:
 
-> Install GIL unsigned preview 0.2.1-preview.28 without any Host hooks, using the bundled Codex CLI.
+> Install GIL unsigned preview 0.2.1-preview.29 without any Host hooks, using the bundled Codex CLI.
 > Inspect existing GIL source/version first. Replace an existing installation only with my approval
 > (do not ask again if already approved). Use the fixed tag below. Preserve projects, records and security settings.
 > Resolve the installed MCP Core and run `write-guard uninstall --auto --host codex`, then `write-guard status --auto`.
@@ -24,15 +24,15 @@ Ask Codex in a local folder-backed conversation:
 > Report setup, actual Host noninterference/model guidance, and Monitor display separately. Do not claim OS write enforcement.
 
 ```sh
-codex plugin marketplace add https://github.com/hyun06000/gil-marketplace.git --ref v0.2.1-preview.28 --json
+codex plugin marketplace add https://github.com/hyun06000/gil-marketplace.git --ref v0.2.1-preview.29 --json
 codex plugin add gil-companion-prototype@gil-preview-macos-arm64 --json
 ```
 
 Inspect existing registrations before replacing them through official Plugin commands. If Git or
 Xcode Command Line Tools are absent, use the verified archive/local marketplace route in
 [installation instructions](https://github.com/hyun06000/gil/blob/main/INSTALL.md), without installing developer tools.
-The exact archive is `gil-codex-macos-arm64-0.2.1-preview.28.tar.gz` (3,666,609 bytes),
-SHA-256 `71c5565009c8cc5f178abe9dad95fc1343d78e5d4fa0cdc449c494994c882a1c`.
+The exact archive is `gil-codex-macos-arm64-0.2.1-preview.29.tar.gz` (3,495,614 bytes),
+SHA-256 `31dca9788ee3b4cf5d392600c877e56de73073a4628e4d0567ca1854717b80dc`.
 If macOS blocks execution, stop; never disable Gatekeeper or remove quarantine.
 
 After installation, open a **new conversation and a new empty test folder** and ask:
@@ -84,7 +84,7 @@ hooks, automatically grant permissions or disable security. Follow the
 
 ## Verify the running Core version
 
-Since preview.25 the Core reports its distribution version. This release must print `gil 0.2.1-preview.28`; MCP initialize
+Since preview.25 the Core reports its distribution version. This release must print `gil 0.2.1-preview.29`; MCP initialize
 `serverInfo.version` and the agent probe's `core_version` must agree. Candidate builds stamp the
 version before compilation. Staging preserves binary bytes and native acceptance rejects mismatches.
 Runtime environment variables cannot change the compiled identity. Plain Cargo source builds are
@@ -114,7 +114,26 @@ See the [project resume contract](https://github.com/hyun06000/gil/blob/main/dis
 Field-test a new conversation with “add charts to this report” and verify context precedes file tools;
 compare with an ordinary non-GIL project. These actual Host checks remain pending.
 
-## What's new in preview.28
+## What's new in preview.29
+
+Plan proposals expose `synthesis.basis_refs` in their schema, Synthesis open receipt, context and
+shared instructions. References must be unique, newline-separated closed Question/Interpretation
+steps in the current Interview's Synthesis lineage. A refusal reports every invalid line with its
+original line number, field path and reason. Previous-Cycle background can be explained in
+`statement`, but references are never automatically moved or rewritten.
+
+Verify guidance, tool documentation and the Manual show the existing PNG limits: each dimension
+1–8192 px, at most 16,777,216 pixels and 16 MiB per file; at most 8 new attachments and 32 MiB
+per close, with full bounded PNG decoding still required. Dimension errors show the observed
+size and limits; bounded byte reads report the observed lower bound. Failed inputs preserve
+project records and source files. Corrected explicit submissions can proceed normally.
+
+This includes [source PR #109](https://github.com/hyun06000/gil/pull/109). Validation and approval
+semantics, record/Snapshot formats and no-hooks operation are unchanged. This macOS release does
+not update Windows owner.14. Actual Host installation, model behavior and field testing remain
+with the user; automated MCP checks are not visible UI acceptance.
+
+## Earlier preview.28 improvements
 
 Monitor distinguishes an explicit fresh-press requirement (`refused`) from timeouts, closed
 connections and unknown failures (`error`). Only the explicit requirement skips timer retries
@@ -123,7 +142,7 @@ App presence, gil_monitor_status and shared agent guidance carry the same option
 Unknown Host wording stays `error`; Host logs alone never establish what the App received.
 A user click is a retry, not a promise that fullscreen will work. Manual display choices are respected.
 
-This is the first macOS release containing [source PR #107](https://github.com/hyun06000/gil/pull/107).
+Preview.28 was the first macOS release containing [source PR #107](https://github.com/hyun06000/gil/pull/107).
 Previous preview.27 and unchanged Windows owner.14 do not include the new observation field.
 Actual Codex/Claude screen, gesture and fullscreen behavior remains user field testing.
 No hooks, global instructions, project migration or automatic installation are added.
@@ -220,12 +239,12 @@ started; if needed, ask the chat to re-read current context. This is the same wo
 
 ## Validation and exact provenance
 
-- Build source: `33a3eae4f82db5c878845de3fbd822cadc71817f`; [PR #107](https://github.com/hyun06000/gil/pull/107).
-- Candidate version/roundtrip/protocol acceptance: [CI 42619965436](https://github.com/hyun06000/gil/actions/runs/42619965436), approved-plan profile.
-- All 10 applicable final source-head CI checks passed. macOS, Windows x64/arm64, feature profiles and Companion coverage were preserved.
-- CLI, probe and MCP report `0.2.1-preview.28`. Isolated SDK start/reconnect and preview.27↔28 reads are separate from actual Host UI acceptance.
-- Clean source snapshot: 737 files, `6fe044d6bb1a44e11e7e8a242ce9671760a5281d9aa115a0e6366ed4222755b5`, identical to the CI receipt.
-- Core SHA-256: `96e08272356f0bdc454e2b91537ed17117e79b1d3c496a957f5d968e11ae6913`.
+- Build source: `e98b048b97fdf44bcaac0b9c70e5d7ef942d64d3`; [PR #109](https://github.com/hyun06000/gil/pull/109).
+- Candidate version/roundtrip/protocol acceptance: [CI 42640140684](https://github.com/hyun06000/gil/actions/runs/42640140684), approved-plan profile.
+- All 10 applicable source-head CI checks passed, retaining macOS, Windows x64/arm64, feature-profile and Companion coverage.
+- CLI, probe and MCP report `0.2.1-preview.29`. Isolated SDK authoring/refusal/correction and preview.28↔29 reads are separate from actual Host acceptance.
+- Clean source snapshot: 738 files, `2c17c191cdc187d3d3218f39a12645aeea14d664a477d944c47890871926e39d`, identical to the CI receipt.
+- Core SHA-256: `560e38ca93c4a9182565ce297f73febe9a85b005876c287e704c321eba497929`.
 - Embedded UI SHA-256: `54ab7a558e085942d61dc697d4e8966394f5023d1171cd23ed1aa7b50a72cad4`.
 - Immutable payload receipt: [release.json](release.json); [original CI evidence](evidence).
 
@@ -239,9 +258,9 @@ PR/release, without rewriting the original receipt. Hashes check bytes, not publ
 
 ## Recovery and maintenance
 
-Compatibility ranges match preview.27; `migration: requires_review` remains unchanged. The update
+Compatibility ranges match preview.28; `migration: requires_review` remains unchanged. The update
 policy requires explicit contract review; no automatic migration or accepted Host update/rollback pair
-is claimed. Keep existing records. To return to preview.27, replace only the Plugin through official commands;
+is claimed. Keep existing records. To return to preview.28, replace only the Plugin through official commands;
 use it only with records it supports and do not restore its retired Host hooks. Never delete `.gil` or run `gil restore` to downgrade.
 
 Every main change uses a PR and pinned-payload CI. Keep GitHub no-reply identities and reviewed bytes.

@@ -2,15 +2,15 @@
   "schema": 1,
   "channel": "preview_unsigned",
   "publishable": false,
-  "version": "0.2.1-preview.28",
+  "version": "0.2.1-preview.29",
   "profile": "approved-plan",
   "source": {
-    "head": "33a3eae4f82db5c878845de3fbd822cadc71817f",
+    "head": "e98b048b97fdf44bcaac0b9c70e5d7ef942d64d3",
     "dirty": false,
-    "files": 737,
-    "snapshot_sha256": "6fe044d6bb1a44e11e7e8a242ce9671760a5281d9aa115a0e6366ed4222755b5"
+    "files": 738,
+    "snapshot_sha256": "2c17c191cdc187d3d3218f39a12645aeea14d664a477d944c47890871926e39d"
   },
-  "archive_sha256": "71c5565009c8cc5f178abe9dad95fc1343d78e5d4fa0cdc449c494994c882a1c",
+  "archive_sha256": "31dca9788ee3b4cf5d392600c877e56de73073a4628e4d0567ca1854717b80dc",
   "trust": {
     "developer_id": "not_provided",
     "notarization": "not_performed",
@@ -22,15 +22,15 @@
   "roundtrip": "passed",
   "smoke": {
     "passed": true,
-    "first_process_ms": 12,
-    "initialize_ms": 10,
+    "first_process_ms": 8,
+    "initialize_ms": 9,
     "deadline_ms": 30000,
     "tools": 33,
     "ui_sha256": "54ab7a558e085942d61dc697d4e8966394f5023d1171cd23ed1aa7b50a72cad4",
     "core": {
       "schema_version": 1,
       "product": "gil_core",
-      "core_version": "0.2.1-preview.28",
+      "core_version": "0.2.1-preview.29",
       "protocol": {
         "min": 1,
         "max": 1
