@@ -2,15 +2,15 @@
   "schema": 1,
   "channel": "preview_unsigned",
   "publishable": false,
-  "version": "0.2.1-preview.29",
+  "version": "0.2.1-preview.30",
   "profile": "approved-plan",
   "source": {
-    "head": "e98b048b97fdf44bcaac0b9c70e5d7ef942d64d3",
+    "head": "29d586aa7491e7b50318603081d75e77bb730780",
     "dirty": false,
-    "files": 738,
-    "snapshot_sha256": "2c17c191cdc187d3d3218f39a12645aeea14d664a477d944c47890871926e39d"
+    "files": 804,
+    "snapshot_sha256": "ba220af0d55356bf04cc2b1960afef7f582e9380347dc5aafa287e85e746e57c"
   },
-  "archive_sha256": "31dca9788ee3b4cf5d392600c877e56de73073a4628e4d0567ca1854717b80dc",
+  "archive_sha256": "a05275206833d315b2beaefd57236659b22edf4d2eefa6c9e6b7a33a11fc8cec",
   "trust": {
     "developer_id": "not_provided",
     "notarization": "not_performed",
@@ -22,15 +22,15 @@
   "roundtrip": "passed",
   "smoke": {
     "passed": true,
-    "first_process_ms": 8,
-    "initialize_ms": 9,
+    "first_process_ms": 6,
+    "initialize_ms": 7,
     "deadline_ms": 30000,
     "tools": 33,
-    "ui_sha256": "54ab7a558e085942d61dc697d4e8966394f5023d1171cd23ed1aa7b50a72cad4",
+    "ui_sha256": "4af08da3bbe2145504dddc308923ae8081504ff8be3dbd13d64f275c5e872a5b",
     "core": {
       "schema_version": 1,
       "product": "gil_core",
-      "core_version": "0.2.1-preview.29",
+      "core_version": "0.2.1-preview.30",
       "protocol": {
         "min": 1,
         "max": 1
