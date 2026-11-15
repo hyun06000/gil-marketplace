@@ -1,270 +1,115 @@
 # GIL marketplace — unsigned preview
 
-Prebuilt Codex Plugin for **macOS Apple Silicon**. Friends-and-testers prerelease, without Apple
-Developer ID signing or notarization. Source: [hyun06000/gil](https://github.com/hyun06000/gil).
+Prebuilt GIL for **macOS Apple Silicon**, for Codex and the Claude Code tab in Claude Desktop.
+This is a tester prerelease without Apple Developer ID signing or notarization.
+No Node, npm, Cargo, Homebrew or separate Companion is needed.
 
-| Version | Role | Fixed release |
+| Version | Role | Release |
 |---|---|---|
-| `0.2.1-preview.29` | Plan authoring diagnostics and PNG limit guidance | [v0.2.1-preview.29](https://github.com/hyun06000/gil-marketplace/releases/tag/v0.2.1-preview.29) |
-| `0.2.1-preview.28` | Previous public no-hooks build | [v0.2.1-preview.28](https://github.com/hyun06000/gil-marketplace/releases/tag/v0.2.1-preview.28) |
+| `0.2.1-preview.30` | Compact Monitor, concise reports, results before closure, five languages | [Current prerelease](https://github.com/hyun06000/gil-marketplace/releases/tag/v0.2.1-preview.30) |
+| `0.2.1-preview.29` | Previous public build; plan-input and PNG guidance | [Previous prerelease](https://github.com/hyun06000/gil-marketplace/releases/tag/v0.2.1-preview.29) |
 
 Use the fixed tag, never moving `main`. GitHub's Source ZIP is not the installation archive.
-No Node, npm, Cargo, Homebrew or separate Companion is required.
 
-## Install or update with Codex
+## What changed
 
-Ask Codex in a local folder-backed conversation:
+- Monitor puts current work, progress and the next action first. Detailed records are collapsed;
+  repeated text is reduced. Approval controls, stale-state warnings and uncertain outcomes remain visible.
+- Shared agent instructions request short reports that preserve findings, evidence and uncertainty.
+  When deliverables exist, show them before opening the closing interview.
+- Core guidance and Monitor support English, Korean, Simplified Chinese, Traditional Chinese and Japanese.
+- The source also corrects runtime-concurrency test expectations. This is not a change to runtime behavior.
 
-> Install GIL unsigned preview 0.2.1-preview.29 without any Host hooks, using the bundled Codex CLI.
-> Inspect existing GIL source/version first. Replace an existing installation only with my approval
-> (do not ask again if already approved). Use the fixed tag below. Preserve projects, records and security settings.
-> Resolve the installed MCP Core and run `write-guard uninstall --auto --host codex`, then `write-guard status --auto`.
-> Remove only generated GIL commands, preserve mixed user hooks and backups, and do not change unrequested Hosts.
-> Do not create global, project-local, Plugin or Skill hooks. Restart into a new conversation.
-> Report setup, actual Host noninterference/model guidance, and Monitor display separately. Do not claim OS write enforcement.
+Source changes: [reports and results](https://github.com/hyun06000/gil/pull/121),
+[Monitor](https://github.com/hyun06000/gil/pull/122),
+[languages](https://github.com/hyun06000/gil/pull/112),
+[test correction](https://github.com/hyun06000/gil/pull/123).
+These instructions guide a model; they do not guarantee compliance or enforce an operating-system file lock.
+No project migration, automatic recovery approval, tracking exclusions or concurrent experiments are introduced.
+The roadmap's remaining work is not presented as implemented. This publication does not update Windows.
+
+## Install or update
+
+[Full installation instructions](https://github.com/hyun06000/gil/blob/main/distribution/codex/INSTALL.md)
+cover existing registrations, permissions, failures, hook cleanup and rollback. Ask an agent in a local
+folder-backed Codex conversation to install this exact version. Existing replacement needs authorization;
+do not ask again when the current request already authorizes it.
 
 ```sh
-codex plugin marketplace add https://github.com/hyun06000/gil-marketplace.git --ref v0.2.1-preview.29 --json
+codex plugin marketplace add https://github.com/hyun06000/gil-marketplace.git --ref v0.2.1-preview.30 --json
 codex plugin add gil-companion-prototype@gil-preview-macos-arm64 --json
 ```
 
-Inspect existing registrations before replacing them through official Plugin commands. If Git or
-Xcode Command Line Tools are absent, use the verified archive/local marketplace route in
-[installation instructions](https://github.com/hyun06000/gil/blob/main/INSTALL.md), without installing developer tools.
-The exact archive is `gil-codex-macos-arm64-0.2.1-preview.29.tar.gz` (3,495,614 bytes),
-SHA-256 `31dca9788ee3b4cf5d392600c877e56de73073a4628e4d0567ca1854717b80dc`.
+Inspect existing registrations before using official Plugin removal and registration commands.
+Do not edit installed caches. Without Git or Xcode Command Line Tools, use the verified archive/local
+marketplace route; do not install developer tools as a prerequisite.
+
+- Archive: `gil-codex-macos-arm64-0.2.1-preview.30.tar.gz` — **4,119,499 bytes**.
+- SHA-256: `a05275206833d315b2beaefd57236659b22edf4d2eefa6c9e6b7a33a11fc8cec`.
+- [Exact download](https://github.com/hyun06000/gil-marketplace/releases/download/v0.2.1-preview.30/gil-codex-macos-arm64-0.2.1-preview.30.tar.gz).
+
+Verify size and hash before extraction, reject absolute/traversing paths, links and special files,
+and extract into a new private version folder. Preserve executable permissions and license notices.
 If macOS blocks execution, stop; never disable Gatekeeper or remove quarantine.
 
-After installation, open a **new conversation and a new empty test folder** and ask:
-**“지금 폴더에서 GIL 프로젝트를 시작해 줘.”** Check the actual Monitor, Interview closure,
-plan approval button and separate Experiment evidence files. A successful protocol call does not
-prove visible fullscreen or a human button click. Existing conversations may keep an older connection.
+For **Claude Desktop**, fully quit the app and back up its settings before registering the same verified
+archive's Core directly: absolute `plugins/gil-companion-prototype/core/darwin-arm64/gil`, arguments
+`["mcp", "--serve"]`. Preserve other server entries. Updating Codex does not update Claude's path.
+The Plugin catalog route and direct registration have separate screen acceptance histories;
+use the [Claude instructions](https://github.com/hyun06000/gil/blob/main/distribution/INSTALL-GUIDE.md).
 
-## Claude Desktop (Claude Code tab)
+GIL installs **no Host hooks**. Using the verified Core that the requested app will run, remove only old
+GIL-generated commands with `write-guard uninstall --auto --host codex` (or `--host claude`), then
+`write-guard status --auto`. Use `--host both` only when both apps were requested. Preserve other hooks,
+settings, backups and security policy; review custom commands instead of deleting them indiscriminately.
 
-Use the same verified archive, extract into a new version folder, and fully quit Claude Desktop
-before registering the Core through Desktop settings. Preserve other MCP entries and back up settings.
-The command is the absolute path to `plugins/gil-companion-prototype/core/darwin-arm64/gil`,
-with args `["mcp", "--serve"]`. See the [full instructions](https://github.com/hyun06000/gil/blob/main/INSTALL.md).
-Mac has no Companion connection button or stable launcher yet: update this direct registration to the
-new version folder. Updating only Codex does not change Claude's registration.
+Restart into a new conversation. The actual Core's `--version` must report `gil 0.2.1-preview.30`;
+the new tool connection and agent probe must report `0.2.1-preview.30`. Resolve the installed path rather
+than an arbitrary executable on PATH. Version text does not replace hash verification.
+Use a disposable empty folder to test GIL; do not initialize this distribution repository.
+Report registration, model guidance and actual visible/fullscreen Monitor separately.
 
-Before reopening Desktop, use the same verified Core to run `write-guard uninstall --auto --host claude`
-and `write-guard status --auto`. Preserve unrelated hooks, settings and backups. No new hooks are registered.
-Open a new Claude Code conversation. Prior testing showed the Monitor as an inline card; click it to expand.
-The Plugin route previously called tools but did not render the App, so use direct registration for this test.
-This version's actual Host behavior remains user acceptance.
+## Existing projects and compatibility
 
-## No Host hooks on fresh installs or updates
+Read `gil_context` before producing files for an existing GIL project, even when the user does not say
+GIL. Follow its current plan and actually open Verify step. New starts preserve existing project guides;
+older projects adopt continuity guidance at the next successful Verify open, not during installation.
+No hooks, global instructions, registry scans or automatic migration are added.
 
-GIL registers no global, project-local, Plugin or Skill hooks. It does not intercept ordinary shell/file tools,
-user prompts or conversation completion. Selected GIL projects receive shared prompt and timely MCP guidance;
-unrelated development, installations and file-free web research do not acquire GIL workflow obligations.
+The approved-plan profile exposes 33 tools, action surface 2 and readable storage formats 4–7.
+New projects use format 7. Plans still require the Monitor approval flow, and Verify needs real file
+evidence. Only closed failed experiments can request the existing human-reviewed recovery flow:
+review exact changes, preserve current files, then restore. General restore and Step revisit remain blocked.
+Do not delete records or change tracking metadata to bypass refusal.
 
-Resolve the actual installed executable from the official Plugin response/manifest or direct MCP registration.
-With `GIL_CORE` set to that verified absolute path:
+Compatibility ranges match preview.29; `migration: requires_review` remains unchanged. The release
+policy therefore requires explicit review and does not authorize an automatic update. Synthetic projects
+created by each version passed reads across 29 → 30 → 29 → 30 with unchanged file bytes.
+This is protocol evidence, not accepted installation, model behavior or actual Host update/rollback.
 
-```sh
-"$GIL_CORE" write-guard uninstall --auto --host codex
-"$GIL_CORE" write-guard status --auto
-```
+To return to preview.29, preserve projects and the prior installation, then replace only the Plugin through
+official commands using `v0.2.1-preview.29`. For Claude direct registration, fully quit the app and select
+the preserved prior Core path. Use only versions supporting the records. Never delete `.gil` or run
+`gil restore` to downgrade software; a downgrade does not convert record formats.
 
-Use `--host claude` for Claude or `--host both` only if both were requested. The cleanup removes only canonical
-commands generated by older GIL installers. Original files receive private backups; mixed user hooks,
-permissions, sandbox, project records and old registry bytes are preserved. Missing settings stay absent.
-Invalid settings, symlinks and cleanup contention are reported without claiming completion. Custom shell
-commands require exact review, not broad deletion. `not_installed` covers the inspected settings, not already
-loaded Host memory. Restart Hosts/new sessions to discard old loaded hooks. Old Core paths must be removed;
-new Core's legacy hook entry point is inert even with damaged registry or project state.
+## Verification and provenance
 
-If an old hook blocks the installer, prepare the exact removal diff and original backup and use supported
-Host file-edit tools for the approved GIL-only change. Do not retry an unprotected command, delete unrelated
-hooks, automatically grant permissions or disable security. Follow the
-[cleanup contract](https://github.com/hyun06000/gil/blob/main/distribution/codex/WRITE-GUARD.md).
+- Build source: `29d586aa7491e7b50318603081d75e77bb730780`.
+- [Candidate automatic checks](https://github.com/hyun06000/gil/actions/runs/43732805954): succeeded;
+  approved-plan, visual-authoring and product-safety profile, native version/tool/UI checks and archive roundtrip.
+- Source snapshot: 804 files, `ba220af0d55356bf04cc2b1960afef7f582e9380347dc5aafa287e85e746e57c`.
+- Core SHA-256: `d97170db2827bf42362d02da0ed99699e22fee2666c62d32965d6fb950239db7`.
+- Embedded UI SHA-256: `4af08da3bbe2145504dddc308923ae8081504ff8be3dbd13d64f275c5e872a5b`.
+- Receipt SHA-256: `4d14a4bbe048ec50c860d11291d8606a2556069ed86587b2f651cf293d33d3b7`.
+- Original immutable [receipt](release.json) and [evidence](evidence); bytes, modes and attribution preserved from source automation.
 
-## Verify the running Core version
+Actual Codex/Claude installation, model adherence, screen readability, fullscreen and a fresh Mac remain
+unverified for this version. Prior user screen observations do not automatically apply to this new build.
+The user's existing installation and settings remain unchanged. `publishable:false` is the original
+build-time authority record; separate publication approval is recorded in the pull request and release.
+Hashes verify bytes, not publisher identity.
 
-Since preview.25 the Core reports its distribution version. This release must print `gil 0.2.1-preview.29`; MCP initialize
-`serverInfo.version` and the agent probe's `core_version` must agree. Candidate builds stamp the
-version before compilation. Staging preserves binary bytes and native acceptance rejects mismatches.
-Runtime environment variables cannot change the compiled identity. Plain Cargo source builds are
-explicitly marked `<crate-version>-dev`.
-
-Preview.24 and earlier can legitimately print `gil 0.1.0`. For those legacy assets, compare the
-verified archive, receipt, both Plugin manifests and actual Core hash instead of declaring failure
-from that line alone. For a new-version mismatch, check the actual registered executable (not an
-arbitrary `gil` from PATH). If disk matches but MCP still reports an older version, restart the Host
-and open a new session. Version text never replaces integrity checks or publisher authentication.
-No hooks, security settings or project records are changed to resolve a version mismatch.
-
-## Continue an existing project in a new session
-
-For a request to change an existing GIL report, chart or code artifact, read `gil_context` before
-file-producing tools, even when the user does not say “GIL”. Follow the current plan and contract;
-an unrelated new task cannot reuse an old Verify. Ordinary projects and file-free research stay ordinary.
-
-New starts preserve existing Codex/Claude project instructions and append local continuity guidance
-before the initial Snapshot. Existing projects adopt it at the next successful Verify open; reads do
-not install files or rewrite past Snapshots. Custom/partial/linked/oversized files are preserved for review.
-No hooks, global instruction changes, registry scans or automatic project migrations are added.
-
-A legacy project with no local guide and a Host that does not forward MCP instructions still needs
-one explicit resume and legal Verify adoption. Prompt loading and model compliance are not guaranteed.
-See the [project resume contract](https://github.com/hyun06000/gil/blob/main/distribution/codex/PROJECT-RESUME.md).
-Field-test a new conversation with “add charts to this report” and verify context precedes file tools;
-compare with an ordinary non-GIL project. These actual Host checks remain pending.
-
-## What's new in preview.29
-
-Plan proposals expose `synthesis.basis_refs` in their schema, Synthesis open receipt, context and
-shared instructions. References must be unique, newline-separated closed Question/Interpretation
-steps in the current Interview's Synthesis lineage. A refusal reports every invalid line with its
-original line number, field path and reason. Previous-Cycle background can be explained in
-`statement`, but references are never automatically moved or rewritten.
-
-Verify guidance, tool documentation and the Manual show the existing PNG limits: each dimension
-1–8192 px, at most 16,777,216 pixels and 16 MiB per file; at most 8 new attachments and 32 MiB
-per close, with full bounded PNG decoding still required. Dimension errors show the observed
-size and limits; bounded byte reads report the observed lower bound. Failed inputs preserve
-project records and source files. Corrected explicit submissions can proceed normally.
-
-This includes [source PR #109](https://github.com/hyun06000/gil/pull/109). Validation and approval
-semantics, record/Snapshot formats and no-hooks operation are unchanged. This macOS release does
-not update Windows owner.14. Actual Host installation, model behavior and field testing remain
-with the user; automated MCP checks are not visible UI acceptance.
-
-## Earlier preview.28 improvements
-
-Monitor distinguishes an explicit fresh-press requirement (`refused`) from timeouts, closed
-connections and unknown failures (`error`). Only the explicit requirement skips timer retries
-and waits for a click; transport/unknown failures retain two bounded retries and manual recovery.
-App presence, gil_monitor_status and shared agent guidance carry the same optional observation.
-Unknown Host wording stays `error`; Host logs alone never establish what the App received.
-A user click is a retry, not a promise that fullscreen will work. Manual display choices are respected.
-
-Preview.28 was the first macOS release containing [source PR #107](https://github.com/hyun06000/gil/pull/107).
-Previous preview.27 and unchanged Windows owner.14 do not include the new observation field.
-Actual Codex/Claude screen, gesture and fullscreen behavior remains user field testing.
-No hooks, global instructions, project migration or automatic installation are added.
-
-## Earlier preview.27 improvements
-
-The Mac Monitor update guide lets users choose Codex, Claude Desktop or both and copy an
-update request with the official installation URL. Clipboard denial falls back to manual copy.
-Claude updates are handed to an agent outside Claude so the app can be fully quit before settings change.
-Opening the guide and copying never install software or invoke a tool.
-
-MCP rejects misplaced contract/report keys before execution. gil_plan_read.active_plan returns
-all approved items, including executed ones, for exact reuse in a new Interview. Plan errors identify
-missing IDs and mismatched fields with bounded value previews. Current Report help is available through
-gil_help({project_root, topic: "close"}) in the connected Core. Windows private records use the same
-product resolver for that help (source CI only; Windows owner.14 is not republished here).
-Approval, file-evidence, hooks-free operation and stored record formats are unchanged.
-
-## What this test build includes
-
-Visual close arguments now receive safe field-path diagnostics and the actual open owner on an owner mismatch.
-`gil help visuals` includes complete two-PNG examples: new attachments use `source: {kind: "new", key}`;
-stored citations require `owner`, `asset_id` and `sha256`. A declaration does not contain `uses`.
-Plan guidance follows the current stage, explains when the bound document is available, and makes the
-one-item-per-Experiment binding explicit. Step `close_cycle` and Cycle `open_child` have distinct meanings.
-No existing records are rewritten or execution history backfilled. The reported late appearance of a
-plan document was not reproduced; this release does not claim to fix that unverified observation.
-
-Stop/wrap_up no longer block conversation progress, and UserPromptSubmit no longer injects instructions.
-The user can pause, change topics, request a chat report, or wait for Monitor recovery approval without
-opening a dummy Step/Cycle or calling gil_await_user. That tool remains an optional read-only check for
-Question/pending Synthesis, with unchanged input/output shape. A chat turn ending is not recorded GIL
-completion; real approval, evidence and Chain closure requirements remain.
-
-Start/resume/open/close responses guide the selected GIL project without enrolling it in a Host registry.
-File creation, modification, deletion, movement and imports should occur during an actually open Verify.
-This is prompt guidance, not an OS write lock or a guarantee that every model follows instructions.
-Core transition, human approval, report, evidence and dirty-state validation remain unchanged.
-Other sessions can use ordinary Host tools; no GIL wrapper or GIL-specific escalation is required.
-Project outputs default to the selected project; necessary external outputs disclose their reason, path
-and lack of tracking before creation. No user project records or historic execution facts are rewritten.
-Actual Host noninterference and model adherence remain user field tests.
-
-
-Plan proposals use `{project_root, draft:{scope, items, synthesis}}`. The documentation example
-matches its checklist; malformed wire arguments receive static correction guidance without echoing
-input values. Synthesis is a map of Report strings. Closing keeps existing items and adds
-`draft.synthesis.chain_verdict`, then closes the approved Interview and Chain rather than opening
-another Experiment. Shared instructions and current-context guidance use the same shape.
-
-Since preview.13, this also includes start-to-Monitor handoff, project file boundary and explicit
-user-wait guidance improvements. This version removes Host guard registration entirely;
-installation cleans up only old GIL-generated commands and preserves other settings.
-
-New Verify writes refuse one-word/boilerplate reasons for omitting visuals and image evidence files
-contradicting a `not_needed` declaration. When Verify attaches images, Analysis and the Experiment
-Cycle Report must cite at least one stored image. Monitor shows visual badges, counts and missing
-states, with the visual panel before report text. Existing closed records remain readable unchanged.
-Hangul NFC/NFD fallback uses one unambiguous existing directory, only after a missing-path result;
-permission errors never select another folder. Monitor and typed reports use the same resolved root.
-Product-safety dirty guidance preserves current work before restoring baseline contents manually.
-
-Monitor distinguishes confirmed approval, temporary read retry, persistent read failure and uncertain
-write outcomes. A failed read retains the last confirmed revision without approving newer proposals.
-Retries use 2/4/8/15 seconds; polling never repeats a write or sends chat. Missing/mismatched write
-acknowledgements remain uncertain. Zoom, minimap and metadata-only update guidance are retained.
-Windows includes Claude Desktop connection controls; macOS uses direct registration above.
-
-This explicit `approved-plan` + `visual-authoring` profile includes Chains, repeated-failure context,
-Monitor plan approval/revision, bound Experiment items and guidance after closing steps. A model
-cannot approve its own plan. Verify closure requires the exact bound plan document and separate
-real file evidence. Interpretation and learning retain their evidence lineage. Chat-only output is insufficient.
-MCP and Skill share the core workflow. Codex and Claude catalogs package the same Core and Skill;
-Claude Desktop Plugin rendering and direct-MCP rendering remain separate Host acceptance questions.
-
-The profile exposes 33 tools, action surface 2 and readable storage formats 4..7. **New projects use
-format 7; existing projects are not automatically migrated.** Use a fresh folder to test approval.
-Older Plugins may reject format-7 records. A Plugin downgrade never converts project records.
-Closed failed Cycles can now request a read-only recovery review in Monitor. A human must inspect
-the exact file-change list and click **보존 후 되돌아가기**. The before-world files are preserved in
-`.gil/revisit-preserved/<approval-id>/` within the actual record store before restoring the selected
-past state. Failure records, evidence snapshots and learning remain, and a new attempt keeps their
-lineage. Interrupted approved recovery can resume. Protected-path changes, links and stale consent
-are refused; general `restore`, Step-level revisit and automatic record migration remain blocked.
-Windows owner.12 uses the same approval flow (Windows additionally requires the project and record
-store on the same volume). Do not delete records or change tracking metadata to bypass refusal.
-
-After confirmed recovery from an explicit button click, Monitor sends one chat continuation request.
-The agent must re-read the same project's `gil_context` before asking for another approval or
-opening a new Cycle. Chat delivery failure does not undo or repeat recovery: the separate
-**채팅에 계속 요청 보내기** button retries only that message. Polling, uncertain replies and reopening
-a completed panel never automatically send a message. Host acceptance does not prove a model turn
-started; if needed, ask the chat to re-read current context. This is the same workflow on both OSes.
-
-## Validation and exact provenance
-
-- Build source: `e98b048b97fdf44bcaac0b9c70e5d7ef942d64d3`; [PR #109](https://github.com/hyun06000/gil/pull/109).
-- Candidate version/roundtrip/protocol acceptance: [CI 42640140684](https://github.com/hyun06000/gil/actions/runs/42640140684), approved-plan profile.
-- All 10 applicable source-head CI checks passed, retaining macOS, Windows x64/arm64, feature-profile and Companion coverage.
-- CLI, probe and MCP report `0.2.1-preview.29`. Isolated SDK authoring/refusal/correction and preview.28↔29 reads are separate from actual Host acceptance.
-- Clean source snapshot: 738 files, `2c17c191cdc187d3d3218f39a12645aeea14d664a477d944c47890871926e39d`, identical to the CI receipt.
-- Core SHA-256: `560e38ca93c4a9182565ce297f73febe9a85b005876c287e704c321eba497929`.
-- Embedded UI SHA-256: `54ab7a558e085942d61dc697d4e8966394f5023d1171cd23ed1aa7b50a72cad4`.
-- Immutable payload receipt: [release.json](release.json); [original CI evidence](evidence).
-
-Fresh-machine installation, actual Host fullscreen, real approval clicks and Luna work for this
-version remain user acceptance tests. Previous preview.6 VM or preview.7 model results are not
-claimed for this version. Core cannot intercept every external process or prove semantic truth.
-
-Payload bytes, executable modes and attribution are preserved from CI, not rebuilt here.
-Receipt `publishable:false` records build-time authority; publication approval is recorded by the
-PR/release, without rewriting the original receipt. Hashes check bytes, not publisher identity.
-
-## Recovery and maintenance
-
-Compatibility ranges match preview.28; `migration: requires_review` remains unchanged. The update
-policy requires explicit contract review; no automatic migration or accepted Host update/rollback pair
-is claimed. Keep existing records. To return to preview.28, replace only the Plugin through official commands;
-use it only with records it supports and do not restore its retired Host hooks. Never delete `.gil` or run `gil restore` to downgrade.
-
-Every main change uses a PR and pinned-payload CI. Keep GitHub no-reply identities and reviewed bytes.
-Static checks do not execute the packaged binary:
+Every main change uses a pull request and required `pinned-payload` checks. Keep GitHub no-reply identities.
 
 ```sh
 node --test checks/verify.test.mjs checks/history.test.mjs
@@ -272,5 +117,6 @@ node checks/verify.mjs
 node checks/history.mjs
 ```
 
-[Support](https://github.com/hyun06000/gil/blob/main/SUPPORT.md) ·
+These checks do not execute the packaged binary or verify installation.
+[Source](https://github.com/hyun06000/gil) · [Support](https://github.com/hyun06000/gil/blob/main/SUPPORT.md) ·
 [Private security reporting](https://github.com/hyun06000/gil/security/advisories/new)
