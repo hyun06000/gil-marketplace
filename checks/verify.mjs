@@ -11,16 +11,16 @@ const core = `${prefix}/core/darwin-arm64/gil`;
 const manifest = `${prefix}/.codex-plugin/plugin.json`;
 const hash = bytes => createHash('sha256').update(bytes).digest('hex');
 export const pins = Object.freeze({
-  "version": "0.2.1-preview.31",
-  "receipt": "290877470eb725a696a2ea1d3a08e8332a8fe12b8dc805ef9e25dd3a9c2fd548",
-  "source": "393eb8fa6458e3bcf33cb48d58bd73d49b08a48c",
-  "snapshot": "3a88a2dd6c41c6b3b66a9d90329e605a675dfbf4207f5176c93598fc4fe34375",
-  "archive": "6fa9e8123da4525c99ee5fa4524503d198bba8f58846e68208ae0253b913f501",
-  "core": "a3f6e5bea5cf937ace224d5cbed71ff54099d997f55e22c8cc10dc57a03e5e10",
-  "ui": "4af08da3bbe2145504dddc308923ae8081504ff8be3dbd13d64f275c5e872a5b",
-  "profile": "approved-plan",
-  "tools": 33,
-  "source_files": 831,
+  "version": "0.2.1-preview.32",
+  "receipt": "0c98cf37aed904b9095a77dc798da74fd4f359cd94daa16a553be60a08faf0f8",
+  "source": "f08a5e363da3b595678f426ea1be2cbb767be598",
+  "snapshot": "bd19fd5622383db33ac994eef568ecf427374d303a7b83c7baf24dd5af460dd2",
+  "archive": "c8b49fba94593118b463bb8800bc3e8623cac9b26c95c87a051b0b65df60b91b",
+  "core": "ce5798477dfc1576aed0a725c7c4dc30d250a0aa37d9746b7ccf450bb5bf7b57",
+  "ui": "f06376f81e8ea0aa3d5ef16e6baebef0fc8e4af0a099427b153e8a8fc6024c7b",
+  "profile": "exploration-flow",
+  "tools": 35,
+  "source_files": 997,
   "migration": "requires_review",
   "binary_origin": "preserved_from_verified_development_tree; CI provenance review still required"
 });
@@ -37,7 +37,7 @@ export const files = [...payload, 'release.json', 'README.md', 'AGENTS.md',
 const trust = {developer_id: 'not_provided', notarization: 'not_performed',
   clean_machine_install: 'deferred_not_passed', automatic_update: 'not_authorized',
   os_security_override: 'prohibited', publication: 'requires_separate_approval'};
-// Explicit approved-plan + visual-authoring test contract; new projects use format 7.
+// Explicit exploration-flow + visual-authoring test contract; new projects use format 7.
 // Existing projects are not migrated. Downgrading a Plugin never converts records.
 const compatibility = {protocol: {min: 1, max: 1}, action_surface: {min: 2, max: 2},
   storage_format: {min: 4, max: 7}, monitor_view_schema: {min: 1, max: 1}, node_detail_schema: {min: 1, max: 1}};
@@ -62,7 +62,7 @@ export async function verify(at = root) {
   const receipt = JSON.parse(receiptBytes);
   assert.deepEqual(Object.keys(receipt).sort(), ['binary_origin','channel','compatibility','files','migration',
     'platform','plugin','publishable','runtime_profile','schema','source','trust','version']);
-  assert.equal(receipt.schema, 3, 'receipt schema 3 is required for the approved-plan contract');
+  assert.equal(receipt.schema, 3, 'receipt schema 3 is required for the exploration-flow contract');
   assert.equal(receipt.runtime_profile, pins.profile);
   assert.deepEqual(receipt.compatibility, compatibility);
   assert.equal(receipt.migration, pins.migration);
@@ -114,7 +114,8 @@ export async function verify(at = root) {
   assert.equal(check.publishable, false); assert.equal(check.roundtrip, 'passed');
   assert.equal(check.archive_sha256, pins.archive); assert.equal(check.smoke.passed, true);
   assert.equal(check.smoke.core.core_version, pins.version, 'Core build version differs from release');
-  assert.equal(check.smoke.tools, pins.tools, 'tool count differs from the approved-plan contract');
+  assert.equal(check.smoke.exploration?.new_chain_contract, 'exploration');
+  assert.equal(check.smoke.tools, pins.tools, 'tool count differs from the exploration-flow contract');
   assert.equal(check.smoke.ui_sha256, pins.ui);
   assert.deepEqual(check.smoke.core.storage_format, compatibility.storage_format);
   assert.deepEqual(check.smoke.core.action_surface, compatibility.action_surface);

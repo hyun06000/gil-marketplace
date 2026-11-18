@@ -53,7 +53,7 @@ test('update record cannot silently change compatibility', async t => {
   const at = await fixture(t), path = join(at,'evidence/update-record.json'), r = JSON.parse(await readFile(path));
   r.compatibility.storage_format.max = 6; await writeFile(path,JSON.stringify(r)); await assert.rejects(verify(at));
 });
-test('update record cannot downgrade the approved-plan contract to the old surface', async t => {
+test('update record cannot downgrade the exploration-flow contract to the old surface', async t => {
   const at = await fixture(t), path = join(at,'evidence/update-record.json'), r = JSON.parse(await readFile(path));
   r.compatibility.action_surface = {min:1, max:1}; r.compatibility.storage_format = {min:4, max:4};
   await writeFile(path,JSON.stringify(r)); await assert.rejects(verify(at));
@@ -68,7 +68,7 @@ test('update record cannot point at a different Core or UI', async t => {
     r[key] = '0'.repeat(64); await writeFile(path,JSON.stringify(r)); await assert.rejects(verify(at));
   }
 });
-test('checks from the default runtime profile cannot stand in for approved-plan', async t => {
+test('checks from the default runtime profile cannot stand in for exploration-flow', async t => {
   const at = await fixture(t), path = join(at,'evidence/checks.json'), r = JSON.parse(await readFile(path));
   r.profile = 'default'; await writeFile(path,JSON.stringify(r)); await assert.rejects(verify(at));
 });
@@ -86,17 +86,17 @@ test('checks with a different UI or archive hash are rejected', async t => {
     mutate(r); await writeFile(path,JSON.stringify(r)); await assert.rejects(verify(at));
   }
 });
-test('a rewritten schema-2 receipt without the approved-plan contract is rejected by the receipt hash pin', async t => {
+test('a rewritten schema-2 receipt without the exploration-flow contract is rejected by the receipt hash pin', async t => {
   // Any rewrite of release.json, including dropping runtime_profile/compatibility/migration and
   // reverting schema to 2, changes its bytes and fails the pinned receipt hash before field checks run.
   const at = await fixture(t), path = join(at,'release.json'), r = JSON.parse(await readFile(path));
   delete r.runtime_profile; delete r.compatibility; delete r.migration; r.schema = 2;
   await writeFile(path,JSON.stringify(r)); await assert.rejects(verify(at));
 });
-test('reviewed tree reports the pinned approved-plan contract', async () => {
+test('reviewed tree reports the pinned exploration-flow contract', async () => {
   const result = await verify();
-  assert.equal(result.version, '0.2.1-preview.31'); assert.equal(result.runtime_profile, 'approved-plan');
-  assert.equal(result.tools, 33); assert.equal(result.migration, 'requires_review');
+  assert.equal(result.version, '0.2.1-preview.32'); assert.equal(result.runtime_profile, 'exploration-flow');
+  assert.equal(result.tools, 35); assert.equal(result.migration, 'requires_review');
 });
 
 test('the original CI probe must report the pinned distribution version', async t => {
