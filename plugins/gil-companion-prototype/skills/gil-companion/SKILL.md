@@ -154,8 +154,39 @@ The current dirty gate detects changes at GIL boundaries; it does not intercept 
    project Artifact files. Synthesis waits for the user's reply to its proposed statement;
    silence, earlier requests and the agent's own judgment are not approval. Do not ask again for
    approval already given to that exact proposal. Outcome judges the approved scope; do not leave it
-   open until the whole project is finished. Choose the next call from the **current recorded state**,
-   not from the beginning of the sequence:
+   open until the whole project is finished.
+
+   **Deepen the interview before proposing.** A vague wish ("make it convenient", "analyse it
+   well", "automate everything") is not a completion criterion. In Question, turn it into the real
+   situation, the inputs, an example of the wanted result and a counter-example of the unwanted one,
+   what is in and out of scope, the constraints, the priority and a completion condition the user
+   can judge. Reuse answers already given; ask first the one open point that changes the next
+   decision, one at a time; a request that is already concrete gets no extra question, and a fixed
+   number of questions proves nothing. If the user does not know how, offer concrete options and
+   their differences instead of making them design the procedure. In Interpretation, separate what
+   the user's answers confirmed, your own interpretation or recommendation, and what is still
+   unknown; if an open point still matters for the next item or its approval, open another Question
+   (Interpretation → Question is legal) instead of hiding it in the proposal. Detail:
+   `gil_help(topic: "cycle/interview/clarify")`.
+
+   **Propose short, in small items.** The Synthesis statement (and, in the approved-plan profile,
+   `draft.scope`/`draft.items`/`draft.synthesis`) leads with the goal, this scope, the key
+   constraints and the decisions to confirm, as short statements the user can accept or correct at
+   a glance; the ordered items follow. Each `question` is one problem that can be performed and
+   checked, and each `done_when` is that problem's observable completion; say the needed inputs, the
+   prerequisite, the first action and the check beside it, briefly. The first item must be
+   startable now with the material, permissions and scope at hand; when a prerequisite is
+   unconfirmed, a small item that checks it comes first, and later items that need an earlier
+   result say so instead of assuming it. Do not list feature names or bundle several independent
+   goals in one item, and do not hide several separately-refusable decisions in one statement. Do
+   not repeat the interview transcript or the same background; link each statement to the actual
+   Question/Interpretation refs in `basis_refs`. Brevity drops no constraint, risk, uncertainty or
+   approval scope, and the existing scope/items/synthesis shape is unchanged. Under the exploration
+   contract (rule 3) the items are the requirements themselves: each `question` is a question to
+   answer and each `done_when` the criteria the user will judge it by. Agree on the data scope,
+   the quality of evidence and how limits will be reported; do not fix the answer or enumerate the
+   experiments and their order in advance. Choose the next call
+   from the **current recorded state**, not from the beginning of the sequence:
 
    | Current state | Next call |
    | --- | --- |
@@ -168,7 +199,7 @@ The current dirty gate detects changes at GIL boundaries; it does not intercept 
    | Synthesis is closed and Outcome has not been opened | `gil_open` Outcome |
    | Outcome is open and its verdict/next direction are ready | `gil_close` Outcome; do not open it again |
    | Outcome is closed but the Interview Cycle is still open | `gil_close` with the Cycle Report; there is no extra Report step to open |
-   | Interview Cycle is closed and the agreed execution work remains | `gil_open` Experiment; never `gil_start` an existing project |
+   | Interview Cycle is closed and the agreed execution work remains | `gil_open` Experiment; never `gil_start` an existing project (exploration contract: the Experiment takes its requirement link in `contract`, rule 3) |
 
 3. **One checkable question at a time.** An Experiment handles one independently checkable
    question. Open a small action contract (`objective`, `next_action`, `done_when`), perform its
@@ -177,16 +208,92 @@ The current dirty gate detects changes at GIL boundaries; it does not intercept 
    writing, implementation, calculations and tests that change project files belong in Experiment
    Verify, never an open Interview. Web research without project file changes needs no Verify.
 
+   **Define is a yes/no proposition, not an activity.** State one bounded question that can be
+   answered yes or no from evidence. “Inspect dates” and “check whether dates work” are tasks,
+   not the problem. Ask “Can every date in the specified files be converted without information
+   loss under the agreed rules?” Fix the criterion before observing the result. Completing an
+   inspection or writing a report does not make the proposition true. Insufficient evidence is
+   not a supported no. Exploratory analysis does not assume a desired answer in advance.
+
+   **Two execution contracts — the record says which.** A Chain's contract is recorded when the
+   Chain opens and never changes. Read it from `gil_plan_read`: `contract: exploration` means the
+   exploration contract below; a response without that field means the item-binding rules that
+   follow it. An existing Chain keeps its contract, and a connected Core that does not report
+   `contract: exploration` does not provide it: opening a new Chain there does not enable it. Do
+   not bypass item bindings or repeatedly revise a plan to simulate the other contract; report the
+   limitation and follow the legal receipt.
+
+   **Exploration contract (only when `gil_plan_read` reports `contract: exploration`).** The
+   approved `items` are stable requirements — the question to answer and its judgment criteria —
+   not an execution queue. Nothing is bound automatically and no order is imposed:
+   - Open each Experiment with its requirement link in `contract`:
+     `gil_open(kind: "experiment", contract: "plan_revision: …\nplan_digest: …\nrequirement_id: …\nrelevance: …\nreadiness: …\nuncertainty: …")`.
+     Copy `gil_plan_read.experiment_link`, keep one `requirement_id`, and write the three
+     statements yourself from what has been observed: why this question serves that requirement,
+     which inputs and earlier results are actually at hand, and which uncertainty it reduces. The
+     Core checks the reference (this Chain, the active approved revision, an approved requirement);
+     it does not verify what the statements mean. An unapproved requirement, a superseded revision
+     or another Chain's approval is refused — correct the link from `gil_plan_read`, never invent
+     approval.
+   - Define is one yes/no proposition that contributes to the linked requirement and can be judged
+     now, not a copy of the requirement. Several different small Experiments may serve one
+     requirement, chosen from observation; refuting evidence is kept and may reopen a candidate.
+   - One Experiment's `success` does not complete a requirement. `gil_plan_read.requirements` lists
+     the linked Experiments and their recorded verdicts; whether a requirement is answered is
+     decided only in the Closing Interview the user approves. Report an answer that could not be
+     reached as not reached, never as a supported no.
+   - A failed Experiment still requires the explicit revisit, even with no file change. After the
+     restore, open a different small Define linked to the same (or another approved) requirement;
+     the failed Define need not be repeated.
+   - Ground the next Experiment, and the answer, evidence and limits reviewed per requirement in
+     the Closing Interview, in the original records — each linked Experiment's Define, Hypothesis,
+     Verify observation, Analysis and Outcome lesson. Do not keep a separate running “current
+     answer” or provisional summary per requirement as a premise for later Experiments: a guess
+     that is not re-checked against its evidence hardens into one. When `tools/list` offers
+     `gil_report_read` and `gil_evidence_read`, read only what the next decision needs:
+     `gil_plan_read.requirements[].experiments[].cycle_ref` → `gil_report_read(owner: {kind:
+     "cycle", ref})` for Step references and the Cycle Report → `gil_report_read(owner: {kind:
+     "step", ref})` for one stored Report → `gil_evidence_read(owner: <that Verify>, path)` for a
+     file it declared, read from that Verify's Snapshot, never from the working folder, where a
+     later Verify or a revisit may have changed the file of that name. `owner: {kind: "chain",
+     ref}` lists an earlier Chain's Cycles. Failed and revisited Experiments read the same way.
+     These reads return stored text: existing in the record is not being true or still valid,
+     disagreeing records are both shown, and nothing is summarized or judged. An answer with
+     `truncated: true` left part out to stay small and names the input that reads it (`more`,
+     a field's `read`, `next_offset`); left out never means absent. Without those tools the
+     same Reports are in `gil_story`.
+   - Do not re-propose the plan merely to split, re-order or change the method of experiments.
+     When the requirement, scope, permission or judgment criteria themselves must change, do not
+     disguise that as a Define: agree on it in an Interview (`gil_plan_request_interview` preserves
+     the request during an Experiment).
+
+   **Define the smallest problem performable now.** From the interview and the agreed item for
+   this Experiment (approved-plan profile: the bound `current_item`), Define infers the one smallest
+   problem that can be performed and judged now; its `problem` and `success_condition` point at the
+   same problem and completion scope as that item, never at the Chain goal or the whole proposal.
+   (That same-scope rule is item binding. Under the exploration contract they point at one
+   proposition contributing to the linked requirement, as above.)
+   Name the inputs already at hand, the first action, the observable result and where this
+   Experiment stops; the next problem stays a separate candidate. "Smallest" is a meaningful
+   experiment that can be observed, judged and stopped on its own — not a short sentence or one
+   command: do not bundle independent goals (data check, cause analysis, chart and proposal) into
+   one Experiment, and do not split a mere preparation that yields no checkable result of its own
+   into a separate one. When the inputs or a prerequisite are not confirmed, confirming them is
+   this problem. Under item binding, executing only part of a large approved item does not complete
+   it; splitting or replacing an already approved item is not supported there, so say that plainly (rule 7:
+   `gil_plan_request_interview` preserves the request), keep the record, and change no approved
+   scope. Detail: `gil_help(topic: "step/define/smallest")`.
+
    | Current state | Next call |
    | --- | --- |
-   | Experiment Cycle just opened | `gil_open` Define: one question and its success criterion; no project file changes yet |
+   | Experiment Cycle just opened | `gil_open` Define: one question and its success criterion — the smallest problem performable now (item binding: the same problem as the agreed item; exploration contract: one proposition contributing to the linked requirement); no project file changes yet |
    | Define is closed | `gil_open` Hypothesis, then `gil_close` it with expectation, rationale and guardrail |
    | Hypothesis is closed | `gil_open` Verify. **Wait for its success** before changing project files |
    | Verify is open | Do the contracted work, save the observation as project files, `gil_close` with `evidence_files` |
    | Verify is closed | `gil_open` Analysis, `gil_close` with a nonblank `interpretation` of the saved evidence |
    | Analysis is closed | `gil_open` Outcome, `gil_close` with `verdict`, `lesson`, `next_direction` |
    | Outcome is closed but the Experiment Cycle is still open | `gil_close` with the Cycle Report |
-   | Cycle closed `success` | `gil_open` the next Experiment (next independent question) or Interview. When no work remains and the project has a Chain, the Closing Interview and Chain Report follow; a chat summary alone never completes the project, and that Interview's first message shows the result before asking to close |
+   | Cycle closed `success` | `gil_open` the next Experiment (next independent question; exploration contract: linked to the same or another approved requirement — the success completed no requirement) or Interview. When no work remains and the project has a Chain, the Closing Interview and Chain Report follow; a chat summary alone never completes the project, and that Interview's first message shows the result before asking to close |
    | Cycle closed `failure` · `revisit` | When the Core receipt requires Monitor approval, open Monitor and wait for the user's “Preserve and revisit” (보존 후 되돌아가기) button after reviewing file changes; do not call App-only tools or invent consent. After confirmed recovery, `gil_open` a new Cycle. Otherwise follow the connected Core receipt; never bypass a product refusal |
 
    A closed Hypothesis or a prepared Verify contract does not mean Verify is open. Do not change
@@ -290,6 +397,11 @@ The current dirty gate detects changes at GIL boundaries; it does not intercept 
    next; do not copy it into that report. Cycle `open_child` records a direction, it neither opens
    nor executes another Experiment. Follow the actual Cycle receipt for the allowed next kind.
    Approved Closing Interview uses `close_chain`; ordinary execution uses its own Cycle contract.
+   After the Chain Report the Chain is closed: open nothing else inside it, and report the verdict,
+   the deliverables and the remaining questions to the user. Only a new topic starts the next Chain,
+   with one explicit `gil_open(kind: chain)`; there, read `gil_context` once, then open its Question.
+   The new Chain is approved in its own Opening Interview and reuses no earlier approval, plan or
+   re-interview request. Never `gil_start` again.
    Format-4 steps (including Verify) and format-5 non-Verify
    reports without stored images use `{project_root, report}`. Every format-5 Verify uses
    `{project_root, report, expected_owner, visuals}`, even without images. Supply both
@@ -322,7 +434,9 @@ The current dirty gate detects changes at GIL boundaries; it does not intercept 
      is the ordered checklist (1–64) of `id`, `question`, `done_when`; `synthesis` holds the
      Synthesis Report fields as strings, where `exploration_checklist` lists the item IDs in the same
      order, one per line. Replace the example's basis refs with the actual closed Question and
-     Interpretation refs in the current Synthesis lineage. `basis_refs` is a nonempty newline-separated
+     Interpretation refs in the current Synthesis lineage. From the first proposal, each item is one
+     performable, checkable problem with an observable `done_when` (rule 2); Core does not judge
+     problem size, so write it right rather than expecting a refusal. `basis_refs` is a nonempty newline-separated
      string of unique canonical `step:Cn/Sm` references, one per line, in this same Interview only.
      Do not add commas, prose, Cycle references, other-Cycle steps, open steps or abandoned branches.
      Previous-Cycle/external background belongs in `statement` prose and cannot replace these current
@@ -343,17 +457,24 @@ The current dirty gate detects changes at GIL boundaries; it does not intercept 
      waiting, make no project file changes or re-proposal. Check approval only with `gil_plan_read`.
    - `receipt.decision: approve` → `gil_close` Synthesis with `close_report` **unchanged**, then
      `gil_open`/`gil_close` Outcome, then `gil_close` the Interview Cycle Report. For execution,
-     then `gil_open` Experiment: the first pending item binds automatically. For Closing, use
+     then `gil_open` Experiment: under item binding the first pending item binds automatically;
+     under the exploration contract send the requirement link (rule 3). For Closing, use
      `next_direction.action: close_chain` in the Interview Cycle Report, then submit the Chain
      Report with the approved `chain_verdict` as its `verdict`; do not open another Experiment.
+     The Closing Interview's own Outcome and Cycle verdicts are `success` because the approval
+     was obtained; that is not the Chain verdict, so a Chain approved as `failure` is reported
+     as `failure`.
      `request_changes` → close with that
-     `close_report` (`approved: no`) and ask what to change in a new Question. Editing an open
+     `close_report` (`approved: no`) and ask what to change in a new Question. A change request
+     is never an approval: nothing of the plan executes and no Chain closes. Editing an open
      proposal makes a new revision; an earlier approval is never reused.
    - One Experiment binds exactly one `current_item`, the first pending item, when it opens.
      `executed_cycles` records that binding, not success and not a semantic audit of every task.
+     (That is item binding. Under the exploration contract `current_item` is the requirement the
+     Experiment was linked to and `pending` lists requirements with no linked Experiment yet — rule 3.)
      Doing I2–I4 while bound to I1 does not mark those items executed. Do not backfill bindings or
      repeat completed work just to change the ledger; disclose the mismatch and agree on the
-     remaining verification scope. A combined objective belongs in one item before approval.
+     remaining verification scope. Work that is one problem is one item before approval; independent goals are separate items.
    - `document` is available immediately after the Experiment opens and binds its revision, before
      Define/Verify. Before binding (including Interview) it is null; reading or a refused close
      never creates it. It stays tied to that Cycle's revision, not a newer proposal. If an open,
@@ -375,11 +496,34 @@ The current dirty gate detects changes at GIL boundaries; it does not intercept 
      interruption observation (rule 4). After a `failure` · `revisit` close, show the preserved
      partial results before the Monitor recovery removes them from the folder (they stay in the
      Snapshot and the preserved location). Keeping the partial results in place and continuing is
-     not a recorded transition yet, and cancelling or replacing an approved item is not either: the
-     next plan keeps the interrupted item verbatim and adds or reorders items.
+     not a recorded transition yet, and cancelling, splitting or replacing an approved item is not
+     either: the next plan keeps the interrupted item verbatim and adds or reorders items. A large
+     approved item of which only a part was executed is not complete; disclose that gap instead of
+     redefining the item or counting the part as the whole.
    - When every approved item has executed, the project is not finished by a chat summary:
      `gil_open` Interview as the Closing Interview, propose the final `chain_verdict` for approval,
      then `gil_close` the Chain Report. Its first message shows the result before asking (rule 5).
+     The closing proposal states, for each approved question, the answer reached with its
+     evidence references, the counter-evidence and the limits, read from the original Reports; it
+     separates what is still unanswered, why this exploration stops, and candidate follow-up
+     experiments or alternative material. The Chain Report's `handoff_summary` is written once
+     from those same records and names the candidates as candidates for the next Chain's
+     Interview, never as an approved plan. Unanswered questions stay stated as unanswered; they
+     are not turned into success.
+   **Reflection and recovery.** Use Analysis evidence and Outcome's lesson to trace relevant
+   earlier Steps/Cycles and distinguish observations, assumptions and interpretations. Explain
+   where a faulty premise entered, how it propagated, and why the proposed recovery target is
+   suitable; the error location is not automatically the recovery target. Cite relevant records
+   instead of copying the entire history. Use the existing report fields, not a new Reflection kind.
+   Every failed Experiment requires explicit revisit, even when its world has no file changes.
+   Restore the whole tracked world (working code and generated outputs); do not retain selected
+   failed files because “most worked”. Preserve evidence and learning in the records. Honor the
+   current target and approval gates; cross-Chain investigation is not cross-Chain restore support.
+   For successful continuation, explain the next question and prerequisites. Before proposing
+   Chain closure, explain why to stop, show results and remaining questions, and obtain the user's
+   exact closing approval. Waiting is not failure or consent. The next Chain's Interview uses prior
+   answers, evidence, uncertainty and alternative data/experiments, but needs its own approval.
+
 8. **Recover and keep the user informed.** A rejected Project action must be resolved before
    further Project work. Never treat a refused close as closed, backfill skipped steps or fabricate
    history. A confirmed input rejection means the call was not executed: check current state and
@@ -393,15 +537,39 @@ The current dirty gate detects changes at GIL boundaries; it does not intercept 
    approval: if Core still requires approval, keep waiting; if recovery completed, follow Core's
    next call without repeating restore/revisit or reopening a Cycle already opened. Never require
    the user to repeat a special phrase such as “I pressed it”. Do not poll while waiting for user input.
+   When that message reports a plan decision, `gil_plan_read` is the record to read: its receipt,
+   the exact proposal and `next` outrank the message text. A recorded change request is not an
+   approval, and an approved closing proposal leads to the Chain Report, never to an Experiment.
+   If the record and the message disagree, or the decision is unclear, follow the record and do
+   not guess.
+
+   **Brief new-session handoff:** use the saved-record resume summary and the current next-call
+   line to state the position, last recorded result, response/decision target and one permitted
+   next action or wait. Link to the existing reports/`gil_story`, and to `gil_plan_read` only for
+   an approved-plan project. An open Question has no recorded answer; this does not prove the
+   question was delivered or that an actual answer already in the chat must be requested again.
+   A saved Monitor approval is distinct from an open Synthesis or Interview: continue their
+   remaining steps without asking for the same approval again. A binding means the Experiment
+   opened, not that its work finished. A re-interview request does not close the current Cycle.
+   After the Closing Interview, submit the Chain Report; after Chain closure, wait for a new
+   topic and an explicit next Chain start. Follow `gil_plan_read.next`, not a surviving binding
+   or an old `close_report`, to choose the current action.
+
+   Context alone does not observe current file changes. Use `gil_status` for that existing
+   observation path and retain an observation/read failure as unknown, never “unchanged”.
+   Stored decisions do not prove Host message delivery, a visible screen or external work
+   completion. Re-read an uncertain approval result; do not infer approval, failure or closure
+   from silence, elapsed time or disconnection. Plan changes follow the exact revision/digest
+   contract; never invalidate a saved approval just because a file changed.
 
    | Situation | Recovery |
    | --- | --- |
    | `gil_start` refused because a project exists | Read `gil_context` once and continue there; never start again |
    | Close response lost or uncertain | Read `gil_status`/`gil_context`; close again only if the step is still open |
    | `gil_close` input/Report rejected | The refusal names the missing or invalid field and shows the current input skeleton: put the Report STRING in `report`, not `contract` (the latter is for `gil_open`), fix only those fields and resend once; no manual lookup is needed for a field the refusal already shows. Read `gil_help({project_root, topic: "close"})` only when the refusal shows no skeleton or the position may have changed; do not run a PATH `gil` binary that may be a different build. Preserve typed `expected_owner`/`visuals` when required. |
-   | `gil_close`/`gil_open` refused with an approved-plan reason (`Approved plan:` / `승인 계획:` in the reason) | Not an input error: do not fix and resend the same call. Read `gil_plan_read` once and follow the next action its reply names — no proposal → `gil_plan_propose`; waiting → end the turn and wait for the Monitor button; approved → `gil_close` with `close_report` verbatim; changes requested → `close_report` (`approved: no`), then a Question. Never write `approved` yourself |
+   | `gil_close`/`gil_open` refused with an approved-plan reason (`Approved plan:` / `승인 계획:` in the reason) | Not an input error: do not fix and resend the same call. Read `gil_plan_read` once and follow the next action its reply names. For an actually open Synthesis: no proposal → `gil_plan_propose`; waiting → end the turn and wait for the Monitor button; approved → `gil_close` with `close_report` verbatim; changes requested → `close_report` (`approved: no`), then a Question. Never write `approved` yourself |
    | Plan decision or save result uncertain | `gil_plan_read`; never assume approval or re-propose blindly. Three states differ: approval still needed (wait), approval recorded (`receipt.decision`), save result unknown (read again; do not re-propose) |
-   | Approved earlier, proposal edited since | The old approval is gone; wait for the new revision's button |
+   | Approved earlier, proposal edited since | Read the current revision/digest and receipt with gil_plan_read. Do not infer that the old approval is gone from history: it remains bound to its original revision/digest and does not approve the edited revision. Wait only if the current revision has no decision |
    | Asked to re-interview during an Experiment | The request is preserved and closes nothing; keep following each receipt's next call and close the Cycle only when its receipt offers the Cycle Report, then `gil_open` Interview |
    | `gil_revisit` refused | If Monitor approval is required, show Monitor and wait for its button. If protected files differ or the platform is unsupported, preserve files and report the limitation. Never edit records, fake success or loop restore. A durably approved interrupted recovery can be resumed by `gil_revisit` when the receipt explicitly says so |
    | Refused `evidence_files` | Save truthful evidence while Verify is open, then resubmit the close |

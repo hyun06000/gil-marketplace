@@ -1,4 +1,4 @@
-# GIL 0.2.1-preview.31 — unsigned opt-in preview candidate
+# GIL 0.2.1-preview.32 — unsigned opt-in preview candidate
 
 macOS Apple Silicon only, for Codex and Claude Code (Claude Desktop). Not a stable release; not yet published.
 No Apple Developer ID signature or notarization is provided. Ad-hoc code signing may be present.
@@ -13,9 +13,10 @@ extracted root (.agents/plugins and .claude-plugin catalogs); each Host's on-scr
 Removing the Plugin must not remove a Project or its .gil records.
 See release.json for exact bytes and source; publication remains a separate reviewed operation.
 
-EXPERIMENTAL approved-plan + visual-authoring; action surface 2, readable storage formats 4..7.
-New projects use a Chain and Monitor-approved plan (format 7). Existing records are NOT automatically converted.
-Use a new empty test folder for the approval workflow. Closing Verify requires the bound plan document
-and separate file evidence. Closed failure revisit requires the Monitor preservation-and-recovery button;
-general restore and Step revisit remain blocked. Older runtimes may refuse these
-records; installing an older Plugin never downgrades project records.
+EXPERIMENTAL exploration-flow + visual-authoring + product-safety; action surface 2, storage formats 4..7.
+New Chains use stable approved requirements with multiple small Experiments and original-record reads.
+Use a NEW EMPTY TEST PROJECT. Existing Chains are NOT automatically converted.
+Older approved-plan runtimes REFUSE exploration-marked records, even within format 7.
+Downgrading the Plugin does not downgrade records; keep the exploration runtime for these test projects.
+No automatic requirement completion or provisional-answer store. Human closing approval remains required.
+Closed failure revisit requires the Monitor preservation-and-recovery button; general restore and Step revisit remain blocked.
